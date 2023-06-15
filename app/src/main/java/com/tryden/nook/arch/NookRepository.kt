@@ -1,22 +1,26 @@
 package com.tryden.nook.arch
 
 import com.tryden.nook.database.AppDatabase
-import com.tryden.nook.database.entity.ItemEntity
-import kotlinx.coroutines.flow.Flow
+import com.tryden.nook.database.entity.PriorityItemEntity
 
 class NookRepository(
     private val appDatabase: AppDatabase
 ){
 
-    fun insertItem(itemEntity: ItemEntity) {
-        appDatabase.itemEntityDao().insert(itemEntity)
+    suspend fun getAllPriorityItems(): List<PriorityItemEntity> {
+        return appDatabase.priorityItemEntityDao().getAllPriorityItemEntities()
     }
 
-    fun deleteItem(itemEntity: ItemEntity) {
-        appDatabase.itemEntityDao().delete(itemEntity)
+    fun insertPriorityItem(priorityItemEntity: PriorityItemEntity) {
+        appDatabase.priorityItemEntityDao().insert(priorityItemEntity)
     }
 
-    fun getAllItems(): List<ItemEntity> {
-        return appDatabase.itemEntityDao().getAllItemEntities()
+    fun deletePriorityItem(priorityItemEntity: PriorityItemEntity) {
+        appDatabase.priorityItemEntityDao().delete(priorityItemEntity)
     }
+
+    fun updatePriorityItem(priorityItemEntity: PriorityItemEntity) {
+        appDatabase.priorityItemEntityDao().update(priorityItemEntity)
+    }
+
 }

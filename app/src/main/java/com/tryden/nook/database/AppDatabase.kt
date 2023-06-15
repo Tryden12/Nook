@@ -6,11 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.tryden.nook.database.dao.ItemEntityDao
-import com.tryden.nook.database.entity.ItemEntity
+import com.tryden.nook.database.dao.PriorityItemEntityDao
+import com.tryden.nook.database.entity.PriorityItemEntity
 
 @Database(
-    entities = [ItemEntity::class],
+    entities = [PriorityItemEntity::class],
     version = 1
 )
 abstract class AppDatabase: RoomDatabase() {
@@ -24,13 +24,15 @@ abstract class AppDatabase: RoomDatabase() {
             appDatabase = Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                name = "nook-database"
+                name = "nook-db"
             )
-//                .addMigrations(MIGRATION_1_2())  ** EXAMPLE **
+//                .addMigrations(MIGRATION_1_2())
                 .build()
             return appDatabase!!
         }
     }
+    abstract fun priorityItemEntityDao(): PriorityItemEntityDao
+
 
     // Class for migrating database versions
     class MIGRATION_1_2: Migration(1,2) {
@@ -39,7 +41,4 @@ abstract class AppDatabase: RoomDatabase() {
 //            database.execSQL("CREATE TABLE IF NOT EXISTS `category_entity` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`))")
         }
     }
-
-    abstract fun itemEntityDao(): ItemEntityDao
-
 }

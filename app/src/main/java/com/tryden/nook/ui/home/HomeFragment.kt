@@ -1,4 +1,4 @@
-package com.tryden.nook
+package com.tryden.nook.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,7 +26,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.itemEntitiesLiveData.observe(viewLifecycleOwner) { itemEntityList ->
+        sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
             // todo
         }
     }

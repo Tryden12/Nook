@@ -3,12 +3,12 @@ package com.tryden.nook.database.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "item_entity")
-data class ItemEntity(
+@Entity(tableName = "priority_item_entity")
+data class PriorityItemEntity(
     @PrimaryKey val id: String = "",
     val title: String = "",
     val description: String? = null,
-    val createdAt: Long = 0L,
+    val lastModified: Long = 0L,
     val categoryId: String = "",
-//    val priority: Int = 0
+    val priority: Int = 0
 )
