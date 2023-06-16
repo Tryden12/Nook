@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="8dp"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:background="@color/black">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/section_title_TextView"
+        android:id="@+id/title_TextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -18,11 +19,11 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/section_down_arrow_TextView"
+        app:layout_constraintEnd_toStartOf="@id/sectionDownArrow_ImageView"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/section_down_arrow_TextView"
+        android:id="@+id/sectionDownArrow_ImageView"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginEnd="16dp"
@@ -31,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/section_title_TextView" />
+        app:layout_constraintStart_toEndOf="@id/title_TextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,9 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val controller = HomeEpoxyController()
+        binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
+
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
             // todo
         }

@@ -5,24 +5,18 @@ import com.tryden.nook.R
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.ModelItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
+import com.tryden.nook.ui.epoxy.models.HeadingPageTitleEpoxyModel
+import com.tryden.nook.ui.epoxy.models.HeadingSectionTitleEpoxyModel
+import com.tryden.nook.ui.epoxy.models.priorities.SectionFolderItemEpoxyModel
 
-class HomeEpoxyController(
-    private val priorityItemEntityInterface: PriorityItemEntityInterface
-): EpoxyController() {
+class HomeEpoxyController(): EpoxyController() {
 
-    var isLoading: Boolean = true
+    var isLoading: Boolean = false
         set(value) {
             field = value
             if (field) {
                 requestModelBuild()
             }
-        }
-
-    var itemEntityList = ArrayList<PriorityItemEntity>()
-        set(value) {
-            field = value
-            isLoading = false
-            requestModelBuild()
         }
 
     override fun buildModels() {
@@ -31,29 +25,17 @@ class HomeEpoxyController(
             return
         }
 
-        if (itemEntityList.isEmpty()) {
-            // todo empty state
-            return
-        }
+        // Folders Title
+        HeadingPageTitleEpoxyModel("Folders").id("heading-folders").addTo(this)
 
-        itemEntityList.forEach { item ->
-
-        }
+        // Priorities Section
+        HeadingSectionTitleEpoxyModel("Priorities").id("heading-priorities").addTo(this)
+        SectionFolderItemEpoxyModel(
+            0, // todo revisit
+            "Priorities",
+            0
+        ).id("folder-item-priorities").addTo(this)
     }
 
-    data class ItemEntityEpoxyModel(
-        val itemEntity: PriorityItemEntity,
-        val priorityItemEntityInterface: PriorityItemEntityInterface
-    ): ViewBindingKotlinModel<ModelItemEntityBinding>(R.layout.model_item_entity) {
 
-        override fun ModelItemEntityBinding.bind() {
-            titleTextView.text = itemEntity.title
-            lastModifiedTextView.text = itemEntity.lastModified.toString() // todo revisit
-            descriptionTextView.text = itemEntity.description
-
-            priorityTextView.setOnClickListener {
-                priorityItemEntityInterface.onBumpPriority(itemEntity)
-            }
-        }
-    }
 }
