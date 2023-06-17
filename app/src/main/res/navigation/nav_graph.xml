@@ -8,11 +8,12 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.tryden.nook.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_prioritiesFragment"
-            app:destination="@id/prioritiesFragment" app:popEnterAnim="@anim/slide_in_left"
+            app:destination="@id/prioritiesFragment"
+            app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
@@ -20,6 +21,15 @@
     <fragment
         android:id="@+id/prioritiesFragment"
         android:name="com.tryden.nook.ui.priorities.PrioritiesFragment"
-        android:label="fragment_priorities"
-        tools:layout="@layout/fragment_priorities" />
+        android:label="Priorities"
+        tools:layout="@layout/fragment_priorities" >
+        <action
+            android:id="@+id/action_prioritiesFragment_to_addPriorityFragment"
+            app:destination="@id/addPriorityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPriorityFragment"
+        android:name="com.tryden.nook.ui.priorities.AddPriorityFragment"
+        android:label="Add Priority"
+        tools:layout="@layout/fragment_add_priority"/>
 </navigation>
