@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/addFolderFragment"
+        android:icon="@drawable/ic_create_new_folder_24"
+        android:checked="false"
+        android:title=""
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/listCount"
+        android:checked="false"
+        android:title="(count placeholder)"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/addPriorityFragment"
+        android:icon="@drawable/ic_note_add_24"
+        android:checked="false"
+        android:title=""
+        app:showAsAction="always"
+        />
+</menu>
