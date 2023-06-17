@@ -31,7 +31,7 @@ class HomeEpoxyController(
         HeadingPageTitleEpoxyModel("Folders").id("heading-folders").addTo(this)
 
         // Priorities Section
-        HeadingSectionTitleEpoxyModel("Priorities").id("heading-priorities").addTo(this)
+        HeadingSectionTitleEpoxyModel("All Priorities").id("heading-priorities").addTo(this)
         SectionFolderItemEpoxyModel(
             0, // todo revisit
             "Priorities",
