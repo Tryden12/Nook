@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.home
+package com.tryden.nook.ui.priorities
 
 import com.tryden.nook.database.entity.PriorityItemEntity
 

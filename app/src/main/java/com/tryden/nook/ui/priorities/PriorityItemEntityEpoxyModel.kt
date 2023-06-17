@@ -4,7 +4,6 @@ import com.tryden.nook.R
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.ModelItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
-import com.tryden.nook.ui.home.PriorityItemEntityInterface
 
 data class PriorityItemEntityEpoxyModel(
     val priorityItemEntity: PriorityItemEntity,

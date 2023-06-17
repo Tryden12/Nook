@@ -2,7 +2,6 @@ package com.tryden.nook.ui.priorities
 
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.database.entity.PriorityItemEntity
-import com.tryden.nook.ui.home.PriorityItemEntityInterface
 
 class PrioritiesEpoxyController(
     val priorityItemEntityInterface: PriorityItemEntityInterface

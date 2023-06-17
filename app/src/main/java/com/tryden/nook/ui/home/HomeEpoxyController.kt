@@ -9,7 +9,9 @@ import com.tryden.nook.ui.epoxy.models.HeadingPageTitleEpoxyModel
 import com.tryden.nook.ui.epoxy.models.HeadingSectionTitleEpoxyModel
 import com.tryden.nook.ui.epoxy.models.priorities.SectionFolderItemEpoxyModel
 
-class HomeEpoxyController(): EpoxyController() {
+class HomeEpoxyController(
+    val onFolderItemSelected: () -> Unit
+): EpoxyController() {
 
     var isLoading: Boolean = false
         set(value) {
@@ -33,7 +35,8 @@ class HomeEpoxyController(): EpoxyController() {
         SectionFolderItemEpoxyModel(
             0, // todo revisit
             "Priorities",
-            0
+            0,
+            onFolderItemSelected
         ).id("folder-item-priorities").addTo(this)
     }
 
