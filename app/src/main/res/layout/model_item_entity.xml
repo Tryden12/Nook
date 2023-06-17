@@ -6,11 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginTop="8dp"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="4dp"
+    tools:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/background">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/titleTextView"
@@ -19,7 +21,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:textColor="?attr/colorOnSurface"
+            android:textColor="?attr/colorSurface"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/titleTextView"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
@@ -43,6 +46,7 @@
             android:layout_marginBottom="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintStart_toEndOf="@id/lastModifiedTextView"
             app:layout_constraintTop_toTopOf="@id/lastModifiedTextView"
             app:layout_constraintEnd_toStartOf="@id/priorityTextView"
@@ -60,7 +64,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/teal_700" />
+            tools:background="?attr/background" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
