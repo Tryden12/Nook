@@ -22,7 +22,4 @@
     <color name="gray_800">#424242</color>
     <color name="gray_900">#212121</color>
 
-    <color name="rustColor">#753023</color>
-    <color name="rustLightColor">#a85c4b</color>
-    <color name="rustDarkColor">#450300</color>
 </resources>
