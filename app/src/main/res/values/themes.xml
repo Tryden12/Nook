@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
 
         <item name="background">@color/primaryLightColor</item>
-        <item name="colorOnBackground">@color/secondaryLightColor</item>
+        <item name="colorOnBackground">@color/gray_900</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/secondaryLightColor</item>
         <item name="colorAccent">@color/color_accent</item>
