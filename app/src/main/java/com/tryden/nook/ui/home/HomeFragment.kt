@@ -1,14 +1,17 @@
 package com.tryden.nook.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
 import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
+import com.tryden.nook.ui.BottomToolbarSetup
 
 
 class HomeFragment : BaseFragment() {
@@ -17,7 +20,8 @@ class HomeFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private val controller = HomeEpoxyController(::onFolderItemSelected)
-
+    private lateinit var noteCountTextView: AppCompatTextView
+    private lateinit var addFolderImageView: AppCompatImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,12 +34,25 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        bottomToolbarSetup()
+        Log.e("HomeFragment", "onViewCreated: ${HomeFragment().id}")
         binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
 
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
             // todo
         }
+    }
+
+    private fun bottomToolbarSetup() {
+        noteCountTextView = requireActivity().findViewById(R.id.countTextView)
+        addFolderImageView = requireActivity().findViewById(R.id.addFolderImageView)
+
+        BottomToolbarSetup(
+            getString(R.string.home_fragment_key),
+            requireActivity(),
+            noteCountTextView,
+            addFolderImageView
+        ).bottomToolbarSetup()
     }
 
     private fun onFolderItemSelected() {

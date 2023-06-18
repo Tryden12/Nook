@@ -1,18 +1,24 @@
 package com.tryden.nook.ui.priorities
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.tryden.nook.R
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
+import com.tryden.nook.ui.BottomToolbarSetup
 
 class PrioritiesFragment : BaseFragment() {
 
     private var _binding: FragmentPrioritiesBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var noteCountTextView: AppCompatTextView
+    private lateinit var addFolderImageView: AppCompatImageView
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,10 +31,23 @@ class PrioritiesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        bottomToolbarSetup()
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) {
             // todo
+
         }
+    }
+
+    private fun bottomToolbarSetup() {
+        noteCountTextView = requireActivity().findViewById(R.id.countTextView)
+        addFolderImageView = requireActivity().findViewById(R.id.addFolderImageView)
+
+        BottomToolbarSetup(
+            getString(R.string.priorities_fragment_key),
+            requireActivity(),
+            noteCountTextView,
+            addFolderImageView
+        ).bottomToolbarSetup()
     }
 
     override fun onDestroyView() {
