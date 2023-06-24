@@ -22,6 +22,7 @@ class HomeFragment : BaseFragment() {
     private val controller = HomeEpoxyController(::onFolderItemSelected)
     private lateinit var noteCountTextView: AppCompatTextView
     private lateinit var addFolderImageView: AppCompatImageView
+    private lateinit var addItemImageView: AppCompatImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,13 +47,19 @@ class HomeFragment : BaseFragment() {
     private fun bottomToolbarSetup() {
         noteCountTextView = requireActivity().findViewById(R.id.countTextView)
         addFolderImageView = requireActivity().findViewById(R.id.addFolderImageView)
+        addItemImageView = requireActivity().findViewById(R.id.addItemImageView)
 
         BottomToolbarSetup(
             getString(R.string.home_fragment_key),
             requireActivity(),
+            addItemImageView,
             noteCountTextView,
             addFolderImageView
         ).bottomToolbarSetup()
+
+        addItemImageView.setOnClickListener {
+            navigateViewNavGraph(R.id.action_homeFragment_to_addPriorityFragment)
+        }
     }
 
     private fun onFolderItemSelected() {

@@ -18,6 +18,7 @@ class PrioritiesFragment : BaseFragment() {
 
     private lateinit var noteCountTextView: AppCompatTextView
     private lateinit var addFolderImageView: AppCompatImageView
+    private lateinit var addItemImageView: AppCompatImageView
 
 
     override fun onCreateView(
@@ -41,10 +42,12 @@ class PrioritiesFragment : BaseFragment() {
     private fun bottomToolbarSetup() {
         noteCountTextView = requireActivity().findViewById(R.id.countTextView)
         addFolderImageView = requireActivity().findViewById(R.id.addFolderImageView)
+        addItemImageView = requireActivity().findViewById(R.id.addItemImageView)
 
         BottomToolbarSetup(
             getString(R.string.priorities_fragment_key),
             requireActivity(),
+            addItemImageView,
             noteCountTextView,
             addFolderImageView
         ).bottomToolbarSetup()

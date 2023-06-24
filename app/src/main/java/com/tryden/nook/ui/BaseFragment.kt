@@ -14,4 +14,13 @@ abstract class BaseFragment : Fragment() {
         get() = AppDatabase.getDatabase(requireActivity())
 
     protected val sharedViewModel: NookViewModel by activityViewModels()
+
+    // region Navigation helper methods
+    protected fun navigateUp() {
+        mainActivity.navController.navigateUp()
+    }
+
+    protected fun navigateViewNavGraph(actionId: Int) {
+        mainActivity.navController.navigate(actionId)
+    }
 }

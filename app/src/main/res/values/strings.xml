@@ -2,7 +2,17 @@
     <string name="app_name">Nook</string>
 
 
+    <!-- Keys -->
     <string name="home_fragment_key">home_fragment</string>
     <string name="priorities_fragment_key">priorities_fragment</string>
+
+    <!-- Widgets -->
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description (Optional)</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="save">Save</string>
+
 
 </resources>
