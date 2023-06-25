@@ -52,6 +52,12 @@ class HomeFragment : BaseFragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.hideKeyboard(requireView())
+    }
+
     private fun onFolderItemSelected() {
         findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
     }

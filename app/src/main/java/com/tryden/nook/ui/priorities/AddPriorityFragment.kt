@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddPriorityBinding
@@ -40,6 +41,24 @@ class AddPriorityFragment : BaseFragment() {
         binding.saveButton.setOnClickListener {
             savePriorityItemToDatabase()
         }
+
+        sharedViewModel.transactionCompleteLiveData.observe(viewLifecycleOwner) { complete ->
+            if (complete) {
+                Toast.makeText(
+                    requireActivity(), getString(R.string.item_saved), Toast.LENGTH_SHORT
+                ).show()
+
+                binding.titleEditText.text = null
+                binding.descriptionEditText.text = null
+                binding.titleEditText.requestFocus()
+                mainActivity.showKeyboard()
+                binding.radioGroup.check(R.id.radioButtonLow)
+
+            }
+        }
+        // Show keyboard and default select our Title EditText
+        mainActivity.showKeyboard()
+        binding.titleEditText.requestFocus()
     }
 
     private fun savePriorityItemToDatabase() {
@@ -68,6 +87,12 @@ class AddPriorityFragment : BaseFragment() {
             categoryId = "" // todo update later when we have categories in the app
         )
         sharedViewModel.insertPriorityItem(priorityItemEntity)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        sharedViewModel.transactionCompleteLiveData.postValue(false)
     }
 
     override fun onDestroyView() {

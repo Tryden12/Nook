@@ -5,25 +5,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tryden.nook.database.AppDatabase
 import com.tryden.nook.database.entity.PriorityItemEntity
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class NookViewModel() : ViewModel() {
 
     private lateinit var repository: NookRepository
 
+    val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()
+
+    val transactionCompleteLiveData = MutableLiveData<Boolean>()
+
     fun init (appDatabase: AppDatabase) {
         repository = NookRepository(appDatabase)
         viewModelScope.launch{
-            val priorityItems = repository.getAllPriorityItems()
-            priorityItemEntitiesLiveData.postValue(priorityItems)
+            repository.getAllPriorityItems().collect { items ->
+                priorityItemEntitiesLiveData.postValue(items)
+            }
         }
     }
-
-    val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()
 
     fun insertPriorityItem(priorityItemEntity: PriorityItemEntity) {
         viewModelScope.launch {
             repository.insertPriorityItem(priorityItemEntity)
+
+            transactionCompleteLiveData.postValue(true)
         }
     }
 

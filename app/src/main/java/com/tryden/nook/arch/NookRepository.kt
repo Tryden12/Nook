@@ -2,12 +2,13 @@ package com.tryden.nook.arch
 
 import com.tryden.nook.database.AppDatabase
 import com.tryden.nook.database.entity.PriorityItemEntity
+import kotlinx.coroutines.flow.Flow
 
 class NookRepository(
     private val appDatabase: AppDatabase
 ){
 
-    suspend fun getAllPriorityItems(): List<PriorityItemEntity> {
+    fun getAllPriorityItems(): Flow<List<PriorityItemEntity>> {
         return appDatabase.priorityItemEntityDao().getAllPriorityItemEntities()
     }
 

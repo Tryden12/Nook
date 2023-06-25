@@ -2,12 +2,13 @@ package com.tryden.nook.database.dao
 
 import androidx.room.*
 import com.tryden.nook.database.entity.PriorityItemEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PriorityItemEntityDao {
 
     @Query("SELECT * FROM priority_item_entity")
-    suspend fun getAllPriorityItemEntities(): List<PriorityItemEntity>
+    fun getAllPriorityItemEntities(): Flow<List<PriorityItemEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(priorityItemEntity: PriorityItemEntity)

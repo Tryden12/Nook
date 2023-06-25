@@ -46,6 +46,12 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.hideKeyboard(requireView())
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -53,7 +59,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
     }
 
     override fun onDelete(priorityItemEntity: PriorityItemEntity) {
-        // todo implement me
+        sharedViewModel.deleteItem(priorityItemEntity)
     }
 
     override fun onBumpPriority(priorityItemEntity: PriorityItemEntity) {
