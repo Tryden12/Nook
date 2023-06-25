@@ -36,14 +36,6 @@ data class PriorityItemEntityEpoxyModel(
             else -> R.color.color_accent
         }
 
-//        val priorityText = when (priorityItemEntity.priority) {
-//            1 -> "!"
-//            2 -> "!!"
-//            3 -> "!!!"
-//            else -> "!"
-//        }
-//
-//        priorityTextView.text = priorityText
         priorityTextView.setTextColor(ContextCompat.getColor(root.context, colorRes))
     }
 }

@@ -19,6 +19,11 @@ class HomeEpoxyController(
             }
         }
 
+    var prioritiesItemCount: String = ""
+        set(value) {
+            field = value
+        }
+
     override fun buildModels() {
         if (isLoading) {
             // todo loading state
@@ -34,7 +39,7 @@ class HomeEpoxyController(
         SectionFolderItemEpoxyModel(
             0, // todo revisit
             "All Priorities",
-            0,
+            prioritiesItemCount,
             onFolderItemSelected
         ).id("folder-item-priorities").addTo(this)
         SectionFooterRoundedEpoxyModel().id("section-priorities-footer-top").addTo(this)

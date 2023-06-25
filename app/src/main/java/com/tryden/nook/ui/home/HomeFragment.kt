@@ -44,12 +44,11 @@ class HomeFragment : BaseFragment() {
             activity = mainActivity,
         ).bottomToolbarSetup()
 
-        binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
-
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
-            // todo
+            controller.prioritiesItemCount = priorityItemEntityList.size.toString()
         }
 
+        binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
     }
 
     override fun onResume() {

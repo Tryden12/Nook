@@ -7,14 +7,14 @@ import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 data class SectionFolderItemEpoxyModel(
     val icon: Int,
     val title: String,
-    val count: Int,
+    val count: String,
     val onFolderItemSelected: () -> Unit
 ): ViewBindingKotlinModel<ModelSectionFolderItemBinding>(R.layout.model_section_folder_item) {
 
     override fun ModelSectionFolderItemBinding.bind() {
 //        iconImageView.setImageResource(icon)  // todo revisit
         titleTextView.text = title
-        countTextView.text = count.toString()
+        countTextView.text = count
 
         root.setOnClickListener {
             onFolderItemSelected()
