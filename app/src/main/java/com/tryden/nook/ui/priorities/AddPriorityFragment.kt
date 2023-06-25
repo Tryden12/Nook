@@ -11,6 +11,7 @@ import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddPriorityBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
+import com.tryden.nook.ui.convertLongToTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -83,7 +84,7 @@ class AddPriorityFragment : BaseFragment() {
             title = itemTitle,
             description = description,
             priority = priority,
-            lastModified = System.currentTimeMillis(), // todo fix
+            lastModified = convertLongToTime(System.currentTimeMillis()), // todo fix
             categoryId = "" // todo update later when we have categories in the app
         )
         sharedViewModel.insertPriorityItem(priorityItemEntity)

@@ -8,7 +8,7 @@ data class PriorityItemEntity(
     @PrimaryKey val id: String = "",
     val title: String = "",
     val description: String? = null,
-    val lastModified: Long = 0L,
+    val lastModified: String = "",
     val categoryId: String = "",
     val priority: Int = 0
 )
