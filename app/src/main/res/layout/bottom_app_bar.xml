@@ -1,54 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomToolbarLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/background">
+    android:background="@android:color/transparent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/addFolderImageView"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_add_folder"
-                android:tint="?attr/colorAccent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+    <!-- Home Bar -->
+    <include
+        android:id="@+id/home__BottomBar"
+        layout="@layout/model_bottom_app_bar_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/countTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="14 Notes"
-                android:textColor="?attr/colorSurface"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="14 Notes"
-                android:visibility="invisible"/>
+    <!-- List of Items Bar -->
+    <include
+        android:id="@+id/list__BottomBar"
+        layout="@layout/model_bottom_app_bar_items_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/addItemImageView"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_add_note"
-                android:tint="?attr/colorAccent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="visible"/>
+    <!-- Edit Item Bar -->
+    <include
+        android:id="@+id/itemEdit__BottomBar"
+        layout="@layout/model_bottom_app_bar_item_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.google.android.material.appbar.AppBarLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

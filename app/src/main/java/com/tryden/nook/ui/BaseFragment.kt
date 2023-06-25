@@ -1,7 +1,9 @@
 package com.tryden.nook.ui
 
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.tryden.nook.R
 import com.tryden.nook.arch.NookViewModel
 import com.tryden.nook.database.AppDatabase
 
@@ -23,4 +25,5 @@ abstract class BaseFragment : Fragment() {
     protected fun navigateViewNavGraph(actionId: Int) {
         mainActivity.navController.navigate(actionId)
     }
+    // endregion Navigation helper methods
 }

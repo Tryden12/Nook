@@ -5,6 +5,8 @@
     <!-- Keys -->
     <string name="home_fragment_key">home_fragment</string>
     <string name="priorities_fragment_key">priorities_fragment</string>
+    <string name="add_priority_fragment_key">add_priority_fragment</string>
+
 
     <!-- Widgets -->
     <string name="hint_title">Title</string>

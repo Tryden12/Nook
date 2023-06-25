@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
 import com.tryden.nook.databinding.FragmentHomeBinding
@@ -20,9 +23,6 @@ class HomeFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private val controller = HomeEpoxyController(::onFolderItemSelected)
-    private lateinit var noteCountTextView: AppCompatTextView
-    private lateinit var addFolderImageView: AppCompatImageView
-    private lateinit var addItemImageView: AppCompatImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,31 +35,21 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomToolbarSetup()
-        Log.e("HomeFragment", "onViewCreated: ${HomeFragment().id}")
+        val tag = resources.getString(R.string.home_fragment_key)
+        Log.e("HomeFragment()", "onViewCreated: $tag")
+
+        // Setup Bottom Toolbar
+        BottomToolbarSetup(
+            fragmentKey = tag,
+            activity = mainActivity,
+        ).bottomToolbarSetup()
+
         binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
 
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
             // todo
         }
-    }
 
-    private fun bottomToolbarSetup() {
-        noteCountTextView = requireActivity().findViewById(R.id.countTextView)
-        addFolderImageView = requireActivity().findViewById(R.id.addFolderImageView)
-        addItemImageView = requireActivity().findViewById(R.id.addItemImageView)
-
-        BottomToolbarSetup(
-            getString(R.string.home_fragment_key),
-            requireActivity(),
-            addItemImageView,
-            noteCountTextView,
-            addFolderImageView
-        ).bottomToolbarSetup()
-
-        addItemImageView.setOnClickListener {
-            navigateViewNavGraph(R.id.action_homeFragment_to_addPriorityFragment)
-        }
     }
 
     private fun onFolderItemSelected() {
