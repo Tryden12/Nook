@@ -22,14 +22,20 @@ class NookViewModel() : ViewModel() {
     val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()
 
     fun insertPriorityItem(priorityItemEntity: PriorityItemEntity) {
-        repository.insertPriorityItem(priorityItemEntity)
+        viewModelScope.launch {
+            repository.insertPriorityItem(priorityItemEntity)
+        }
     }
 
     fun deleteItem(priorityItemEntity: PriorityItemEntity) {
-        repository.deletePriorityItem(priorityItemEntity)
+        viewModelScope.launch {
+            repository.deletePriorityItem(priorityItemEntity)
+        }
     }
 
     fun updatePriorityItem(priorityItemEntity: PriorityItemEntity) {
-        repository.updatePriorityItem(priorityItemEntity)
+        viewModelScope.launch {
+            repository.updatePriorityItem(priorityItemEntity)
+        }
     }
 }

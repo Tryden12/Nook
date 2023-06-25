@@ -10,11 +10,11 @@ interface PriorityItemEntityDao {
     suspend fun getAllPriorityItemEntities(): List<PriorityItemEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(priorityItemEntity: PriorityItemEntity)
+    suspend fun insert(priorityItemEntity: PriorityItemEntity)
 
     @Delete
-    fun delete(priorityItemEntity: PriorityItemEntity)
+    suspend fun delete(priorityItemEntity: PriorityItemEntity)
 
     @Update
-    fun update(priorityItemEntity: PriorityItemEntity)
+    suspend fun update(priorityItemEntity: PriorityItemEntity)
 }

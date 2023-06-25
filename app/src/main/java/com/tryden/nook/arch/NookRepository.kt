@@ -11,15 +11,15 @@ class NookRepository(
         return appDatabase.priorityItemEntityDao().getAllPriorityItemEntities()
     }
 
-    fun insertPriorityItem(priorityItemEntity: PriorityItemEntity) {
+    suspend fun insertPriorityItem(priorityItemEntity: PriorityItemEntity) {
         appDatabase.priorityItemEntityDao().insert(priorityItemEntity)
     }
 
-    fun deletePriorityItem(priorityItemEntity: PriorityItemEntity) {
+    suspend fun deletePriorityItem(priorityItemEntity: PriorityItemEntity) {
         appDatabase.priorityItemEntityDao().delete(priorityItemEntity)
     }
 
-    fun updatePriorityItem(priorityItemEntity: PriorityItemEntity) {
+    suspend fun updatePriorityItem(priorityItemEntity: PriorityItemEntity) {
         appDatabase.priorityItemEntityDao().update(priorityItemEntity)
     }
 

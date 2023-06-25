@@ -11,10 +11,12 @@
     <!-- Widgets -->
     <string name="hint_title">Title</string>
     <string name="hint_description">Description (Optional)</string>
+    <string name="required_field">* Required field</string>
     <string name="low">Low</string>
     <string name="medium">Medium</string>
     <string name="high">High</string>
     <string name="save">Save</string>
+    <string name="priority_image_text">!</string>
 
 
 </resources>

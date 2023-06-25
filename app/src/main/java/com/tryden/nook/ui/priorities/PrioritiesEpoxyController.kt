@@ -2,6 +2,9 @@ package com.tryden.nook.ui.priorities
 
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.ui.epoxy.models.LoadingEpoxyModel
+import com.tryden.nook.ui.epoxy.models.SectionFooterRoundedEpoxyModel
+import com.tryden.nook.ui.epoxy.models.SectionHeaderTopRoundEpoxyModel
 
 class PrioritiesEpoxyController(
     val priorityItemEntityInterface: PriorityItemEntityInterface
@@ -24,7 +27,7 @@ class PrioritiesEpoxyController(
 
     override fun buildModels() {
         if (isLoading) {
-            // todo loading state
+            LoadingEpoxyModel().id("loading_state").addTo(this)
             return
         }
 
@@ -33,8 +36,11 @@ class PrioritiesEpoxyController(
             return
         }
 
+        SectionHeaderTopRoundEpoxyModel().id("header-round-1").addTo(this)
         itemEntityList.forEach { item ->
-
+            PriorityItemEntityEpoxyModel(item, priorityItemEntityInterface).id(item.id).addTo(this)
         }
+        SectionFooterRoundedEpoxyModel().id("footer-round-1").addTo(this)
+
     }
 }

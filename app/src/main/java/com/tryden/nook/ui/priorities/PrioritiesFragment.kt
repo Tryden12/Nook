@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.tryden.nook.R
+import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 
-class PrioritiesFragment : BaseFragment() {
+class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
     private var _binding: FragmentPrioritiesBinding? = null
     private val binding get() = _binding!!
@@ -37,9 +38,11 @@ class PrioritiesFragment : BaseFragment() {
             activity = mainActivity,
         ).bottomToolbarSetup()
 
-        sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) {
-            // todo
+        val controller = PrioritiesEpoxyController(this)
+        binding.prioritiesEpoxyRecyclerView.setController(controller)
 
+        sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { itemEntityList ->
+            controller.itemEntityList = itemEntityList as ArrayList<PriorityItemEntity>
         }
     }
 
@@ -47,6 +50,14 @@ class PrioritiesFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDelete(priorityItemEntity: PriorityItemEntity) {
+        // todo implement me
+    }
+
+    override fun onBumpPriority(priorityItemEntity: PriorityItemEntity) {
+        // todo implement me
     }
 
 }
