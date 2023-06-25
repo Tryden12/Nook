@@ -19,7 +19,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/hint_title"
-            app:hintTextColor="?attr/colorOnSurface"
+            app:hintTextColor="?attr/colorAccent"
             app:errorEnabled="true"
             app:boxStrokeColor="@color/text_input_layout_stroke_color"
             app:boxStrokeWidth="1dp"
