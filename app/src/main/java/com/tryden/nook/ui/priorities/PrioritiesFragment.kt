@@ -71,7 +71,14 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
     }
 
     override fun onBumpPriority(priorityItemEntity: PriorityItemEntity) {
-        // todo implement me
+        val currentPriority = priorityItemEntity.priority
+        var newPriority = currentPriority + 1
+        if (newPriority > 3) {
+            newPriority = 1
+        }
+
+        val updatedPriorityItemEntity = priorityItemEntity.copy(priority = newPriority)
+        sharedViewModel.updatePriorityItem(updatedPriorityItemEntity)
     }
 
     private fun swipeToDeleteSetup() {
