@@ -4,6 +4,12 @@ import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem
+import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.HeaderSectionTitle
+import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.SectionHeaderRounded
+import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.SectionFooterRounded
+import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.Item
+import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.DividerItem
 import com.tryden.nook.ui.epoxy.models.*
 
 class PrioritiesEpoxyController(
@@ -41,26 +47,29 @@ class PrioritiesEpoxyController(
             return
         }
 
+        var epoxyItems = buildEpoxyList(itemEntityList)
 
-        var currentPriority: Int = -1
-
-        SectionHeaderTopRoundEpoxyModel().id("header-round-1").addTo(this)
-        itemEntityList.sortedByDescending {
-            it.priority
-        }.forEachIndexed() { index, item ->
-            if (item.priority != currentPriority) {
-                currentPriority = item.priority
-                val text = getHeaderTextPriority(currentPriority)
-                HeadingSectionTitleEpoxyModel(text, showDropDown = false)
-                    .id("header-priority-$text").addTo(this)
+        epoxyItems.forEachIndexed { index, epoxyItem ->
+            when (epoxyItem) {
+                is HeaderSectionTitle -> {
+                    HeadingSectionTitleEpoxyModel(title = epoxyItem.title, showDropDown = false)
+                        .id(epoxyItem.title).addTo(this)
+                }
+                is SectionHeaderRounded -> {
+                    SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index").addTo(this) // todo fix id?
+                }
+                is Item -> {
+                    PriorityItemEntityEpoxyModel(epoxyItem.item, priorityItemEntityInterface)
+                        .id(epoxyItem.item.id).addTo(this)
+                }
+                is DividerItem -> {
+                    DividerEpoxyModel().id("divider-$index").addTo(this) // todo fix id?
+                }
+                is SectionFooterRounded -> {
+                    SectionFooterRoundedEpoxyModel().id("section-footer-rounded-$index").addTo(this) // todo fix id?
+                }
             }
-            if (index != 0) {
-                DividerEpoxyModel().id("priority-${item.id}-divider").addTo(this)
-            }
-            PriorityItemEntityEpoxyModel(item, priorityItemEntityInterface).id(item.id).addTo(this)
         }
-        SectionFooterRoundedEpoxyModel().id("footer-round-1").addTo(this)
-
     }
 
     private fun getHeaderTextPriority(priority: Int) : String {
@@ -68,6 +77,26 @@ class PrioritiesEpoxyController(
             1 -> context.getString(R.string.low)
             2 -> context.getString(R.string.medium)
             else -> context.getString(R.string.high)
+        }
+    }
+
+    private fun buildEpoxyList(priorities: ArrayList<PriorityItemEntity>): List<PriorityItemEntityEpoxyItem> {
+        return buildList {
+            priorities.sortedByDescending {
+                it.priority
+            }.groupBy {
+                it.priority
+            }.forEach { mapEntry ->
+                add(HeaderSectionTitle(title = getHeaderTextPriority(mapEntry.key)))
+                add(SectionHeaderRounded)
+                mapEntry.value.forEachIndexed { index, item ->
+                    if (index != 0) {
+                        add(DividerItem)
+                    }
+                    add(Item(item = item))
+                }
+                add(SectionFooterRounded)
+            }
         }
     }
 }
