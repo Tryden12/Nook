@@ -1,11 +1,10 @@
 package com.tryden.nook.ui.priorities
 
 import com.airbnb.epoxy.EpoxyController
+import com.tryden.nook.R
+import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.PriorityItemEntity
-import com.tryden.nook.ui.epoxy.models.DividerEpoxyModel
-import com.tryden.nook.ui.epoxy.models.LoadingEpoxyModel
-import com.tryden.nook.ui.epoxy.models.SectionFooterRoundedEpoxyModel
-import com.tryden.nook.ui.epoxy.models.SectionHeaderTopRoundEpoxyModel
+import com.tryden.nook.ui.epoxy.models.*
 
 class PrioritiesEpoxyController(
     val priorityItemEntityInterface: PriorityItemEntityInterface
@@ -33,7 +32,10 @@ class PrioritiesEpoxyController(
         }
 
         if (itemEntityList.isEmpty()) {
-            // todo empty state
+            EmptyStateEpoxyModel(
+                NookApplication.context.getString(R.string.no_priorities),
+                NookApplication.context.getString(R.string.how_to_add_priorities)
+            ).id("empty-state-priorities").addTo(this)
             return
         }
 

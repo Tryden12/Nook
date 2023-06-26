@@ -16,6 +16,12 @@
     <string name="high">High</string>
     <string name="save">Save</string>
     <string name="priority_image_text">!</string>
+    <string name="no_items">No Items!</string>
+    <string name="how_to_add_items">Use the button in the bottom right-hand corner to add an item to this folder.</string>
+    <string name="no_priorities">No Priorities!</string>
+    <string name="how_to_add_priorities">Use the button in the bottom right-hand corner to add a priority to this folder.</string>
+    <string name="no_notes">No Notes!</string>
+    <string name="how_to_add_note">Use the button in the bottom right-hand corner to add a note to this folder.</string>
 
     <!-- Toasts -->
     <string name="item_saved">Item saved!</string>
