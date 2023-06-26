@@ -2,6 +2,7 @@ package com.tryden.nook.ui.priorities
 
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.ui.epoxy.models.DividerEpoxyModel
 import com.tryden.nook.ui.epoxy.models.LoadingEpoxyModel
 import com.tryden.nook.ui.epoxy.models.SectionFooterRoundedEpoxyModel
 import com.tryden.nook.ui.epoxy.models.SectionHeaderTopRoundEpoxyModel
@@ -37,7 +38,10 @@ class PrioritiesEpoxyController(
         }
 
         SectionHeaderTopRoundEpoxyModel().id("header-round-1").addTo(this)
-        itemEntityList.forEach { item ->
+        itemEntityList.forEachIndexed() { index, item ->
+            if (index != 0) {
+                DividerEpoxyModel().id("priority-${item.id}-divider").addTo(this)
+            }
             PriorityItemEntityEpoxyModel(item, priorityItemEntityInterface).id(item.id).addTo(this)
         }
         SectionFooterRoundedEpoxyModel().id("footer-round-1").addTo(this)

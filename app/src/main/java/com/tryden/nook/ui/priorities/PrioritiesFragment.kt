@@ -1,6 +1,7 @@
 package com.tryden.nook.ui.priorities
 
 import android.annotation.SuppressLint
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.SwipeCallbacks
 import com.tryden.nook.R
@@ -16,6 +18,7 @@ import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
+import kotlin.math.max
 
 class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
@@ -73,18 +76,9 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
     private fun swipeToDeleteSetup() {
         EpoxyTouchHelper.initSwiping(binding.prioritiesEpoxyRecyclerView)
-            .left()
+            .right()
             .withTarget(PriorityItemEntityEpoxyModel::class.java)
             .andCallbacks(object : SwipeCallbacks<PriorityItemEntityEpoxyModel>() {
-
-                override fun onSwipeStarted(
-                    model: PriorityItemEntityEpoxyModel?,
-                    itemView: View?,
-                    adapterPosition: Int
-                ) {
-                    super.onSwipeStarted(model, itemView, adapterPosition)
-                    itemView?.setBackgroundColor(ContextCompat.getColor(mainActivity, android.R.color.holo_red_dark))
-                }
 
                 override fun onSwipeCompleted(
                     model: PriorityItemEntityEpoxyModel?,
@@ -95,6 +89,20 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
                     val itemRemoved = model?.priorityItemEntity ?: return
                     sharedViewModel.deleteItem(itemRemoved)
                 }
+
+                override fun onSwipeProgressChanged(
+                    model: PriorityItemEntityEpoxyModel?,
+                    itemView: View?,
+                    swipeProgress: Float,
+                    canvas: Canvas?
+                ) {
+//                    itemView?.findViewById<AppCompatImageView>(R.id.deleteButtonImageView)?.apply {
+//                        isVisible = true
+//                        translationX = -itemView.translationX
+//                        alpha = 5f * swipeProgress
+//                    }
+                }
+
             })
     }
 

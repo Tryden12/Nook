@@ -11,6 +11,8 @@
     <color name="secondaryColor">@color/color_accent</color>
     <color name="secondaryDarkColor">@color/color_accent</color>
 
+    <color name="error_red">#b32922</color>
+
     <color name="gray_50">#FAFAFA</color>
     <color name="gray_100">#F5F5F5</color>
     <color name="gray_200">#EEEEEE</color>
