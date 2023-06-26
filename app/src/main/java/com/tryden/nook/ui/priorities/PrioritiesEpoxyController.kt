@@ -10,6 +10,8 @@ class PrioritiesEpoxyController(
     val priorityItemEntityInterface: PriorityItemEntityInterface
 ): EpoxyController() {
 
+    val context = NookApplication.context
+
     var isLoading: Boolean = true
         set(value) {
             field = value
@@ -33,14 +35,25 @@ class PrioritiesEpoxyController(
 
         if (itemEntityList.isEmpty()) {
             EmptyStateEpoxyModel(
-                NookApplication.context.getString(R.string.no_priorities),
-                NookApplication.context.getString(R.string.how_to_add_priorities)
+                context.getString(R.string.no_priorities),
+                context.getString(R.string.how_to_add_priorities)
             ).id("empty-state-priorities").addTo(this)
             return
         }
 
+
+        var currentPriority: Int = -1
+
         SectionHeaderTopRoundEpoxyModel().id("header-round-1").addTo(this)
-        itemEntityList.forEachIndexed() { index, item ->
+        itemEntityList.sortedByDescending {
+            it.priority
+        }.forEachIndexed() { index, item ->
+            if (item.priority != currentPriority) {
+                currentPriority = item.priority
+                val text = getHeaderTextPriority(currentPriority)
+                HeadingSectionTitleEpoxyModel(text, showDropDown = false)
+                    .id("header-priority-$text").addTo(this)
+            }
             if (index != 0) {
                 DividerEpoxyModel().id("priority-${item.id}-divider").addTo(this)
             }
@@ -48,5 +61,13 @@ class PrioritiesEpoxyController(
         }
         SectionFooterRoundedEpoxyModel().id("footer-round-1").addTo(this)
 
+    }
+
+    private fun getHeaderTextPriority(priority: Int) : String {
+        return when (priority) {
+            1 -> context.getString(R.string.low)
+            2 -> context.getString(R.string.medium)
+            else -> context.getString(R.string.high)
+        }
     }
 }
