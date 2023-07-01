@@ -4,12 +4,12 @@ import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.PriorityItemEntity
-import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem
-import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.HeaderSectionTitle
-import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.SectionHeaderRounded
-import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.SectionFooterRounded
-import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.Item
-import com.tryden.nook.ui.epoxy.interfaces.PriorityItemEntityEpoxyItem.DividerItem
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.HeaderSectionTitle
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionHeaderRounded
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionFooterRounded
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.PriorityItem
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.DividerItem
 import com.tryden.nook.ui.epoxy.models.*
 
 class PrioritiesEpoxyController(
@@ -58,7 +58,7 @@ class PrioritiesEpoxyController(
                 is SectionHeaderRounded -> {
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index").addTo(this) // todo fix id?
                 }
-                is Item -> {
+                is PriorityItem -> {
                     PriorityItemEntityEpoxyModel(epoxyItem.item, priorityItemEntityInterface)
                         .id(epoxyItem.item.id).addTo(this)
                 }
@@ -80,7 +80,7 @@ class PrioritiesEpoxyController(
         }
     }
 
-    private fun buildEpoxyList(priorities: ArrayList<PriorityItemEntity>): List<PriorityItemEntityEpoxyItem> {
+    private fun buildEpoxyList(priorities: ArrayList<PriorityItemEntity>): List<EpoxyItemsInterface> {
         return buildList {
             priorities.sortedByDescending {
                 it.priority
@@ -93,7 +93,7 @@ class PrioritiesEpoxyController(
                     if (index != 0) {
                         add(DividerItem)
                     }
-                    add(Item(item = item))
+                    add(PriorityItem(item = item))
                 }
                 add(SectionFooterRounded)
             }

@@ -28,7 +28,7 @@ data class BottomToolbarSetup(
         Log.e("BottomToolbarSetup()", "bottomToolbarSetup: fragmentKey = $fragmentKey", )
 
         when (fragmentKey) {
-            /** Home Fragment *********************************************************************/
+            /** HomeFragment *********************************************************************/
             activity.getString(R.string.home_fragment_key) -> {
 
                 // Show correct toolbar, hide others
@@ -61,7 +61,7 @@ data class BottomToolbarSetup(
                 }
             }
 
-            /** Add Priority Fragment *************************************************************/
+            /** AddPriority Fragment *************************************************************/
             activity.getString(R.string.add_priority_fragment_key) -> {
                 // Hide all bottom toolbars
                 activity.bottomToolbarItemsList.isInvisible = true
@@ -72,8 +72,8 @@ data class BottomToolbarSetup(
             /** Checklists Fragment **************************************************************/
             activity.getString(R.string.checklists_fragment_key) -> {
                 // Show correct toolbar, hide others
-                activity.bottomToolbarItemsList.isVisible = true
-                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarHome.isVisible = true
+                activity.bottomToolbarItemsList.isInvisible = true
                 activity.bottomToolbarEditItem.isInvisible = true
 
                 // OnClick listeners

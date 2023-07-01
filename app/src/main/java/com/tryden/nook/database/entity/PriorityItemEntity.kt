@@ -10,5 +10,6 @@ data class PriorityItemEntity(
     val description: String? = null,
     val lastModified: String = "",
     val categoryId: String = "",
+    val folderName: String = "",
     val priority: Int = 0
 )

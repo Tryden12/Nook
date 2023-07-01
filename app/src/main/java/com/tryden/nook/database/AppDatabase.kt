@@ -26,7 +26,7 @@ abstract class AppDatabase: RoomDatabase() {
             appDatabase = Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                name = "nook-db"
+                name = "nook-database"
             )
 //                .addMigrations(MIGRATION_1_2())
                 .build()

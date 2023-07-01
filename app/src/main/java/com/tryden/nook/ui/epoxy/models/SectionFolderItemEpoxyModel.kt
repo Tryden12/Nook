@@ -1,6 +1,7 @@
 package com.tryden.nook.ui.epoxy.models
 
 import android.graphics.drawable.Drawable
+import androidx.core.view.isVisible
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.databinding.ModelSectionFolderItemBinding
@@ -17,7 +18,11 @@ data class SectionFolderItemEpoxyModel(
     override fun ModelSectionFolderItemBinding.bind() {
         iconImageView.setImageDrawable(icon)
         titleTextView.text = title
-        countTextView.text = count
+        if (count.isEmpty()) {
+            countTextView.isVisible = false
+        } else {
+            countTextView.text = count
+        }
 
         root.setOnClickListener {
             when (title) {

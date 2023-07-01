@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "017264cf0c673b5e905c337c5cb2a420",
+    "identityHash": "0348c1cf3b2d4ec322718e990bda0278",
     "entities": [
       {
         "tableName": "priority_item_entity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT, `lastModified` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `priority` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT, `lastModified` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `folderName` TEXT NOT NULL, `priority` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -39,6 +39,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "folderName",
+            "columnName": "folderName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "priority",
             "columnName": "priority",
             "affinity": "INTEGER",
@@ -56,7 +62,7 @@
       },
       {
         "tableName": "checklist_item_entity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `isChecked` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `folderName` TEXT NOT NULL, `isChecked` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -73,6 +79,12 @@
           {
             "fieldPath": "categoryId",
             "columnName": "categoryId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "folderName",
+            "columnName": "folderName",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -96,7 +108,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '017264cf0c673b5e905c337c5cb2a420')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0348c1cf3b2d4ec322718e990bda0278')"
     ]
   }
 }

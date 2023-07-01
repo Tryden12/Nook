@@ -8,5 +8,6 @@ data class ChecklistItemEntity(
     @PrimaryKey val id: String = "",
     val title: String = "",
     val categoryId: String = "",
+    val folderName: String = "",
     val isChecked: Boolean = false
 )

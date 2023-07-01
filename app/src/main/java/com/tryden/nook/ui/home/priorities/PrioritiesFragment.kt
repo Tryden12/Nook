@@ -7,10 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.SwipeCallbacks
 import com.tryden.nook.R
@@ -18,7 +14,6 @@ import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
-import kotlin.math.max
 
 class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 

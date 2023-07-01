@@ -1,7 +1,6 @@
 package com.tryden.nook.ui.home.priorities
 
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.tryden.nook.R

@@ -46,7 +46,7 @@ class HomeEpoxyController(
         SectionFooterRoundedEpoxyModel().id("section-priorities-footer-top").addTo(this)
 
         // Spacer
-        SpacerEpoxyModel(spacerHeight = 10).id("spacer-1}").addTo(this)
+        SpacerEpoxyModel(spacerHeight = 16).id("spacer-1}").addTo(this)
 
         // Checklist Section
         HeadingSectionTitleEpoxyModel("Checklists", showDropDown = true).id("heading-checklists").addTo(this)

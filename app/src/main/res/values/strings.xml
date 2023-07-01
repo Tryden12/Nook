@@ -21,21 +21,27 @@
     <string name="save">Save</string>
     <string name="update">Update</string>
     <string name="priority_image_text">!</string>
+
     <string name="no_items">No Items!</string>
     <string name="how_to_add_items">Use the button in the bottom right-hand corner to add an item to this folder.</string>
     <string name="no_priorities">No Priorities!</string>
     <string name="how_to_add_priorities">Use the button in the bottom right-hand corner to add a priority to this folder.</string>
+    <string name="no_checklists">No Checklists!</string>
+    <string name="how_to_add_checklist">Use the button in the bottom left-hand corner to add a checklist folder</string>
     <string name="no_notes">No Notes!</string>
     <string name="how_to_add_note">Use the button in the bottom right-hand corner to add a note to this folder.</string>
 
     <!-- Toasts -->
     <string name="item_saved">Item saved!</string>
 
+    <!-- Section Titles -->
+    <string name="checklists">Checklists</string>
+
+
     <!-- Folder Titles -->
     <string name="all_priorities">All Priorities</string>
     <string name="all_checklists">All Checklists</string>
     <string name="all_notes">All Notes</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
