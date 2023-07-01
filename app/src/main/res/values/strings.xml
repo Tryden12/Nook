@@ -5,6 +5,7 @@
     <!-- Keys -->
     <string name="home_fragment_key">home_fragment</string>
     <string name="priorities_fragment_key">priorities_fragment</string>
+    <string name="checklists_fragment_key">checklist_fragment</string>
     <string name="add_priority_fragment_key">add_priority_fragment</string>
 
     <!-- Action Bar -->
@@ -29,4 +30,12 @@
 
     <!-- Toasts -->
     <string name="item_saved">Item saved!</string>
+
+    <!-- Folder Titles -->
+    <string name="all_priorities">All Priorities</string>
+    <string name="all_checklists">All Checklists</string>
+    <string name="all_notes">All Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

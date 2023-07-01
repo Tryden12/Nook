@@ -17,12 +17,12 @@ import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val controller = HomeEpoxyController(::onFolderItemSelected)
+    private val controller = HomeEpoxyController(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,18 +51,27 @@ class HomeFragment : BaseFragment() {
         binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
     }
 
+    override fun onPriorityFolderSelected() {
+        findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
+    }
+
+    override fun onChecklistFolderSelected() {
+        findNavController().navigate(R.id.action_homeFragment_to_checklistsFragment)
+    }
+
+    override fun onNoteFolderSelected() {
+        // todo revisit once note fragment created
+    }
+
     override fun onResume() {
         super.onResume()
 
         mainActivity.hideKeyboard(requireView())
     }
 
-    private fun onFolderItemSelected() {
-        findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

@@ -23,7 +23,7 @@ import com.tryden.nook.databinding.BottomAppBarBinding
 import com.tryden.nook.databinding.ModelBottomAppBarHomeBinding
 import com.tryden.nook.databinding.ModelBottomAppBarItemEditBinding
 import com.tryden.nook.databinding.ModelBottomAppBarItemsListBinding
-import com.tryden.nook.ui.priorities.PrioritiesFragment
+import com.tryden.nook.ui.home.priorities.PrioritiesFragment
 
 class MainActivity : AppCompatActivity() {
 

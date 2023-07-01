@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.priorities
+package com.tryden.nook.ui.home.priorities
 
 import android.os.Bundle
 import android.util.Log

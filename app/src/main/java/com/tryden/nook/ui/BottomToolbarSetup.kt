@@ -46,6 +46,7 @@ data class BottomToolbarSetup(
                 }
 
             }
+
             /** Priorities Fragment **************************************************************/
             activity.getString(R.string.priorities_fragment_key) -> {
                 // Show correct toolbar, hide others
@@ -59,12 +60,27 @@ data class BottomToolbarSetup(
                     activity.navController.navigate(R.id.action_prioritiesFragment_to_addPriorityFragment)
                 }
             }
+
             /** Add Priority Fragment *************************************************************/
             activity.getString(R.string.add_priority_fragment_key) -> {
                 // Hide all bottom toolbars
                 activity.bottomToolbarItemsList.isInvisible = true
                 activity.bottomToolbarHome.isInvisible = true
                 activity.bottomToolbarEditItem.isInvisible = true
+            }
+
+            /** Checklists Fragment **************************************************************/
+            activity.getString(R.string.checklists_fragment_key) -> {
+                // Show correct toolbar, hide others
+                activity.bottomToolbarItemsList.isVisible = true
+                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarEditItem.isInvisible = true
+
+                // OnClick listeners
+                activity.addItemImageViewItemsList.setOnClickListener {
+                    Log.e("BottomToolbarSetup()", "addItemImageViewItemsList clicked!", )
+//                    activity.navController.navigate(R.id.) todo: revisit once AddChecklistFragment created
+                }
             }
         }
     }
