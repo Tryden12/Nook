@@ -6,12 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.tryden.nook.database.dao.ChecklistItemEntityDao
 import com.tryden.nook.database.dao.PriorityItemEntityDao
+import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 
 @Database(
-    entities = [PriorityItemEntity::class],
-    version = 1
+    entities = [PriorityItemEntity::class, ChecklistItemEntity::class],
+    version = 2
 )
 abstract class AppDatabase: RoomDatabase() {
 
@@ -24,7 +26,7 @@ abstract class AppDatabase: RoomDatabase() {
             appDatabase = Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java,
-                name = "nook-database"
+                name = "nook-db"
             )
 //                .addMigrations(MIGRATION_1_2())
                 .build()
@@ -32,6 +34,7 @@ abstract class AppDatabase: RoomDatabase() {
         }
     }
     abstract fun priorityItemEntityDao(): PriorityItemEntityDao
+    abstract fun checklistItemEntityDao(): ChecklistItemEntityDao
 
 
     // Class for migrating database versions
