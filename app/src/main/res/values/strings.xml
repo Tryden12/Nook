@@ -7,6 +7,9 @@
     <string name="priorities_fragment_key">priorities_fragment</string>
     <string name="add_priority_fragment_key">add_priority_fragment</string>
 
+    <!-- Action Bar -->
+    <string name="update_item">Update item</string>
+
     <!-- Widgets -->
     <string name="hint_title">Title</string>
     <string name="hint_description">Description (Optional)</string>
@@ -15,6 +18,7 @@
     <string name="medium">Medium</string>
     <string name="high">High</string>
     <string name="save">Save</string>
+    <string name="update">Update</string>
     <string name="priority_image_text">!</string>
     <string name="no_items">No Items!</string>
     <string name="how_to_add_items">Use the button in the bottom right-hand corner to add an item to this folder.</string>

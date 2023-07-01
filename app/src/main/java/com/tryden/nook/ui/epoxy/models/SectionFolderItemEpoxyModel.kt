@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.epoxy.models.priorities
+package com.tryden.nook.ui.epoxy.models
 
 import com.tryden.nook.R
 import com.tryden.nook.databinding.ModelSectionFolderItemBinding

@@ -42,5 +42,12 @@
         android:id="@+id/addPriorityFragment"
         android:name="com.tryden.nook.ui.priorities.AddPriorityFragment"
         android:label="Add Priority"
-        tools:layout="@layout/fragment_add_priority"/>
+        tools:layout="@layout/fragment_add_priority">
+
+        <argument android:name="selectedPriorityItemEntityId"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+
+    </fragment>
 </navigation>

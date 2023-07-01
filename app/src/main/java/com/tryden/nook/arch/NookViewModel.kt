@@ -42,6 +42,8 @@ class NookViewModel() : ViewModel() {
     fun updatePriorityItem(priorityItemEntity: PriorityItemEntity) {
         viewModelScope.launch {
             repository.updatePriorityItem(priorityItemEntity)
+
+            transactionCompleteLiveData.postValue(true)
         }
     }
 }

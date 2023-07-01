@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddPriorityBinding
@@ -19,6 +20,15 @@ class AddPriorityFragment : BaseFragment() {
 
     private var _binding: FragmentAddPriorityBinding? = null
     private val binding get() = _binding!!
+
+    private val safeArgs: AddPriorityFragmentArgs by navArgs()
+    private val selectedItemEntity: PriorityItemEntity? by lazy {
+        sharedViewModel.priorityItemEntitiesLiveData.value?.find {
+            it.id == safeArgs.selectedPriorityItemEntityId
+        }
+    }
+
+    private var isEditMode: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +55,11 @@ class AddPriorityFragment : BaseFragment() {
 
         sharedViewModel.transactionCompleteLiveData.observe(viewLifecycleOwner) { complete ->
             if (complete) {
+
+                if (isEditMode) {
+                    navigateUp()
+                    return@observe
+                }
                 Toast.makeText(
                     requireActivity(), getString(R.string.item_saved), Toast.LENGTH_SHORT
                 ).show()
@@ -60,6 +75,26 @@ class AddPriorityFragment : BaseFragment() {
         // Show keyboard and default select our Title EditText
         mainActivity.showKeyboard()
         binding.titleEditText.requestFocus()
+
+        updateIfInEditMode()
+    }
+
+    private fun updateIfInEditMode() {
+        // Setup screen if in edit mode
+        selectedItemEntity?.let { itemEntity ->
+            isEditMode = true
+
+            binding.titleEditText.setText(itemEntity.title)
+            binding.titleEditText.setSelection(itemEntity.title.length)
+            binding.descriptionEditText.setText(itemEntity.description)
+            when (itemEntity.priority) {
+                1 -> binding.radioGroup.check(R.id.radioButtonLow)
+                2 -> binding.radioGroup.check(R.id.radioButtonMedium)
+                else -> binding.radioGroup.check(R.id.radioButtonHigh)
+            }
+            binding.saveButton.text = getString(R.string.update)
+            mainActivity.supportActionBar?.title = getString(R.string.update_item)
+        }
     }
 
     private fun savePriorityItemToDatabase() {
@@ -79,7 +114,18 @@ class AddPriorityFragment : BaseFragment() {
             else -> 0
         }
 
-        val priorityItemEntity = PriorityItemEntity(
+        if (isEditMode) {
+            val itemEntity = selectedItemEntity!!.copy(
+                title = itemTitle,
+                description = description,
+                priority = priority
+            )
+
+            sharedViewModel.updatePriorityItem(itemEntity)
+            return
+        }
+
+        val itemEntity = PriorityItemEntity(
             id = UUID.randomUUID().toString(),
             title = itemTitle,
             description = description,
@@ -87,7 +133,7 @@ class AddPriorityFragment : BaseFragment() {
             lastModified = convertLongToTime(System.currentTimeMillis()), // todo fix
             categoryId = "" // todo update later when we have categories in the app
         )
-        sharedViewModel.insertPriorityItem(priorityItemEntity)
+        sharedViewModel.insertPriorityItem(itemEntity)
     }
 
     override fun onPause() {

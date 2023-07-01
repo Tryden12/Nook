@@ -37,5 +37,9 @@ data class PriorityItemEntityEpoxyModel(
         }
 
         priorityTextView.setTextColor(ContextCompat.getColor(root.context, colorRes))
+
+        root.setOnClickListener {
+            priorityItemEntityInterface.onItemSelected(priorityItemEntity)
+        }
     }
 }

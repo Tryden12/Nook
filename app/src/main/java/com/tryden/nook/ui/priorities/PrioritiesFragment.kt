@@ -81,6 +81,12 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
         sharedViewModel.updatePriorityItem(updatedPriorityItemEntity)
     }
 
+    override fun onItemSelected(priorityItemEntity: PriorityItemEntity) {
+        val navDirections = PrioritiesFragmentDirections
+            .actionPrioritiesFragmentToAddPriorityFragment(priorityItemEntity.id)
+        navigateViewNavGraph(navDirections)
+    }
+
     private fun swipeToDeleteSetup() {
         EpoxyTouchHelper.initSwiping(binding.prioritiesEpoxyRecyclerView)
             .right()

@@ -5,7 +5,7 @@ import com.tryden.nook.ui.epoxy.models.HeadingPageTitleEpoxyModel
 import com.tryden.nook.ui.epoxy.models.HeadingSectionTitleEpoxyModel
 import com.tryden.nook.ui.epoxy.models.SectionFooterRoundedEpoxyModel
 import com.tryden.nook.ui.epoxy.models.SectionHeaderTopRoundEpoxyModel
-import com.tryden.nook.ui.epoxy.models.priorities.SectionFolderItemEpoxyModel
+import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 
 class HomeEpoxyController(
     val onFolderItemSelected: () -> Unit
