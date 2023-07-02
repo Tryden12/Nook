@@ -12,6 +12,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
@@ -50,6 +51,10 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
 
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { checkLists ->
             controller.checklistsCount = checkLists.size.toString()
+        }
+
+        sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
+            controller.folders = folders as ArrayList<FolderEntity>
         }
 
         binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)

@@ -3,14 +3,10 @@ package com.tryden.nook.arch
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tryden.nook.database.AppDatabase
-import com.tryden.nook.database.dao.ChecklistItemEntityDao
-import com.tryden.nook.database.dao.PriorityItemEntityDao
 import com.tryden.nook.database.entity.ChecklistItemEntity
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,6 +30,34 @@ class NookViewModel @Inject constructor(
             }
         }
     }
+
+    // region Folders
+    val foldersLiveData = MutableLiveData<List<FolderEntity>>()
+
+    fun insertFolder(folderEntity: FolderEntity) {
+        viewModelScope.launch {
+            repository.insertFolder(folderEntity)
+
+            transactionCompleteLiveData.postValue(true)
+
+        }
+    }
+
+    fun deleteFolder(folderEntity: FolderEntity) {
+        viewModelScope.launch {
+            repository.deleteFolder(folderEntity)
+        }
+    }
+
+    fun updateFolder(folderEntity: FolderEntity) {
+        viewModelScope.launch {
+            repository.updateFolder(folderEntity)
+
+            transactionCompleteLiveData.postValue(true)
+        }
+    }
+
+    // endregion Folders
 
     // region Priority Items
     val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()

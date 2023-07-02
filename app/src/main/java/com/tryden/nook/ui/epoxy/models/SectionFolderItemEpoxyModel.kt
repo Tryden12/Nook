@@ -19,7 +19,7 @@ data class SectionFolderItemEpoxyModel(
         iconImageView.setImageDrawable(icon)
         titleTextView.text = title
         if (count.isEmpty()) {
-            countTextView.isVisible = false
+            countTextView.text = "0"
         } else {
             countTextView.text = count
         }

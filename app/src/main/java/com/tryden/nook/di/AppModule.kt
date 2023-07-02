@@ -20,7 +20,7 @@ object AppModule {
     @Singleton /** Tells Dagger to only create one instance of the db. **/
     fun provideDatabase(
         app: Application,
-    ) = Room.databaseBuilder(app, AppDatabase::class.java, "nook-db")
+    ) = Room.databaseBuilder(app, AppDatabase::class.java, "nook-database")
         // tells Room what it should do when we update our db schema,
         // but didn't provide a proper migration strategy
         // In this case, it will drop the table(s) and create new one(s).
@@ -37,6 +37,9 @@ object AppModule {
 
     @Provides
     fun provideChecklistItemEntityDao(db: AppDatabase) = db.checklistItemEntityDao()
+
+    @Provides
+    fun provideFolderItemEntityDao(db: AppDatabase) = db.folderItemEntityDao()
 
 
     /** Coroutine scope that lives in the application as long as the application lives.

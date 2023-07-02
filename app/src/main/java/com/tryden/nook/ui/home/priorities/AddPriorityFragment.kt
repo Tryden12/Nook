@@ -12,8 +12,6 @@ import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddPriorityBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
-import com.tryden.nook.ui.convertLongToTime
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AddPriorityFragment : BaseFragment() {

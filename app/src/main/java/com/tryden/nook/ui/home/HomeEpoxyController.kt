@@ -4,6 +4,7 @@ import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.ui.epoxy.models.*
 
 class HomeEpoxyController(
@@ -18,6 +19,11 @@ class HomeEpoxyController(
             if (field) {
                 requestModelBuild()
             }
+        }
+
+    var folders = ArrayList<FolderEntity>()
+        set(value) {
+            field = value
         }
 
     var prioritiesItemCount: String = ""
