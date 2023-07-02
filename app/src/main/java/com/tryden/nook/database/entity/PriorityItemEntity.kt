@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Entity(tableName = "priority_item_entity")
 @Parcelize
@@ -18,5 +20,5 @@ data class PriorityItemEntity(
     val priority: Int = 0
 ) : Parcelable {
     val lastModifiedFormatted: String
-        get() = DateFormat.getDateTimeInstance().format(lastModified)
+        get() = DateFormat.getDateInstance(3).format(lastModified)
 }

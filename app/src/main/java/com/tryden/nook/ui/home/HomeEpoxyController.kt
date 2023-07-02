@@ -25,6 +25,11 @@ class HomeEpoxyController(
             field = value
         }
 
+    var checklistsCount: String = ""
+        set(value) {
+            field = value
+        }
+
     override fun buildModels() {
         if (isLoading) {
             // todo loading state
@@ -54,7 +59,7 @@ class HomeEpoxyController(
         SectionFolderItemEpoxyModel(
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
             context.getString(R.string.all_checklists),
-            "0", // todo revisit to update dynamically
+            checklistsCount, // todo revisit to update dynamically
             onFolderItemSelected
         ).id("folder-item-checklists").addTo(this)
         SectionFooterRoundedEpoxyModel().id("section-checklists-footer-top").addTo(this)

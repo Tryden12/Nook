@@ -9,26 +9,26 @@ import com.tryden.nook.databinding.ModelItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 
 data class PriorityItemEntityEpoxyModel(
-    val priorityItemEntity: PriorityItemEntity,
+    val itemEntity: PriorityItemEntity,
     val priorityItemEntityInterface: PriorityItemEntityInterface
 ): ViewBindingKotlinModel<ModelItemEntityBinding>(R.layout.model_item_entity) {
 
     override fun ModelItemEntityBinding.bind() {
-        titleTextView.text = priorityItemEntity.title
-        lastModifiedTextView.text = priorityItemEntity.lastModifiedFormatted
+        titleTextView.text = itemEntity.title
+        lastModifiedTextView.text = itemEntity.lastModifiedFormatted
 
-        if (priorityItemEntity.description == null) {
+        if (itemEntity.description == null) {
             descriptionTextView.isInvisible = true
         } else {
             descriptionTextView.isVisible = true
-            descriptionTextView.text = priorityItemEntity.description
+            descriptionTextView.text = itemEntity.description
         }
 
         priorityTextView.setOnClickListener {
-            priorityItemEntityInterface.onBumpPriority(priorityItemEntity)
+            priorityItemEntityInterface.onBumpPriority(itemEntity)
         }
 
-        val colorRes = when (priorityItemEntity.priority) {
+        val colorRes = when (itemEntity.priority) {
             1 -> android.R.color.holo_green_dark
             2 -> android.R.color.holo_orange_dark
             3 -> android.R.color.holo_red_dark
@@ -38,7 +38,7 @@ data class PriorityItemEntityEpoxyModel(
         priorityTextView.setTextColor(ContextCompat.getColor(root.context, colorRes))
 
         root.setOnClickListener {
-            priorityItemEntityInterface.onItemSelected(priorityItemEntity)
+            priorityItemEntityInterface.onItemSelected(itemEntity)
         }
     }
 }

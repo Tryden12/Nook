@@ -94,7 +94,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
                     position: Int,
                     direction: Int,
                 ) {
-                    val itemRemoved = model?.priorityItemEntity ?: return
+                    val itemRemoved = model?.itemEntity ?: return
                     sharedViewModel.deleteItem(itemRemoved)
                 }
 

@@ -48,6 +48,10 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
             controller.prioritiesItemCount = priorityItemEntityList.size.toString()
         }
 
+        sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { checkLists ->
+            controller.checklistsCount = checkLists.size.toString()
+        }
+
         binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
     }
 
