@@ -31,6 +31,13 @@
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_homeFragment_to_addFolderFragment"
+            app:destination="@id/addFolderFragment"
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"/>
     </fragment>
     <fragment
         android:id="@+id/prioritiesFragment"
@@ -62,4 +69,11 @@
         android:name="com.tryden.nook.ui.home.checklists.ChecklistsFragment"
         android:label="Checklists"
         tools:layout="@layout/fragment_checklists" />
+
+
+    <fragment
+        android:id="@+id/addFolderFragment"
+        android:name="com.tryden.nook.ui.home.folders.AddFolderFragment"
+        android:label=""
+        tools:layout="@layout/fragment_add_folder" />
 </navigation>

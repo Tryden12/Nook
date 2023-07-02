@@ -59,4 +59,9 @@ class ChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         // ignore
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

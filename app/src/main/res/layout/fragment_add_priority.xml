@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:background="?attr/background">
+    android:background="@drawable/bg_fragment_top_rounded">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
                 android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
                 android:inputType="textCapSentences"
                 android:textColor="?attr/colorSurface"/>
 
@@ -53,6 +54,7 @@
                 android:id="@+id/descriptionEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
                 android:textColor="?attr/colorSurface"
                 />
 

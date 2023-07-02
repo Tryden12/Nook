@@ -39,6 +39,7 @@ data class BottomToolbarSetup(
                 // OnClick listeners
                 activity.addFolderImageView.setOnClickListener {
                     Log.e("BottomToolbarSetup()", "addFolderImageView clicked!", )
+                    activity.navController.navigate(R.id.action_homeFragment_to_addFolderFragment)
                 }
                 activity.addItemImageViewHome.setOnClickListener {
                     Log.e("BottomToolbarSetup()", "addItemImageViewHome clicked!", )
@@ -46,6 +47,15 @@ data class BottomToolbarSetup(
                 }
 
             }
+
+            /** AddFolder Fragment *************************************************************/
+            activity.getString(R.string.add_folder_fragment_key) -> {
+                // Hide all bottom toolbars
+                activity.bottomToolbarItemsList.isInvisible = true
+                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarEditItem.isInvisible = true
+            }
+
 
             /** Priorities Fragment **************************************************************/
             activity.getString(R.string.priorities_fragment_key) -> {
