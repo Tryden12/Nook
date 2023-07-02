@@ -4,20 +4,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tryden.nook.database.AppDatabase
+import com.tryden.nook.database.dao.ChecklistItemEntityDao
+import com.tryden.nook.database.dao.PriorityItemEntityDao
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NookViewModel() : ViewModel() {
-
-    private lateinit var repository: NookRepository
+@HiltViewModel
+class NookViewModel @Inject constructor(
+    private val repository: NookRepository
+) : ViewModel() {
 
     val transactionCompleteLiveData = MutableLiveData<Boolean>()
 
-    fun init (appDatabase: AppDatabase) {
-        repository = NookRepository(appDatabase)
+    fun collectAllItems() {
         viewModelScope.launch{
             repository.getAllPriorityItems().collect { items ->
                 priorityItemEntitiesLiveData.postValue(items)
@@ -46,6 +50,7 @@ class NookViewModel() : ViewModel() {
         viewModelScope.launch {
             repository.deletePriorityItem(priorityItemEntity)
         }
+
     }
 
     fun updatePriorityItem(priorityItemEntity: PriorityItemEntity) {

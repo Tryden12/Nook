@@ -130,7 +130,6 @@ class AddPriorityFragment : BaseFragment() {
             title = itemTitle,
             description = description,
             priority = priority,
-            lastModified = convertLongToTime(System.currentTimeMillis()), // todo fix
             categoryId = "" // todo update later when we have categories in the app
         )
         sharedViewModel.insertPriorityItem(itemEntity)

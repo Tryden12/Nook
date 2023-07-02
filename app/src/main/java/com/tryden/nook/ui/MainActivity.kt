@@ -24,12 +24,17 @@ import com.tryden.nook.databinding.ModelBottomAppBarHomeBinding
 import com.tryden.nook.databinding.ModelBottomAppBarItemEditBinding
 import com.tryden.nook.databinding.ModelBottomAppBarItemsListBinding
 import com.tryden.nook.ui.home.priorities.PrioritiesFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    val viewModel: NookViewModel by viewModels()
+
 
     // region Bottom Toolbar Variables
     // parent
@@ -59,8 +64,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        val viewModel: NookViewModel by viewModels()
-        viewModel.init(AppDatabase.getDatabase(this))
+        viewModel.collectAllItems()
 
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)

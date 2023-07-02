@@ -76,7 +76,7 @@ class ChecklistsEpoxyController(
                         .addTo(this)
                 }
                 is SectionFooterRounded -> {
-                    SectionFooterRoundedEpoxyModel().id("section-footer-rounded-$index").addTo(this) // todo fix id?
+                    SectionFooterRoundedEpoxyModel().id("section-footer-rounded-$index").addTo(this)
                 }
             }
         }

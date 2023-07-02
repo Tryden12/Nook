@@ -9,5 +9,6 @@ data class ChecklistItemEntity(
     val title: String = "",
     val categoryId: String = "",
     val folderName: String = "",
-    val isChecked: Boolean = false
+    val important: Boolean = false,
+    val completed: Boolean = false
 )

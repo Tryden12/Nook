@@ -15,7 +15,7 @@ data class PriorityItemEntityEpoxyModel(
 
     override fun ModelItemEntityBinding.bind() {
         titleTextView.text = priorityItemEntity.title
-        lastModifiedTextView.text = priorityItemEntity.lastModified.toString()
+        lastModifiedTextView.text = priorityItemEntity.lastModifiedFormatted
 
         if (priorityItemEntity.description == null) {
             descriptionTextView.isInvisible = true
