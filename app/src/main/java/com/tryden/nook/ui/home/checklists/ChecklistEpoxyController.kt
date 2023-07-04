@@ -63,14 +63,14 @@ class ChecklistEpoxyController(
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index")
                         .addTo(this)
                 }
-                is ChecklistItem -> {
-                    SectionFolderItemEpoxyModel(
-                        icon = ContextCompat.getDrawable(context, R.drawable.ic_folder),
-                        title = epoxyItem.item.title,
-                        count = "",
-                        onFolderSelected = onFolderSelected
-                    ).id(epoxyItem.item.id).addTo(this)
-                }
+//                is ChecklistItem -> {
+//                    SectionFolderItemEpoxyModel(
+//                        icon = ContextCompat.getDrawable(context, R.drawable.ic_folder),
+//                        title = epoxyItem.item.title,
+//                        count = "",
+//                        onFolderSelected = onFolderSelected
+//                    ).id(epoxyItem.item.id).addTo(this)
+//                }
                 is DividerItem -> {
                     DividerEpoxyModel().id("divider-$index")
                         .addTo(this)

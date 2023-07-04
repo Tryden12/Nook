@@ -19,6 +19,8 @@ interface EpoxyItemsInterface {
 
     // Divider
     object DividerItem: EpoxyItemsInterface
+    object DividerFolder: EpoxyItemsInterface
+
 
     // Rounded Section Footer
     object SectionFooterRounded: EpoxyItemsInterface

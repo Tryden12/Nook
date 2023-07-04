@@ -6,6 +6,7 @@ import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.ui.epoxy.models.*
+import java.util.UUID
 
 class HomeEpoxyController(
     val onFolderItemSelected: OnFolderSelectedInterface
@@ -49,9 +50,13 @@ class HomeEpoxyController(
         HeadingSectionTitleEpoxyModel("Priorities", showDropDown = true).id("heading-priorities").addTo(this)
         SectionHeaderTopRoundEpoxyModel().id("section-priorities-header-top").addTo(this)
         SectionFolderItemEpoxyModel(
+            folderEntity = FolderEntity(
+                id = 0,
+                title = context.getString(R.string.all_priorities),
+                type = "Folder",
+                size = prioritiesItemCount
+            ),
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
-            context.getString(R.string.all_priorities),
-            prioritiesItemCount,
             onFolderItemSelected
         ).id("folder-item-priorities").addTo(this)
         SectionFooterRoundedEpoxyModel().id("section-priorities-footer-top").addTo(this)
@@ -63,9 +68,13 @@ class HomeEpoxyController(
         HeadingSectionTitleEpoxyModel("Checklists", showDropDown = true).id("heading-checklists").addTo(this)
         SectionHeaderTopRoundEpoxyModel().id("section-checklists-header-top").addTo(this)
         SectionFolderItemEpoxyModel(
+            folderEntity = FolderEntity(
+                id = 0,
+                title = context.getString(R.string.all_checklists),
+                type = "Folder",
+                size = checklistsCount
+            ),
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
-            context.getString(R.string.all_checklists),
-            checklistsCount, // todo revisit to update dynamically
             onFolderItemSelected
         ).id("folder-item-checklists").addTo(this)
         SectionFooterRoundedEpoxyModel().id("section-checklists-footer-top").addTo(this)

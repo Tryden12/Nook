@@ -67,14 +67,13 @@ class ListOfChecklistsEpoxyController(
                 }
                 is FolderItem -> {
                     SectionFolderItemEpoxyModel(
+                        folderEntity = epoxyItem.item,
                         icon = ContextCompat.getDrawable(context, R.drawable.ic_folder),
-                        title = epoxyItem.item.title,
-                        count = "", // todo: revisit
                         onFolderSelected = onFolderSelected
                     ).id(epoxyItem.item.id).addTo(this)
                 }
                 is DividerItem -> {
-                    DividerEpoxyModel().id("divider-$index")
+                    DividerFolderEpoxyModel().id("divider-$index")
                         .addTo(this)
                 }
                 is SectionFooterRounded -> {
