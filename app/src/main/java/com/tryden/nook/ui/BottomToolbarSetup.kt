@@ -9,6 +9,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.tryden.nook.R
+import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 
 /**
  * This class determines which bottom toolbar to display depending on the Fragment currently shown.
@@ -25,7 +26,7 @@ data class BottomToolbarSetup(
     private val activity: MainActivity,
 ){
     fun bottomToolbarSetup() {
-        Log.e("BottomToolbarSetup()", "bottomToolbarSetup: fragmentKey = $fragmentKey", )
+        Log.d("BottomToolbarSetup()", "bottomToolbarSetup: fragmentKey = $fragmentKey", )
 
         when (fragmentKey) {
             /** HomeFragment *********************************************************************/
@@ -38,12 +39,14 @@ data class BottomToolbarSetup(
 
                 // OnClick listeners
                 activity.addFolderImageView.setOnClickListener {
-                    Log.e("BottomToolbarSetup()", "addFolderImageView clicked!", )
-                    activity.navController.navigate(R.id.action_homeFragment_to_addFolderFragment)
+                    Log.d("BottomToolbarSetup()", "addFolderImageView clicked!", )
+//                    activity.navController.navigate(R.id.action_homeFragment_to_addFolderFragment)
+                    AddItemSheet().show(activity.supportFragmentManager, null)
+
                 }
                 activity.addItemImageViewHome.setOnClickListener {
-                    Log.e("BottomToolbarSetup()", "addItemImageViewHome clicked!", )
-                    activity.navController.navigate(R.id.action_homeFragment_to_addPriorityFragment)
+                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from HomeFragment!", )
+//                    activity.navController.navigate(R.id.action_homeFragment_to_addPriorityFragment)
                 }
 
             }
@@ -66,7 +69,7 @@ data class BottomToolbarSetup(
 
                 // OnClick listeners
                 activity.addItemImageViewItemsList.setOnClickListener {
-                    Log.e("BottomToolbarSetup()", "addItemImageViewItemsList clicked!", )
+                    Log.d("BottomToolbarSetup()", "addItemImageViewItemsList clicked from PrioritiesFragment!", )
                     activity.navController.navigate(R.id.action_prioritiesFragment_to_addPriorityFragment)
                 }
             }
@@ -86,11 +89,26 @@ data class BottomToolbarSetup(
                 activity.bottomToolbarItemsList.isInvisible = true
                 activity.bottomToolbarEditItem.isInvisible = true
 
-                // OnClick listeners
-                activity.addItemImageViewItemsList.setOnClickListener {
-                    Log.e("BottomToolbarSetup()", "addItemImageViewItemsList clicked!", )
-//                    activity.navController.navigate(R.id.) todo: revisit once AddChecklistFragment created
+                activity.addFolderImageView.setOnClickListener {
+                    AddItemSheet().show(activity.supportFragmentManager, null)
+
                 }
+                // OnClick listeners
+                activity.addItemImageViewHome.isGone = true // todo: revisit
+//                activity.addItemImageViewHome.setOnClickListener {
+//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from ChecklistsFragment!", )
+//                    AddItemSheet().show(activity.supportFragmentManager, null)
+//                }
+            }
+
+            /** AddItemSheet Fragment *************************************************************/
+            activity.getString(R.string.add_item_bottom_sheet_fragment_key) -> {
+                // Hide all bottom toolbars
+                activity.bottomToolbarItemsList.isInvisible = true
+                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarEditItem.isInvisible = true
+
+                // todo revisit
             }
         }
     }

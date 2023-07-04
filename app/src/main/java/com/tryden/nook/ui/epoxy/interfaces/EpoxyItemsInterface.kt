@@ -1,6 +1,7 @@
 package com.tryden.nook.ui.epoxy.interfaces
 
 import com.tryden.nook.database.entity.ChecklistItemEntity
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 
 interface EpoxyItemsInterface {
@@ -12,6 +13,7 @@ interface EpoxyItemsInterface {
     object SectionHeaderRounded: EpoxyItemsInterface
 
     // Items
+    data class FolderItem(val item: FolderEntity): EpoxyItemsInterface
     data class PriorityItem(val item: PriorityItemEntity): EpoxyItemsInterface
     data class ChecklistItem(val item: ChecklistItemEntity): EpoxyItemsInterface
 

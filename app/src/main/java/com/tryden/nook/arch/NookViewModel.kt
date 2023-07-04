@@ -1,11 +1,14 @@
 package com.tryden.nook.arch
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.ui.epoxy.models.BottomSheetAddItem
+import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +30,11 @@ class NookViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getAllChecklistItems().collect() { items ->
                 checklistItemEntitiesLiveData.postValue(items)
+            }
+        }
+        viewModelScope.launch {
+            repository.getAllFolders().collect() { items ->
+                foldersLiveData.postValue(items)
             }
         }
     }
@@ -114,5 +122,16 @@ class NookViewModel @Inject constructor(
     // endregion Checklist Items
 
 
+    // region Bottom Sheet
+    private val _bottomSheetAddItemTypeLiveData = MutableLiveData<BottomSheetViewType.Type>()
+    val bottomSheetAddItemTypeLiveData: LiveData<BottomSheetViewType.Type>
+        get() = _bottomSheetAddItemTypeLiveData
+
+    fun updateBottomSheetItemType(type: BottomSheetViewType.Type) {
+        _bottomSheetAddItemTypeLiveData.value = type
+        _bottomSheetAddItemTypeLiveData.postValue(type)
+    }
+
+    // endregion Bottom Sheet
 
 }

@@ -7,6 +7,7 @@
     <string name="add_folder_fragment_key">add_folder_fragment</string>
     <string name="priorities_fragment_key">priorities_fragment</string>
     <string name="checklists_fragment_key">checklist_fragment</string>
+    <string name="add_item_bottom_sheet_fragment_key">add_item_bottom_sheet_fragment</string>
     <string name="add_priority_fragment_key">add_priority_fragment</string>
 
     <!-- Action Bar -->
@@ -14,6 +15,7 @@
 
     <!-- Widgets -->
     <string name="hint_title">Title</string>
+    <string name="hint_folder">Folder</string>
     <string name="hint_description">Description (Optional)</string>
     <string name="required_field">* Required field</string>
     <string name="priority">Priority</string>
@@ -23,6 +25,10 @@
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
     <string name="new_folder">New Folder</string>
+    <string name="new_priority">New Priority</string>
+    <string name="new_item">New Item</string>
+    <string name="new_note">New Note</string>
+    <string name="edit_item">Edit Item</string>
     <string name="type">Type</string>
 
 

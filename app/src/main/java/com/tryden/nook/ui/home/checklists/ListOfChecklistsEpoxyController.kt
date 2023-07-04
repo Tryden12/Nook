@@ -5,17 +5,19 @@ import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.ChecklistItemEntity
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionFooterRounded
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionHeaderRounded
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.HeaderSectionTitle
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.ChecklistItem
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.FolderItem
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.DividerItem
 import com.tryden.nook.ui.epoxy.models.*
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
 
 
-class ChecklistsEpoxyController(
+class ListOfChecklistsEpoxyController(
     private val onFolderSelected: OnFolderSelectedInterface
 ) : EpoxyController()  {
 
@@ -29,7 +31,7 @@ class ChecklistsEpoxyController(
             }
         }
 
-    var itemEntityList = ArrayList<ChecklistItemEntity>()
+    var itemEntityList = ArrayList<FolderEntity>()
         set(value) {
             field = value
             isLoading = false
@@ -63,11 +65,11 @@ class ChecklistsEpoxyController(
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index")
                         .addTo(this)
                 }
-                is ChecklistItem -> {
+                is FolderItem -> {
                     SectionFolderItemEpoxyModel(
                         icon = ContextCompat.getDrawable(context, R.drawable.ic_folder),
                         title = epoxyItem.item.title,
-                        count = "",
+                        count = "", // todo: revisit
                         onFolderSelected = onFolderSelected
                     ).id(epoxyItem.item.id).addTo(this)
                 }
@@ -82,7 +84,7 @@ class ChecklistsEpoxyController(
         }
     }
 
-    private fun buildEpoxyList(checklists: ArrayList<ChecklistItemEntity>): List<EpoxyItemsInterface> {
+    private fun buildEpoxyList(checklists: ArrayList<FolderEntity>): List<EpoxyItemsInterface> {
         return buildList {
             add(HeaderSectionTitle(title = context.getString(R.string.checklists)))
             add(SectionHeaderRounded)
@@ -92,7 +94,7 @@ class ChecklistsEpoxyController(
                 if (index != 0) {
                     add(DividerItem)
                 }
-                add(ChecklistItem(item = item))
+                add(FolderItem(item = item))
             }
             add(SectionFooterRounded)
         }

@@ -78,7 +78,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
     override fun onItemSelected(priorityItemEntity: PriorityItemEntity) {
         val navDirections = PrioritiesFragmentDirections
-            .actionPrioritiesFragmentToAddPriorityFragment(priorityItemEntity.id)
+            .actionPrioritiesFragmentToAddPriorityFragment(priorityItemEntity.id.toString())
         navigateViewNavGraph(navDirections)
     }
 

@@ -22,7 +22,7 @@ class AddPriorityFragment : BaseFragment() {
     private val safeArgs: AddPriorityFragmentArgs by navArgs()
     private val selectedItemEntity: PriorityItemEntity? by lazy {
         sharedViewModel.priorityItemEntitiesLiveData.value?.find {
-            it.id == safeArgs.selectedPriorityItemEntityId
+            it.id.toString() == safeArgs.selectedPriorityItemEntityId
         }
     }
 
@@ -124,7 +124,6 @@ class AddPriorityFragment : BaseFragment() {
         }
 
         val itemEntity = PriorityItemEntity(
-            id = UUID.randomUUID().toString(),
             title = itemTitle,
             description = description,
             priority = priority,

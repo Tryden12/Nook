@@ -16,6 +16,7 @@ import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
+import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 
 
 class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
@@ -45,12 +46,16 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
             activity = mainActivity,
         ).bottomToolbarSetup()
 
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER)
+
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
             controller.prioritiesItemCount = priorityItemEntityList.size.toString()
         }
 
-        sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { checkLists ->
-            controller.checklistsCount = checkLists.size.toString()
+        sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
+            var count = folders.filter { it.type == "Checklist" }.size
+            Log.e(tag, "onViewCreated: $count", )
+            controller.checklistsCount = count.toString()
         }
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
@@ -75,6 +80,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
     override fun onResume() {
         super.onResume()
 
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER)
         mainActivity.hideKeyboard(requireView())
     }
 

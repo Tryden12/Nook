@@ -11,7 +11,7 @@ import java.util.*
 @Entity(tableName = "priority_item_entity")
 @Parcelize
 data class PriorityItemEntity(
-    @PrimaryKey val id: String = "",
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String = "",
     val description: String? = null,
     val lastModified: Long = System.currentTimeMillis(),
