@@ -56,9 +56,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
             var count = folders.filter { it.type == "Checklist" }.size
             Log.e(tag, "onViewCreated: $count", )
             controller.checklistsCount = count.toString()
-        }
 
-        sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
             controller.folders = folders as ArrayList<FolderEntity>
         }
 

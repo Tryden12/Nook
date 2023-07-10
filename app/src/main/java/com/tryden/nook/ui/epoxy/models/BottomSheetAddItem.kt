@@ -66,7 +66,7 @@ data class BottomSheetAddItem(
                     val item = ChecklistItemEntity(
                         title = itemTitle,
                         categoryId = "",
-                        folderName = "Checklists",
+                        folderName = "Checklists", // todo: revisit
                         important = false,
                         completed = false
                     )

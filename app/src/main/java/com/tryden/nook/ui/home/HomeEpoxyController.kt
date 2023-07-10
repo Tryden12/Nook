@@ -1,5 +1,6 @@
 package com.tryden.nook.ui.home
 
+import android.util.Log
 import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
@@ -76,7 +77,23 @@ class HomeEpoxyController(
             ),
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
             onFolderItemSelected
-        ).id("folder-item-checklists").addTo(this)
+        ).id("folder-all-checklists").addTo(this)
+        // List all folders with type "Checklist"
+        folders.forEachIndexed { index, folder ->
+            if (folder.type == context.getString(R.string.checklist)) {
+                Log.d("HomeEpoxyController", folder.title)
+                SectionFolderItemEpoxyModel(
+                    folderEntity = FolderEntity(
+                        id = folder.id,
+                        title = folder.title,
+                        type = folder.type,
+                        size = folder.size
+                    ),
+                    ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
+                    onFolderItemSelected
+                ).id("folder-${folder.title}-checklist").addTo(this)
+            }
+        }
         SectionFooterRoundedEpoxyModel().id("section-checklists-footer-top").addTo(this)
 
     }
