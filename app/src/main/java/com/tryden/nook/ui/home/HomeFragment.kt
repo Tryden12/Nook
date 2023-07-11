@@ -48,6 +48,8 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
 
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER)
 
+        binding.homeEpoxyRecyclerView.setController(controller)
+
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
             controller.prioritiesItemCount = priorityItemEntityList.size.toString()
         }
@@ -60,7 +62,6 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
             controller.folders = folders as ArrayList<FolderEntity>
         }
 
-        binding.homeEpoxyRecyclerView.setControllerAndBuildModels(controller)
     }
 
     override fun onPriorityFolderSelected() {

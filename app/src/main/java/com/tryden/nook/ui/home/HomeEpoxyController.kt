@@ -15,7 +15,7 @@ class HomeEpoxyController(
 
     val context = NookApplication.context
 
-    var isLoading: Boolean = false
+    var isLoading: Boolean = true
         set(value) {
             field = value
             if (field) {
@@ -31,6 +31,8 @@ class HomeEpoxyController(
     var prioritiesItemCount: String = ""
         set(value) {
             field = value
+            isLoading = false
+            requestModelBuild()
         }
 
     var checklistsCount: String = ""
@@ -40,7 +42,7 @@ class HomeEpoxyController(
 
     override fun buildModels() {
         if (isLoading) {
-            // todo loading state
+            LoadingEpoxyModel().id("loading_state").addTo(this)
             return
         }
 
