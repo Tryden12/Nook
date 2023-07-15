@@ -39,7 +39,7 @@ class AddPriorityFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.add_priority_fragment_key)
-        Log.e("AddPriorityFragment()", "onViewCreated: $tag")
+        Log.d("AddPriorityFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(

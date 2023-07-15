@@ -33,7 +33,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.priorities_fragment_key)
-        Log.e("PrioritiesFragment()", "onViewCreated: $tag")
+        Log.d("PrioritiesFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(

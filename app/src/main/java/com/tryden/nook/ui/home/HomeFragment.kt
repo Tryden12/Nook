@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.home_fragment_key)
-        Log.e("HomeFragment()", "onViewCreated: $tag")
+        Log.d("HomeFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(

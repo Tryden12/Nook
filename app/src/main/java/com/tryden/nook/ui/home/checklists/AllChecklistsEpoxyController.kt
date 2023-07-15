@@ -4,20 +4,18 @@ import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionFooterRounded
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionHeaderRounded
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.HeaderSectionTitle
-import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.ChecklistItem
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.FolderItem
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.DividerItem
 import com.tryden.nook.ui.epoxy.models.*
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
 
 
-class ListOfChecklistsEpoxyController(
+class AllChecklistsEpoxyController(
     private val onFolderSelected: OnFolderSelectedInterface
 ) : EpoxyController()  {
 

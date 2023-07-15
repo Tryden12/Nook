@@ -47,7 +47,7 @@ class ChecklistFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.checklist_fragment_key)
-        Log.e("ChecklistsFragment()", "onViewCreated: $tag")
+        Log.d("ChecklistsFragment()", "onViewCreated: $tag")
 
         // Bottom Sheet Type = Checklist Item
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.CHECKLIST_ITEM)

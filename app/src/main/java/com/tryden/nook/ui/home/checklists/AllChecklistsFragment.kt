@@ -1,7 +1,6 @@
 package com.tryden.nook.ui.home.checklists
 
 import android.annotation.SuppressLint
-import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,18 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
-import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentChecklistsBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
-import com.tryden.nook.ui.MainActivity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
-import com.tryden.nook.ui.home.priorities.PriorityItemEntityEpoxyModel
 
-class ChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
+class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
 
     private var _binding: FragmentChecklistsBinding? = null
     private val binding get() = _binding!!
@@ -37,11 +33,10 @@ class ChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.checklists_fragment_key)
-        Log.e("ChecklistsFragment()", "onViewCreated: $tag")
+        Log.d("ChecklistsFragment()", "onViewCreated: $tag")
 
-        val mainActivity = (activity as MainActivity)
 
-        // Bottom Sheet Type = Checklist Item
+        // Bottom Sheet Type = Folder
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER)
 
         // Setup Bottom Toolbar
@@ -50,7 +45,7 @@ class ChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
             activity = mainActivity,
         ).bottomToolbarSetup()
 
-        val controller = ListOfChecklistsEpoxyController(this)
+        val controller = AllChecklistsEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
 
@@ -82,8 +77,10 @@ class ChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
             })
     }
 
-    override fun onChecklistFolderSelected() {
-        // todo: implement me!
+    override fun onChecklistFolderSelected(folderTitle: String) {
+        val navDirections =
+            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(folderTitle)
+        navigateViewNavGraph(navDirections)
     }
 
     override fun onNoteFolderSelected() {
