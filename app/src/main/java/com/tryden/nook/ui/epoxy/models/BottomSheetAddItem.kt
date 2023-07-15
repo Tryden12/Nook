@@ -17,6 +17,7 @@ data class BottomSheetAddItem(
 
     override fun ModelBottomSheetAddItemBinding.bind() {
         headerTitleTextView.text = bottomSheetViewType.headerTitle
+        titleEditText.setText("")
         titleEditText.requestFocus()
 
         if (bottomSheetViewType == BottomSheetViewType.Type.CHECKLIST_ITEM) {

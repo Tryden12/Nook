@@ -20,24 +20,37 @@ class NookViewModel @Inject constructor(
 
     val transactionCompleteLiveData = MutableLiveData<Boolean>()
 
+    // region collect items
     fun collectAllItems() {
+        // folders
+        viewModelScope.launch {
+            repository.getAllFolders().collect() { items ->
+                foldersLiveData.postValue(items)
+            }
+        }
+        // priority items
         viewModelScope.launch{
             repository.getAllPriorityItems().collect { items ->
                 priorityItemEntitiesLiveData.postValue(items)
             }
         }
-
+        // checklist items
         viewModelScope.launch {
             repository.getAllChecklistItems().collect() { items ->
                 checklistItemEntitiesLiveData.postValue(items)
             }
         }
+    }
+
+    fun collectAllFolders() {
         viewModelScope.launch {
             repository.getAllFolders().collect() { items ->
                 foldersLiveData.postValue(items)
             }
         }
     }
+    // endregion collect items
+
 
     // region Folders
     val foldersLiveData = MutableLiveData<List<FolderEntity>>()

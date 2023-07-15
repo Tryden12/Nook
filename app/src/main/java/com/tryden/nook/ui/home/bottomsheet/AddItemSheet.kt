@@ -55,6 +55,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
 
     override fun onSaveFolder(item: FolderEntity) {
         viewModel.insertFolder(item)
+        viewModel.collectAllItems()
         dismiss()
     }
 
