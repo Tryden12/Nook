@@ -6,7 +6,8 @@
     <string name="home_fragment_key">home_fragment</string>
     <string name="add_folder_fragment_key">add_folder_fragment</string>
     <string name="priorities_fragment_key">priorities_fragment</string>
-    <string name="checklists_fragment_key">checklist_fragment</string>
+    <string name="checklists_fragment_key">checklists_fragment</string>
+    <string name="checklist_fragment_key">checklist_fragment</string>
     <string name="add_item_bottom_sheet_fragment_key">add_item_bottom_sheet_fragment</string>
     <string name="add_priority_fragment_key">add_priority_fragment</string>
 
@@ -44,7 +45,9 @@
     <string name="no_priorities">No Priorities!</string>
     <string name="how_to_add_priorities">Use the button in the bottom right-hand corner to add a priority to this folder.</string>
     <string name="no_checklists">No Checklists!</string>
-    <string name="how_to_add_checklist">Use the button in the bottom left-hand corner to add a checklist folder</string>
+    <string name="how_to_add_checklist">Use the button in the bottom left-hand corner to add a checklist folder.</string>
+    <string name="no_checklist_items">No Checklist Items!</string>
+    <string name="how_to_add_checklist_item">Use the button in the bottom right-hand corner to add an item to this folder.</string>
     <string name="no_notes">No Notes!</string>
     <string name="how_to_add_note">Use the button in the bottom right-hand corner to add a note to this folder.</string>
 

@@ -40,7 +40,6 @@ data class BottomToolbarSetup(
                 // OnClick listeners
                 activity.addFolderImageView.setOnClickListener {
                     Log.d("BottomToolbarSetup()", "addFolderImageView clicked!", )
-//                    activity.navController.navigate(R.id.action_homeFragment_to_addFolderFragment)
                     AddItemSheet().show(activity.supportFragmentManager, null)
 
                 }
@@ -101,6 +100,20 @@ data class BottomToolbarSetup(
 //                }
             }
 
+            /** Checklist Fragment **************************************************************/
+            activity.getString(R.string.checklist_fragment_key) -> {
+                // Show correct toolbar, hide others
+                activity.bottomToolbarItemsList.isVisible = true
+                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarEditItem.isInvisible = true
+
+                activity.addItemImageViewItemsList.setOnClickListener {
+                    Log.d("BottomToolbarSetup()",
+                        "addItemImageViewItemsList clicked from ChecklistFragment!", )
+                    AddItemSheet().show(activity.supportFragmentManager, null)
+                }
+            }
+
             /** AddItemSheet Fragment *************************************************************/
             activity.getString(R.string.add_item_bottom_sheet_fragment_key) -> {
                 // Hide all bottom toolbars
@@ -109,6 +122,16 @@ data class BottomToolbarSetup(
                 activity.bottomToolbarEditItem.isInvisible = true
 
                 // todo revisit
+            }
+
+            /** ELSE *************************************************************/
+            else -> {
+                // Hide all bottom toolbars
+                activity.bottomToolbarItemsList.isInvisible = true
+                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarEditItem.isInvisible = true
+
+                Log.d("BottomToolbarSetup()", "ELSE thrown. All bottom toolbars made invisible." )
             }
         }
     }

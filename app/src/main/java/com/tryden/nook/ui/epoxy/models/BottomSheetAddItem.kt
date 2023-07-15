@@ -33,11 +33,10 @@ data class BottomSheetAddItem(
 
         doneTextView.setOnClickListener {
             val itemTitle = titleEditText.text.toString().trim()
-            val folderName = radioGroup.checkedRadioButtonId
 
-            var id: Int = radioGroup.checkedRadioButtonId
-            var rb: RadioButton = radioGroup.findViewById(id)
-            var folderType = rb.text.toString()
+            val id: Int = radioGroup.checkedRadioButtonId
+            val rb: RadioButton = radioGroup.findViewById(id)
+            val folderType = rb.text.toString()
 
 
 

@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
@@ -68,8 +69,17 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
     }
 
-    override fun onChecklistFolderSelected() {
-        findNavController().navigate(R.id.action_homeFragment_to_checklistsFragment)
+    override fun onChecklistFolderSelected(folderTitle: String) {
+        when (folderTitle) {
+            getString(R.string.all_checklists) -> {
+                findNavController().navigate(R.id.action_homeFragment_to_checklistsFragment)
+            }
+            else -> {
+                val navDirections =
+                    HomeFragmentDirections.actionHomeFragmentToChecklistFragment(folderTitle)
+                navigateViewNavGraph(navDirections)
+            }
+        }
     }
 
     override fun onNoteFolderSelected() {

@@ -56,7 +56,7 @@ class HomeEpoxyController(
             folderEntity = FolderEntity(
                 id = 0,
                 title = context.getString(R.string.all_priorities),
-                type = "Folder",
+                type = context.getString(R.string.priority),
                 size = prioritiesItemCount
             ),
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
@@ -74,7 +74,7 @@ class HomeEpoxyController(
             folderEntity = FolderEntity(
                 id = 0,
                 title = context.getString(R.string.all_checklists),
-                type = "Folder",
+                type = context.getString(R.string.checklist),
                 size = checklistsCount
             ),
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),

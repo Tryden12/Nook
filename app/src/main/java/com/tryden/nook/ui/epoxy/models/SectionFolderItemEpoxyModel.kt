@@ -25,17 +25,28 @@ data class SectionFolderItemEpoxyModel(
         }
 
         root.setOnClickListener {
-            when (folderEntity.title) {
-                NookApplication.context.getString(R.string.all_priorities) -> {
+//            when (folderEntity.title) {
+//                NookApplication.context.getString(R.string.all_priorities) -> {
+//                    onFolderSelected.onPriorityFolderSelected()
+//                }
+//                NookApplication.context.getString(R.string.all_checklists) -> {
+//                    onFolderSelected.onChecklistFolderSelected(NookApplication.context.getString(R.string.all_checklists))
+//                }
+//                NookApplication.context.getString(R.string.all_notes) -> {
+//                    onFolderSelected.onNoteFolderSelected()
+//                }
+//            }
+
+            when (folderEntity.type) {
+                NookApplication.context.getString(R.string.priority) -> {
                     onFolderSelected.onPriorityFolderSelected()
                 }
-                NookApplication.context.getString(R.string.all_checklists) -> {
-                    onFolderSelected.onChecklistFolderSelected()
+                NookApplication.context.getString(R.string.checklist) -> {
+                    onFolderSelected.onChecklistFolderSelected(folderEntity.title)
                 }
-                NookApplication.context.getString(R.string.all_notes) -> {
-                    onFolderSelected.onNoteFolderSelected()
+                NookApplication.context.getString(R.string.note) -> {
+                    onFolderSelected.onNoteFolderSelected() // todo revisit
                 }
-
             }
         }
     }

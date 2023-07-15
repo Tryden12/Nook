@@ -38,6 +38,13 @@
             app:popExitAnim="@anim/slide_out_up"
             app:enterAnim="@anim/slide_in_up"
             app:exitAnim="@anim/slide_out_down"/>
+        <action
+            android:id="@+id/action_homeFragment_to_checklistFragment"
+            app:destination="@id/checklistFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/prioritiesFragment"
@@ -66,9 +73,17 @@
     </fragment>
     <fragment
         android:id="@+id/checklistsFragment"
-        android:name="com.tryden.nook.ui.home.checklists.ChecklistsFragment"
+        android:name="com.tryden.nook.ui.home.checklists.AllChecklistsFragment"
         android:label="Checklists"
-        tools:layout="@layout/fragment_checklists" />
+        tools:layout="@layout/fragment_checklists" >
+        <action
+            android:id="@+id/action_checklistsFragment_to_checklistFragment"
+            app:destination="@id/checklistFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
 
 
     <fragment
@@ -76,4 +91,16 @@
         android:name="com.tryden.nook.ui.home.folders.AddFolderFragment"
         android:label=""
         tools:layout="@layout/fragment_add_folder" />
+    <fragment
+        android:id="@+id/checklistFragment"
+        android:name="com.tryden.nook.ui.home.checklists.checklist.ChecklistFragment"
+        android:label="Checklist"
+        tools:layout="@layout/fragment_checklist" >
+
+        <argument android:name="folderTitle"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+
+    </fragment>
 </navigation>
