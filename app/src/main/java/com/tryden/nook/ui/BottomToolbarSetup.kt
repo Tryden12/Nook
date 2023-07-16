@@ -81,7 +81,7 @@ data class BottomToolbarSetup(
                 activity.bottomToolbarEditItem.isInvisible = true
             }
 
-            /** Checklists Fragment **************************************************************/
+            /** All Checklists Fragment **************************************************************/
             activity.getString(R.string.checklists_fragment_key) -> {
                 // Show correct toolbar, hide others
                 activity.bottomToolbarHome.isVisible = true
@@ -90,7 +90,6 @@ data class BottomToolbarSetup(
 
                 activity.addFolderImageView.setOnClickListener {
                     AddItemSheet().show(activity.supportFragmentManager, null)
-
                 }
                 // OnClick listeners
                 activity.addItemImageViewHome.isGone = true // todo: revisit

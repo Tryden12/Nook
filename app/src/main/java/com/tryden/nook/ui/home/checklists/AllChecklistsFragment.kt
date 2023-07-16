@@ -37,7 +37,7 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
 
 
         // Bottom Sheet Type = Folder
-        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER)
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(

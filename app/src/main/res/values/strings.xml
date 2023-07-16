@@ -25,10 +25,20 @@
 
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
+
     <string name="new_folder">New Folder</string>
+    <string name="new_priority_folder">Priority</string>
+    <string name="new_checklist_folder">Checklist</string>
+    <string name="new_note_folder">Note</string>
     <string name="new_priority">New Priority</string>
     <string name="new_item">New Item</string>
     <string name="new_note">New Note</string>
+
+    <string name="folder_type_general">Folder</string>
+    <string name="folder_type_priority">Priority</string>
+    <string name="folder_type_checklist">Checklist</string>
+    <string name="folder_type_note">Note</string>
+
     <string name="edit_item">Edit Item</string>
     <string name="type">Type</string>
 

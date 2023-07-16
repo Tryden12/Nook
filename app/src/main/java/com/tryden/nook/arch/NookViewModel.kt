@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
-import com.tryden.nook.ui.epoxy.models.BottomSheetAddItem
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
