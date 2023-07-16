@@ -52,13 +52,13 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         binding.homeEpoxyRecyclerView.setController(controller)
 
         sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
-            controller.prioritiesItemCount = priorityItemEntityList.size.toString()
+            controller.prioritiesItemCount = priorityItemEntityList.size
         }
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
             var count = folders.filter { it.type == "Checklist" }.size
             Log.e(tag, "onViewCreated: $count", )
-            controller.checklistsCount = count.toString()
+            controller.checklistsCount = count
 
             controller.folders = folders as ArrayList<FolderEntity>
         }

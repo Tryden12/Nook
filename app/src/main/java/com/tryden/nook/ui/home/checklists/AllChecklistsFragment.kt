@@ -51,7 +51,6 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
 
         mainActivity.viewModel.foldersLiveData.observe(viewLifecycleOwner) { itemEntityList ->
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
-            mainActivity.itemCountTextView.text = "${itemEntityList.size} items to complete!"
         }
 
         // Setup swipe-to-delete

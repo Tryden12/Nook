@@ -73,6 +73,17 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     }
 
     override fun onSaveChecklistItem(item: ChecklistItemEntity) {
+        // Increase folder size by 1
+        viewModel.currentSelectedFolderLiveData.observe(mainActivity) { folder ->
+            val folderEntity = folder!!.copy(
+                title = folder.title,
+                type = folder.type,
+                size = folder.size + 1
+            )
+
+            viewModel.updateFolder(folderEntity)
+            Log.d(tag, "Folder ${folder.title} size: ${folder.size}" )
+        }
         viewModel.insertChecklistItem(item)
         dismiss()
     }

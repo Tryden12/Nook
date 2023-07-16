@@ -69,7 +69,7 @@ class BottomSheetAddFolderEpoxyModel(
             val item = FolderEntity(
                 title = itemTitle,
                 type = folderType, // todo revisit?
-                size =  "0" // todo: change to Int type
+                size =  0
             )
             onAddItemSheetButtonSelected.onSaveFolder(item)
         }

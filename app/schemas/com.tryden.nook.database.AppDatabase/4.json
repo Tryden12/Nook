@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "e5436154490b682909cb2c6d79e8808f",
+    "identityHash": "5802bf6122bb4fb4976292ec7d23ce20",
     "entities": [
       {
         "tableName": "priority_item_entity",
@@ -112,7 +112,7 @@
       },
       {
         "tableName": "folder_entity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `type` TEXT NOT NULL, `size` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `type` TEXT NOT NULL, `size` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -135,7 +135,7 @@
           {
             "fieldPath": "size",
             "columnName": "size",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -152,7 +152,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e5436154490b682909cb2c6d79e8808f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5802bf6122bb4fb4976292ec7d23ce20')"
     ]
   }
 }

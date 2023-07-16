@@ -28,14 +28,14 @@ class HomeEpoxyController(
             field = value
         }
 
-    var prioritiesItemCount: String = ""
+    var prioritiesItemCount: Int = 0
         set(value) {
             field = value
             isLoading = false
             requestModelBuild()
         }
 
-    var checklistsCount: String = ""
+    var checklistsCount: Int = 0
         set(value) {
             field = value
         }

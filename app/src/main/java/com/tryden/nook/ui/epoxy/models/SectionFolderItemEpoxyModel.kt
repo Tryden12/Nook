@@ -18,24 +18,13 @@ data class SectionFolderItemEpoxyModel(
     override fun ModelSectionFolderItemBinding.bind() {
         iconImageView.setImageDrawable(icon)
         titleTextView.text = folderEntity.title
-        if (folderEntity.size.isEmpty()) {
+        if (folderEntity.size == 0) {
             countTextView.text = "0"
         } else {
-            countTextView.text = folderEntity.size
+            countTextView.text = folderEntity.size.toString()
         }
 
         root.setOnClickListener {
-//            when (folderEntity.title) {
-//                NookApplication.context.getString(R.string.all_priorities) -> {
-//                    onFolderSelected.onPriorityFolderSelected()
-//                }
-//                NookApplication.context.getString(R.string.all_checklists) -> {
-//                    onFolderSelected.onChecklistFolderSelected(NookApplication.context.getString(R.string.all_checklists))
-//                }
-//                NookApplication.context.getString(R.string.all_notes) -> {
-//                    onFolderSelected.onNoteFolderSelected()
-//                }
-//            }
 
             when (folderEntity.type) {
                 NookApplication.context.getString(R.string.priority) -> {
