@@ -72,8 +72,14 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
                 ) {
                     val folder = model?.folderEntity ?: return
 
-                    // Delete all items in folder first
-                    sharedViewModel.deleteAllChecklistItemsByFolder(folder = folder)
+                    // Delete all items in folder
+                    sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { checklistItems ->
+                        checklistItems.filter {
+                            it.folderName == folder.title
+                        }.forEach { checklistItemEntity ->
+                            sharedViewModel.deleteChecklistItem(checklistItemEntity)
+                        }
+                    }
 
                     // Delete folder from db
                     sharedViewModel.deleteFolder(folder)

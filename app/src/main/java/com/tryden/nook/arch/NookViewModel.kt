@@ -134,20 +134,6 @@ class NookViewModel @Inject constructor(
         }
     }
 
-    fun deleteAllChecklistItemsByFolder(folder: FolderEntity) {
-        viewModelScope.launch {
-            repository.getAllChecklistItems().collect() { items ->
-                val checklistItems = items.filter {
-                    it.folderName == folder.title
-                }
-
-                checklistItems.forEach {
-                    deleteChecklistItem(it)
-                }
-            }
-        }
-    }
-
     fun updateChecklistItem(checklistItemEntity: ChecklistItemEntity) {
         viewModelScope.launch {
             repository.updateChecklistItem(checklistItemEntity)
