@@ -43,6 +43,15 @@ class NookViewModel @Inject constructor(
         }
     }
 
+    fun collectAllChecklistItems() {
+        // checklist items
+        viewModelScope.launch {
+            repository.getAllChecklistItems().collect() { items ->
+                checklistItemEntitiesLiveData.postValue(items)
+            }
+        }
+    }
+
     fun collectAllFolders() {
         viewModelScope.launch {
             repository.getAllFolders().collect() { items ->

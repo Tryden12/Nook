@@ -98,17 +98,17 @@ class ChecklistFragment : BaseFragment() {
                     sharedViewModel.deleteChecklistItem(checklistItem)
 
                     // Decrease folder size by 1
-//                    val folderEntity = selectedFolderEntity!!.copy(
-//                        title = selectedFolderEntity!!.title,
-//                        type = selectedFolderEntity!!.type,
-//                        size = if (selectedFolderEntity!!.size > 0) {
-//                            selectedFolderEntity!!.size - 1
-//                        } else {
-//                            0
-//                        }
-//                    )
-//                    sharedViewModel.updateFolder(folderEntity)
-//                    Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
+                    val folderEntity = selectedFolderEntity!!.copy(
+                        title = selectedFolderEntity!!.title,
+                        type = selectedFolderEntity!!.type,
+                        size = if (selectedFolderEntity!!.size > 0) {
+                            selectedFolderEntity!!.size - 1
+                        } else {
+                            0
+                        }
+                    )
+                    sharedViewModel.updateFolder(folderEntity)
+                    Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
                 }
 
             })
