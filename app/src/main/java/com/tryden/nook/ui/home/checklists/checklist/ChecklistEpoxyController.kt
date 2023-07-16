@@ -52,7 +52,8 @@ class ChecklistEpoxyController : EpoxyController() {
                         .addTo(this)
                 }
                 is ChecklistItem -> {
-                    // todo
+                    ChecklistItemEpoxyModel(itemEntity = epoxyItem.item)
+                        .id(epoxyItem.item.id).addTo(this)
                 }
                 DividerItem -> {
                     DividerEpoxyModel().id("divider-$index").addTo(this)
@@ -69,7 +70,7 @@ class ChecklistEpoxyController : EpoxyController() {
         return buildList {
             // Add rounded section topper
             add(SectionHeaderRounded)
-            checklistItems.sortedByDescending {
+            checklistItems.sortedBy {
                 it.title
             }.forEachIndexed { index, item ->
                 if (index != 0) add(DividerItem)

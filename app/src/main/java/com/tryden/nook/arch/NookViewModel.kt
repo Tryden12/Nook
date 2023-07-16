@@ -9,6 +9,8 @@ import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -54,7 +56,6 @@ class NookViewModel @Inject constructor(
     // region Folders
     val foldersLiveData = MutableLiveData<List<FolderEntity>>()
 
-    // region Bottom Sheet
     private val _currentSelectedFolderLiveData = MutableLiveData<FolderEntity>()
     val currentSelectedFolderLiveData: LiveData<FolderEntity>
         get() = _currentSelectedFolderLiveData
@@ -63,8 +64,6 @@ class NookViewModel @Inject constructor(
         _currentSelectedFolderLiveData.value = currentFolder
         _currentSelectedFolderLiveData.postValue(currentFolder)
     }
-
-    // endregion Bottom Sheet
 
     fun insertFolder(folderEntity: FolderEntity) {
         viewModelScope.launch {
@@ -132,6 +131,20 @@ class NookViewModel @Inject constructor(
     fun deleteChecklistItem(checklistItemEntity: ChecklistItemEntity) {
         viewModelScope.launch {
             repository.deleteChecklistItem(checklistItemEntity)
+        }
+    }
+
+    fun deleteAllChecklistItemsByFolder(folder: FolderEntity) {
+        viewModelScope.launch {
+            repository.getAllChecklistItems().collect() { items ->
+                val checklistItems = items.filter {
+                    it.folderName == folder.title
+                }
+
+                checklistItems.forEach {
+                    deleteChecklistItem(it)
+                }
+            }
         }
     }
 

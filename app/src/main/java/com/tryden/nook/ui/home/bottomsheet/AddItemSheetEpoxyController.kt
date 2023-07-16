@@ -40,13 +40,13 @@ class AddItemSheetEpoxyController(
             }
             FOLDER_PRIORITY -> {
                 BottomSheetAddFolderEpoxyModel(
-                    folderType = FOLDER_CHECKLIST.key,
+                    folderType = FOLDER_PRIORITY.key,
                     onAddItemSheetButtonSelected
                 ).id("add-folder-epoxy-model").addTo(this)
             }
             FOLDER_CHECKLIST -> {
                 BottomSheetAddFolderEpoxyModel(
-                    folderType = FOLDER_PRIORITY.key,
+                    folderType = FOLDER_CHECKLIST.key,
                     onAddItemSheetButtonSelected
                 ).id("add-folder-epoxy-model").addTo(this)
             }

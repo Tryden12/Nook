@@ -70,8 +70,13 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
                     position: Int,
                     direction: Int,
                 ) {
-                    val itemRemoved = model?.folderEntity ?: return
-                    sharedViewModel.deleteFolder(itemRemoved)
+                    val folder = model?.folderEntity ?: return
+
+                    // Delete all items in folder first
+                    sharedViewModel.deleteAllChecklistItemsByFolder(folder = folder)
+
+                    // Delete folder from db
+                    sharedViewModel.deleteFolder(folder)
                 }
 
             })
