@@ -9,7 +9,12 @@ import com.tryden.nook.databinding.ModelBottomSheetAddChecklistItemBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 
+/**
+ * This epoxy model provides the layout file for AddItemSheet() bottom sheet.
+ */
+
 class BottomSheetAddChecklistItemEpoxyModel(
+    val currentFolderEntity: FolderEntity,
     val onAddItemSheetButtonSelected: OnAddItemSheetButtonSelected
 ): ViewBindingKotlinModel<ModelBottomSheetAddChecklistItemBinding>(R.layout.model_bottom_sheet_add_checklist_item) {
 
@@ -37,7 +42,7 @@ class BottomSheetAddChecklistItemEpoxyModel(
 
             val itemEntity = ChecklistItemEntity(
                 title = itemTitle,
-                folderName = "", // todo revisit
+                folderName = currentFolderEntity.title,
                 completed = false
             )
             onAddItemSheetButtonSelected.onSaveChecklistItem(itemEntity)

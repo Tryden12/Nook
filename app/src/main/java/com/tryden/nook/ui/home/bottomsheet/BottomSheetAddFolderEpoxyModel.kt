@@ -8,6 +8,22 @@ import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 
+/**
+ * IMPORTANT: @param [folderType] provides the folder entity with the value for its folder type
+ * in one of two ways..
+ *
+ * There are two ways the folderType value is provided:
+ * 1. If the @param [folderType] IS equal to the general folder string key, then the folder
+ *    entity gets the folderType value from the selected radio button label.
+ * 2. Else, the folder entity folderType value is the @param [folderType] value.
+ *
+ * Lines 51-55.
+ */
+
+/**
+ * This epoxy model provides the layout file for AddItemSheet() bottom sheet.
+ */
+
 class BottomSheetAddFolderEpoxyModel(
     val folderType: String,
     val onAddItemSheetButtonSelected: OnAddItemSheetButtonSelected

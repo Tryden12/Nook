@@ -69,14 +69,15 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
     }
 
-    override fun onChecklistFolderSelected(folderTitle: String) {
-        when (folderTitle) {
+    override fun onChecklistFolderSelected(folder: FolderEntity) {
+        sharedViewModel.updateCurrentFolderSelected(folder)
+        when (folder.title) {
             getString(R.string.all_checklists) -> {
                 findNavController().navigate(R.id.action_homeFragment_to_checklistsFragment)
             }
             else -> {
                 val navDirections =
-                    HomeFragmentDirections.actionHomeFragmentToChecklistFragment(folderTitle)
+                    HomeFragmentDirections.actionHomeFragmentToChecklistFragment(folder.title)
                 navigateViewNavGraph(navDirections)
             }
         }

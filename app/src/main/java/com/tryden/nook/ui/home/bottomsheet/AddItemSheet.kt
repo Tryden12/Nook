@@ -15,6 +15,13 @@ import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddItemSheetBinding
 import com.tryden.nook.ui.MainActivity
 
+/**
+ * This class is the primary bottom sheet used for the application.
+ *
+ * The layout file will be provided at a Fragment level based on the
+ * bottomSheetAddItemTypeLiveData value updated and retrieved from the NookViewModel().
+ */
+
 class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
 
     private var _binding: FragmentAddItemSheetBinding? = null
@@ -41,9 +48,15 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         val epoxyController = AddItemSheetEpoxyController(this)
         binding.epoxyRecyclerView.setController(epoxyController)
 
+
+        viewModel.currentSelectedFolderLiveData.observe(mainActivity) {
+            epoxyController.currentFolderSelected = it
+            Log.d(tag, "currentFolderSelected: ${it.title}" )
+        }
+
         viewModel.bottomSheetAddItemTypeLiveData.observe(mainActivity) {
             epoxyController.currentBottomSheetType = it
-            Log.e(tag, "currentBottomSheetType: $it" )
+            Log.d(tag, "currentBottomSheetType: $it" )
         }
 
     }

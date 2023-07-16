@@ -2,8 +2,17 @@ package com.tryden.nook.ui.home.bottomsheet
 
 import android.util.Log
 import com.airbnb.epoxy.EpoxyController
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType.Type.*
+
+/**
+ * This controller provides the layout & epoxy model based on the currentBottomSheetType.
+ *
+ * The following are updated from the Fragment level via a shared view model:
+ * 1. currentBottomSheetType
+ * 2. currentFolderSelected
+ */
 
 class AddItemSheetEpoxyController(
     private val onAddItemSheetButtonSelected: OnAddItemSheetButtonSelected
@@ -13,6 +22,11 @@ class AddItemSheetEpoxyController(
         set(value) {
             field = value
             requestModelBuild()
+        }
+
+    var currentFolderSelected: FolderEntity = FolderEntity()
+        set(value) {
+            field = value
         }
 
     override fun buildModels() {
@@ -46,6 +60,7 @@ class AddItemSheetEpoxyController(
             }
             CHECKLIST_ITEM -> {
                 BottomSheetAddChecklistItemEpoxyModel(
+                    currentFolderSelected,
                     onAddItemSheetButtonSelected
                 ).id("add-checklist-item-epoxy-model").addTo(this)
             }

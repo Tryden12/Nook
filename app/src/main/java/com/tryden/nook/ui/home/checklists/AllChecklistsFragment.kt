@@ -77,9 +77,10 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
             })
     }
 
-    override fun onChecklistFolderSelected(folderTitle: String) {
+    override fun onChecklistFolderSelected(folder: FolderEntity) {
+        sharedViewModel.updateCurrentFolderSelected(folder)
         val navDirections =
-            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(folderTitle)
+            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(folder.title)
         navigateViewNavGraph(navDirections)
     }
 

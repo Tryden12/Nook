@@ -54,6 +54,18 @@ class NookViewModel @Inject constructor(
     // region Folders
     val foldersLiveData = MutableLiveData<List<FolderEntity>>()
 
+    // region Bottom Sheet
+    private val _currentSelectedFolderLiveData = MutableLiveData<FolderEntity>()
+    val currentSelectedFolderLiveData: LiveData<FolderEntity>
+        get() = _currentSelectedFolderLiveData
+
+    fun updateCurrentFolderSelected(currentFolder: FolderEntity) {
+        _currentSelectedFolderLiveData.value = currentFolder
+        _currentSelectedFolderLiveData.postValue(currentFolder)
+    }
+
+    // endregion Bottom Sheet
+
     fun insertFolder(folderEntity: FolderEntity) {
         viewModelScope.launch {
             repository.insertFolder(folderEntity)
@@ -143,7 +155,6 @@ class NookViewModel @Inject constructor(
         _bottomSheetAddItemTypeLiveData.value = type
         _bottomSheetAddItemTypeLiveData.postValue(type)
     }
-
     // endregion Bottom Sheet
 
 }

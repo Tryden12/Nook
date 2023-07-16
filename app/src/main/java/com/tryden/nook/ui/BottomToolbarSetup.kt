@@ -29,7 +29,7 @@ data class BottomToolbarSetup(
         Log.d("BottomToolbarSetup()", "bottomToolbarSetup: fragmentKey = $fragmentKey", )
 
         when (fragmentKey) {
-            /** HomeFragment *********************************************************************/
+            /** Home Fragment *********************************************************************/
             activity.getString(R.string.home_fragment_key) -> {
 
                 // Show correct toolbar, hide others
@@ -81,7 +81,7 @@ data class BottomToolbarSetup(
                 activity.bottomToolbarEditItem.isInvisible = true
             }
 
-            /** All Checklists Fragment **************************************************************/
+            /** AllChecklists Fragment **************************************************************/
             activity.getString(R.string.checklists_fragment_key) -> {
                 // Show correct toolbar, hide others
                 activity.bottomToolbarHome.isVisible = true

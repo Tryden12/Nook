@@ -9,6 +9,11 @@ import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddPriorityItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 
+
+/**
+ * This epoxy model provides the layout file for AddItemSheet() bottom sheet.
+ */
+
 class BottomSheetAddPriorityItemEpoxyModel(
     val onAddItemSheetButtonSelected: OnAddItemSheetButtonSelected
 ): ViewBindingKotlinModel<ModelBottomSheetAddPriorityItemBinding>(R.layout.model_bottom_sheet_add_priority_item) {
