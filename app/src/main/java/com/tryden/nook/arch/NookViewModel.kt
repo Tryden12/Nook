@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,44 +22,35 @@ class NookViewModel @Inject constructor(
 
     val transactionCompleteLiveData = MutableLiveData<Boolean>()
 
-    // region collect items
+    // region Collect All Entities
     fun collectAllItems() {
-        // folders
+        // folder entities
         viewModelScope.launch {
-            repository.getAllFolders().collect() { items ->
-                foldersLiveData.postValue(items)
+            repository.getAllFolders().collect() { allFolders ->
+                foldersLiveData.postValue(allFolders)
             }
         }
-        // priority items
+        // priority entities
         viewModelScope.launch{
-            repository.getAllPriorityItems().collect { items ->
-                priorityItemEntitiesLiveData.postValue(items)
+            repository.getAllPriorityItems().collect { allPriorities ->
+                priorityItemEntitiesLiveData.postValue(allPriorities)
             }
         }
-        // checklist items
+        // checklist entities
         viewModelScope.launch {
-            repository.getAllChecklistItems().collect() { items ->
-                checklistItemEntitiesLiveData.postValue(items)
+            repository.getAllChecklistItems().collect() { allChecklistEntities ->
+                checklistItemEntitiesLiveData.postValue(allChecklistEntities)
+            }
+        }
+
+        // note entities
+        viewModelScope.launch {
+            repository.getAllNoteEntities().collect() { allNotes ->
+                noteEntitiesLiveData.postValue(allNotes)
             }
         }
     }
 
-    fun collectAllChecklistItems() {
-        // checklist items
-        viewModelScope.launch {
-            repository.getAllChecklistItems().collect() { items ->
-                checklistItemEntitiesLiveData.postValue(items)
-            }
-        }
-    }
-
-    fun collectAllFolders() {
-        viewModelScope.launch {
-            repository.getAllFolders().collect() { items ->
-                foldersLiveData.postValue(items)
-            }
-        }
-    }
     // endregion collect items
 
 
@@ -68,6 +60,14 @@ class NookViewModel @Inject constructor(
     private val _currentSelectedFolderLiveData = MutableLiveData<FolderEntity>()
     val currentSelectedFolderLiveData: LiveData<FolderEntity>
         get() = _currentSelectedFolderLiveData
+
+    fun collectAllFolders() {
+        viewModelScope.launch {
+            repository.getAllFolders().collect() { items ->
+                foldersLiveData.postValue(items)
+            }
+        }
+    }
 
     fun updateCurrentFolderSelected(currentFolder: FolderEntity) {
         _currentSelectedFolderLiveData.value = currentFolder
@@ -99,6 +99,7 @@ class NookViewModel @Inject constructor(
 
     // endregion Folders
 
+
     // region Priority Items
     val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()
 
@@ -126,8 +127,30 @@ class NookViewModel @Inject constructor(
     }
     // endregion Priority Items
 
+
     // region Checklist Items
     val checklistItemEntitiesLiveData = MutableLiveData<List<ChecklistItemEntity>>()
+
+    fun getAllChecklistItems() {
+        // checklist items
+        viewModelScope.launch {
+            repository.getAllChecklistItems().collect() { items ->
+                checklistItemEntitiesLiveData.postValue(items)
+            }
+        }
+    }
+
+    fun getAllChecklistItemsByFolderName(folderName: String) {
+        // checklist items
+        viewModelScope.launch {
+            repository.getAllChecklistItems().collect() { allChecklistItems ->
+                val items = allChecklistItems.filter {
+                    it.folderName == folderName
+                }
+                checklistItemEntitiesLiveData.postValue(items)
+            }
+        }
+    }
 
     fun insertChecklistItem(checklistItemEntity: ChecklistItemEntity) {
         viewModelScope.launch {
@@ -152,6 +175,50 @@ class NookViewModel @Inject constructor(
     }
 
     // endregion Checklist Items
+
+
+    // region Note Items
+    val noteEntitiesLiveData = MutableLiveData<List<NoteEntity>>()
+    val noteEntitiesByFolderNameLiveData = MutableLiveData<List<NoteEntity>>()
+
+
+    fun getAllNotes() {
+        viewModelScope.launch {
+            repository.getAllNoteEntities().collect() { list ->
+                noteEntitiesByFolderNameLiveData.postValue(list)
+            }
+        }
+    }
+
+    fun getAllNotesByFolder(folderName: String) {
+        viewModelScope.launch {
+            repository.getAllNoteEntities().collect() { allNotes ->
+                val notes = allNotes.filter {
+                    it.folderName == folderName
+                }
+                noteEntitiesByFolderNameLiveData.postValue(notes)
+            }
+        }
+    }
+
+    fun insertNoteEntity(noteEntity: NoteEntity) {
+        viewModelScope.launch{
+            repository.insertNoteEntity(noteEntity)
+        }
+    }
+
+    fun updateNoteEntity(noteEntity: NoteEntity) {
+        viewModelScope.launch{
+            repository.updateNoteEntity(noteEntity)
+        }
+    }
+
+    fun deleteNoteEntity(noteEntity: NoteEntity) {
+        viewModelScope.launch{
+            repository.deleteNoteEntity(noteEntity)
+        }
+    }
+    // endregion Note Items
 
 
     // region Bottom Sheet

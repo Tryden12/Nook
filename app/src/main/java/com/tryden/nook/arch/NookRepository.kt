@@ -1,10 +1,13 @@
 package com.tryden.nook.arch
 
+import android.provider.ContactsContract.CommonDataKinds.Note
 import com.tryden.nook.database.dao.ChecklistItemEntityDao
 import com.tryden.nook.database.dao.FolderEntityDao
+import com.tryden.nook.database.dao.NoteEntityDao
 import com.tryden.nook.database.dao.PriorityItemEntityDao
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -12,7 +15,8 @@ import javax.inject.Inject
 class NookRepository @Inject constructor(
     private val priorityDao: PriorityItemEntityDao,
     private val checklistDao: ChecklistItemEntityDao,
-    private val folderDao: FolderEntityDao
+    private val folderDao: FolderEntityDao,
+    private val noteDao: NoteEntityDao
 ){
 
     // region Folder Items
@@ -69,5 +73,25 @@ class NookRepository @Inject constructor(
         checklistDao.update(checklistItemEntity)
     }
     // endregion Checklist Items
+
+    // region Note Items
+    fun getAllNoteEntities(): Flow<List<NoteEntity>> {
+        return noteDao.getAllNoteEntities()
+    }
+
+    suspend fun insertNoteEntity(noteEntity: NoteEntity) {
+        noteDao.insert(noteEntity)
+    }
+
+    suspend fun updateNoteEntity(noteEntity: NoteEntity) {
+        noteDao.update(noteEntity)
+    }
+
+    suspend fun deleteNoteEntity(noteEntity: NoteEntity) {
+        noteDao.delete(noteEntity)
+    }
+
+    // endregion Note Items
+
 
 }

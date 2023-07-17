@@ -98,7 +98,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         }
 
         viewModel.insertChecklistItem(item)
-        viewModel.collectAllChecklistItems()
+        viewModel.getAllChecklistItems()
         dismiss()
     }
 

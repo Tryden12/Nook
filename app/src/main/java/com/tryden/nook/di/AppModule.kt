@@ -41,6 +41,9 @@ object AppModule {
     @Provides
     fun provideFolderItemEntityDao(db: AppDatabase) = db.folderItemEntityDao()
 
+    @Provides
+    fun provideNoteItemEntityDao(db: AppDatabase) = db.noteItemEntityDao()
+
 
     /** Coroutine scope that lives in the application as long as the application lives.
      *  We let Dagger provide this, so we can inject it where ever we need,
