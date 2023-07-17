@@ -15,6 +15,13 @@ import com.tryden.nook.ui.epoxy.models.*
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
 
 
+/**
+ * This is the epoxy controller for the AllChecklistsFragment.
+ *
+ * At the bottom of the class, we build a list of epoxy items in the buildEpoxyItems() method.
+ * This simplifies the readability of the buildModels() method.
+ */
+
 class AllChecklistsEpoxyController(
     private val onFolderSelected: OnFolderSelectedInterface
 ) : EpoxyController()  {
@@ -75,7 +82,8 @@ class AllChecklistsEpoxyController(
                         .addTo(this)
                 }
                 is SectionFooterRounded -> {
-                    SectionFooterRoundedEpoxyModel().id("section-footer-rounded-$index").addTo(this)
+                    SectionFooterRoundedEpoxyModel()
+                        .id("section-footer-rounded-$index").addTo(this)
                 }
             }
         }

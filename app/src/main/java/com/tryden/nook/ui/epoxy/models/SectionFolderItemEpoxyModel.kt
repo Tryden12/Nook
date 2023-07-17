@@ -34,7 +34,7 @@ data class SectionFolderItemEpoxyModel(
                     onFolderSelected.onChecklistFolderSelected(folderEntity)
                 }
                 NookApplication.context.getString(R.string.note) -> {
-                    onFolderSelected.onNoteFolderSelected() // todo revisit
+                    onFolderSelected.onNoteFolderSelected(folderEntity)
                 }
             }
         }

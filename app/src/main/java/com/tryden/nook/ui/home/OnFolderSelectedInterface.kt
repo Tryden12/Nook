@@ -6,6 +6,6 @@ interface OnFolderSelectedInterface {
 
     fun onPriorityFolderSelected()
     fun onChecklistFolderSelected(selectedFolder: FolderEntity)
-    fun onNoteFolderSelected()
+    fun onNoteFolderSelected(selectedFolder: FolderEntity)
 
 }

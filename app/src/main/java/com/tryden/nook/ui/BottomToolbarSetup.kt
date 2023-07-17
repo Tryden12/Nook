@@ -99,18 +99,36 @@ data class BottomToolbarSetup(
 //                }
             }
 
-            /** Checklist Fragment **************************************************************/
-            activity.getString(R.string.checklist_fragment_key) -> {
+                /** Checklist Fragment **************************************************************/
+                activity.getString(R.string.checklist_fragment_key) -> {
+                    // Show correct toolbar, hide others
+                    activity.bottomToolbarItemsList.isVisible = true
+                    activity.bottomToolbarHome.isInvisible = true
+                    activity.bottomToolbarEditItem.isInvisible = true
+
+                    activity.addItemImageViewItemsList.setOnClickListener {
+                        Log.d("BottomToolbarSetup()",
+                            "addItemImageViewItemsList clicked from ChecklistFragment!", )
+                        AddItemSheet().show(activity.supportFragmentManager, null)
+                    }
+                }
+
+            /** AllNotes Fragment **************************************************************/
+            activity.getString(R.string.all_notes_fragment_key) -> {
                 // Show correct toolbar, hide others
-                activity.bottomToolbarItemsList.isVisible = true
-                activity.bottomToolbarHome.isInvisible = true
+                activity.bottomToolbarHome.isVisible = true
+                activity.bottomToolbarItemsList.isInvisible = true
                 activity.bottomToolbarEditItem.isInvisible = true
 
-                activity.addItemImageViewItemsList.setOnClickListener {
-                    Log.d("BottomToolbarSetup()",
-                        "addItemImageViewItemsList clicked from ChecklistFragment!", )
+                activity.addFolderImageView.setOnClickListener {
                     AddItemSheet().show(activity.supportFragmentManager, null)
                 }
+                // OnClick listeners
+                activity.addItemImageViewHome.isGone = true // todo: revisit
+//                activity.addItemImageViewHome.setOnClickListener {
+//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+//                    AddItemSheet().show(activity.supportFragmentManager, null)
+//                }
             }
 
             /** AddItemSheet Fragment *************************************************************/

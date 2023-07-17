@@ -29,11 +29,10 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         return binding.root
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.checklists_fragment_key)
-        Log.d("ChecklistsFragment()", "onViewCreated: $tag")
+        Log.d("AllChecklistsFragment()", "onViewCreated: $tag")
 
         // Support action bar title
         mainActivity.supportActionBar?.title = ""
@@ -89,16 +88,17 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
             })
     }
 
-    override fun onChecklistFolderSelected(folder: FolderEntity) {
-        sharedViewModel.updateCurrentFolderSelected(folder)
+    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
         val navDirections =
-            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(folder.title)
+            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(selectedFolder.title)
         navigateViewNavGraph(navDirections)
     }
 
-    override fun onNoteFolderSelected() {
-        // ignore
+    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
+        // todo
     }
+
     override fun onPriorityFolderSelected() {
         // ignore
     }

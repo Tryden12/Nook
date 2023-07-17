@@ -59,9 +59,12 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         }
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
-            var count = folders.filter { it.type == "Checklist" }.size
-            Log.e(tag, "onViewCreated: $count", )
-            controller.checklistsCount = count
+            val checklistsCount = folders.filter { it.type == getString(R.string.checklist) }.size
+            Log.e(tag, "onViewCreated: checklist folders count: $checklistsCount" )
+            val noteFoldersCount = folders.filter { it.type == getString(R.string.note) }.size
+            Log.e(tag, "onViewCreated: note folders count: $noteFoldersCount" )
+            controller.checklistsCount = checklistsCount
+            controller.noteFoldersCount = noteFoldersCount
 
             controller.folders = folders as ArrayList<FolderEntity>
         }
@@ -72,23 +75,35 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
     }
 
-    override fun onChecklistFolderSelected(folder: FolderEntity) {
-        sharedViewModel.updateCurrentFolderSelected(folder)
-        when (folder.title) {
+    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+        when (selectedFolder.title) {
             getString(R.string.all_checklists) -> {
                 findNavController().navigate(R.id.action_homeFragment_to_checklistsFragment)
             }
             else -> {
                 val navDirections =
-                    HomeFragmentDirections.actionHomeFragmentToChecklistFragment(folder.title)
+                    HomeFragmentDirections.actionHomeFragmentToChecklistFragment(selectedFolder.title)
                 navigateViewNavGraph(navDirections)
             }
         }
     }
 
-    override fun onNoteFolderSelected() {
-        // todo revisit once note fragment created
+    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+        when (selectedFolder.title) {
+            getString(R.string.all_notes) -> {
+                findNavController().navigate(R.id.action_homeFragment_to_allNotesFragment)
+            }
+            else -> {
+                // todo when NoteFragment is created
+//                val navDirections =
+//                    HomeFragmentDirections.(selectedFolder.title)
+//                navigateViewNavGraph(navDirections)
+            }
+        }
     }
+
 
     override fun onResume() {
         super.onResume()
