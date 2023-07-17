@@ -19,7 +19,7 @@ import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 
-class ChecklistFragment : BaseFragment() {
+class ChecklistFragment : BaseFragment(), OnCheckSelected {
 
     private var _binding: FragmentChecklistBinding? = null
     private val binding get() = _binding!!
@@ -60,7 +60,7 @@ class ChecklistFragment : BaseFragment() {
             activity = mainActivity
         ).bottomToolbarSetup()
 
-        val controller = ChecklistEpoxyController()
+        val controller = ChecklistEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
@@ -114,9 +114,22 @@ class ChecklistFragment : BaseFragment() {
             })
     }
 
+    override fun onCheckboxChecked(itemEntity: ChecklistItemEntity, isChecked: Boolean) {
+        val checklistItemEntity = itemEntity.copy(
+            id = itemEntity.id,
+            title = itemEntity.title,
+            folderName = itemEntity.folderName,
+            important = itemEntity.important,
+            completed = isChecked,
+            categoryId = itemEntity.categoryId
+        )
+        sharedViewModel.updateChecklistItem(checklistItemEntity)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 
 }

@@ -8,7 +8,9 @@ import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.*
 import com.tryden.nook.ui.epoxy.models.*
 
-class ChecklistEpoxyController : EpoxyController() {
+class ChecklistEpoxyController(
+    val onCheckSelected: OnCheckSelected
+) : EpoxyController() {
 
     val context = NookApplication.context
 
@@ -52,7 +54,7 @@ class ChecklistEpoxyController : EpoxyController() {
                         .addTo(this)
                 }
                 is ChecklistItem -> {
-                    ChecklistItemEpoxyModel(itemEntity = epoxyItem.item)
+                    ChecklistItemEpoxyModel(itemEntity = epoxyItem.item, onCheckSelected)
                         .id(epoxyItem.item.id).addTo(this)
                 }
                 DividerItem -> {
