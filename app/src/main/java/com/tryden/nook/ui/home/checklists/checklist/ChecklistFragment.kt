@@ -68,10 +68,16 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
                 item.folderName == safeArgs.folderTitle
             }
 
-            if (items.isEmpty()) {
-                mainActivity.itemCountTextView.text = "Nothing to complete!"
-            } else {
-                mainActivity.itemCountTextView.text = "${items.size} items to complete!"
+            when (items.size) {
+                0 -> {
+                    mainActivity.itemCountTextView.text = "Nothing to complete!"
+                }
+                1 -> {
+                    mainActivity.itemCountTextView.text = "${items.size} item"
+                }
+                else -> {
+                    mainActivity.itemCountTextView.text = "${items.size} items"
+                }
             }
 
             controller.itemEntityList = items as ArrayList<ChecklistItemEntity>
