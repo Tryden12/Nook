@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Nook</string>
 
+    <!-- Database Keys -->
+    <string name="folder_type_general">Folder</string>
+    <string name="priority_type_key">Priority</string>
+    <string name="checklist_type_key">Checklist</string>
+    <string name="note_type_key">Note</string>
 
-    <!-- Keys -->
+<!--    <string name="folder_type_priority">Priority</string>-->
+<!--    <string name="folder_type_checklist">Checklist</string>-->
+<!--    <string name="folder_type_note">Note</string>-->
+
+    <!-- Fragment Keys -->
     <string name="home_fragment_key">home_fragment</string>
     <string name="add_folder_fragment_key">add_folder_fragment</string>
     <string name="priorities_fragment_key">priorities_fragment</string>
@@ -12,6 +21,7 @@
 
     <string name="add_item_bottom_sheet_fragment_key">add_item_bottom_sheet_fragment</string>
     <string name="add_priority_fragment_key">add_priority_fragment</string>
+
 
     <!-- Action Bar -->
     <string name="update_item">Update item</string>
@@ -35,11 +45,6 @@
     <string name="new_priority">New Priority</string>
     <string name="new_item">New Item</string>
     <string name="new_note">New Note</string>
-
-    <string name="folder_type_general">Folder</string>
-    <string name="folder_type_priority">Priority</string>
-    <string name="folder_type_checklist">Checklist</string>
-    <string name="folder_type_note">Note</string>
 
     <string name="edit_item">Edit Item</string>
     <string name="type">Type</string>

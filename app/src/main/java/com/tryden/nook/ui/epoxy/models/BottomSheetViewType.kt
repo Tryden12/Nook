@@ -13,9 +13,9 @@ data class BottomSheetViewType(
         FOLDER(NookApplication.context.getString(R.string.folder_type_general)),
 
         // Folder (specific) from specific fragment (ex. add folder from AllChecklistsFragment)
-        FOLDER_PRIORITY(NookApplication.context.getString(R.string.folder_type_priority)),
-        FOLDER_CHECKLIST(NookApplication.context.getString(R.string.folder_type_checklist)),
-        FOLDER_NOTE(NookApplication.context.getString(R.string.folder_type_note)),
+        FOLDER_PRIORITY(NookApplication.context.getString(R.string.priority_type_key)),
+        FOLDER_CHECKLIST(NookApplication.context.getString(R.string.checklist_type_key)),
+        FOLDER_NOTE(NookApplication.context.getString(R.string.note_type_key)),
 
         // Items
         PRIORITY(NookApplication.context.getString(R.string.new_priority)),

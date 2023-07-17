@@ -47,7 +47,11 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         binding.epoxyRecyclerView.setController(controller)
 
 
-        mainActivity.viewModel.foldersLiveData.observe(viewLifecycleOwner) { itemEntityList ->
+        sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
+            val itemEntityList = folders.filter {
+                it.type == getString(R.string.checklist_type_key)
+            }
+
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
         }
 

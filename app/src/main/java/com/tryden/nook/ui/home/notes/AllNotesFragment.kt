@@ -46,7 +46,10 @@ class AllNotesFragment : BaseFragment(), OnFolderSelectedInterface {
         val controller = AllNotesEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
-        sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { itemEntityList ->
+        sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
+            val itemEntityList = folders.filter {
+                it.type == getString(R.string.note_type_key)
+            }
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
         }
 
