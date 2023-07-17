@@ -37,7 +37,7 @@ class ChecklistEpoxyController(
 
         if (itemEntityList.isEmpty()) {
             EmptyStateEpoxyModel(
-                title = context.getString(R.string.no_checklists),
+                title = context.getString(R.string.no_checklist_items),
                 subtitle = context.getString(R.string.how_to_add_checklist_item)
             ).id("empty-state-checklist-items").addTo(this)
         }
@@ -79,6 +79,7 @@ class ChecklistEpoxyController(
                 add(ChecklistItem(item = item))
             }
             // Add rounded section footer
+            add(SectionFooterRounded)
         }
     }
 }

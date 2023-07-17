@@ -35,9 +35,8 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         val tag = resources.getString(R.string.checklists_fragment_key)
         Log.d("ChecklistsFragment()", "onViewCreated: $tag")
 
-
-        // Bottom Sheet Type = Folder
-        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
+        // Support action bar title
+        mainActivity.supportActionBar?.title = ""
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(
@@ -52,6 +51,9 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         mainActivity.viewModel.foldersLiveData.observe(viewLifecycleOwner) { itemEntityList ->
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
         }
+
+        // Bottom Sheet Type = Folder
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
 
         // Setup swipe-to-delete
         swipeToDeleteSetup()

@@ -41,6 +41,9 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         val tag = resources.getString(R.string.home_fragment_key)
         Log.d("HomeFragment()", "onViewCreated: $tag")
 
+        // Support action bar title
+        mainActivity.supportActionBar?.title = ""
+
         // Setup Bottom Toolbar
         BottomToolbarSetup(
             fragmentKey = tag,
