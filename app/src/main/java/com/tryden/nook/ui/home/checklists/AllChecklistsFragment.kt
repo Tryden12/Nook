@@ -78,10 +78,12 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
 
                     // Delete all items in folder
                     sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { checklistItems ->
-                        checklistItems.filter {
-                            it.folderName == folder.title
-                        }.forEach { checklistItemEntity ->
-                            sharedViewModel.deleteChecklistItem(checklistItemEntity)
+                        if (checklistItems.isNotEmpty()) {
+                            checklistItems.filter {
+                                it.folderName == folder.title
+                            }.forEach { checklistItemEntity ->
+                                sharedViewModel.deleteChecklistItem(checklistItemEntity)
+                            }
                         }
                     }
 

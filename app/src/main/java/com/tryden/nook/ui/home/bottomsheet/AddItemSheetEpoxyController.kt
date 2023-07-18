@@ -51,7 +51,10 @@ class AddItemSheetEpoxyController(
                 ).id("add-folder-epoxy-model").addTo(this)
             }
             FOLDER_NOTE -> {
-                // todo revisit once needed
+                BottomSheetAddFolderEpoxyModel(
+                    folderType = FOLDER_NOTE.key,
+                    onAddItemSheetButtonSelected
+                ).id("add-folder-epoxy-model").addTo(this)
             }
             PRIORITY -> {
                 BottomSheetAddPriorityItemEpoxyModel(
