@@ -12,9 +12,9 @@ import java.util.UUID
 /**
  * This is the HomeFragment EpoxyController.
  *
- * @param [onFolderItemSelected] is an interface containing callback
- * methods for when a folder is selected. Its purpose is to help decide
- * whether to navigate to the folder (general) or folder (specific).
+ * @param [onFolderItemSelected] is an interface containing callback methods for
+ * when a folder is selected. Its purpose is to help decide whether to navigate to
+ * the folder (general) or folder (specific).
  * Example:
  * "All Checklists" folder is folder general -> Navigate to the AllChecklistsFragment.
  * If a user created a checklist folder named "Grocery"...
@@ -99,7 +99,11 @@ class HomeEpoxyController(
             onFolderItemSelected
         ).id("folder-all-checklists").addTo(this)
         // List all folders with type "Checklist"
-        folders.forEachIndexed { index, folder ->
+        folders.filter {
+            it.type == context.getString(R.string.checklist)
+        }.sortedBy {
+            it.title
+        }.forEachIndexed { index, folder ->
             if (folder.type == context.getString(R.string.checklist)) {
                 Log.d("HomeEpoxyController", folder.title)
                 SectionFolderItemEpoxyModel(
@@ -136,20 +140,22 @@ class HomeEpoxyController(
             onFolderItemSelected
         ).id("folder-all-notes").addTo(this)
         // List all folders with type "Note"
-        folders.forEachIndexed { index, folder ->
-            if (folder.type == context.getString(R.string.note)) {
-                Log.d("HomeEpoxyController", folder.title)
-                SectionFolderItemEpoxyModel(
-                    folderEntity = FolderEntity(
-                        id = folder.id,
-                        title = folder.title,
-                        type = folder.type,
-                        size = folder.size
-                    ),
-                    ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
-                    onFolderItemSelected
-                ).id("folder-${folder.title}-note").addTo(this)
-            }
+        folders.filter {
+            it.type == context.getString(R.string.note)
+        }.sortedBy {
+            it.title
+        }.forEachIndexed { index, folder ->
+            Log.d("HomeEpoxyController", folder.title)
+            SectionFolderItemEpoxyModel(
+                folderEntity = FolderEntity(
+                    id = folder.id,
+                    title = folder.title,
+                    type = folder.type,
+                    size = folder.size
+                ),
+                ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
+                onFolderItemSelected
+            ).id("folder-${folder.title}-note").addTo(this)
         }
         SectionFooterRoundedEpoxyModel().id("section-note-footer-top").addTo(this)
 
