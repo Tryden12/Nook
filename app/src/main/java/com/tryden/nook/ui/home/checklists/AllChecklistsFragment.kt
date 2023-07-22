@@ -43,9 +43,12 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
             activity = mainActivity,
         ).bottomToolbarSetup()
 
+        // Bottom Sheet Type = Folder
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
+
+        // Setup Epoxy Controller
         val controller = AllChecklistsEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
-
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
             val itemEntityList = folders.filter {
@@ -54,9 +57,6 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
 
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
         }
-
-        // Bottom Sheet Type = Folder
-        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
 
         // Setup swipe-to-delete
         swipeToDeleteSetup()

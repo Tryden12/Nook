@@ -20,5 +20,6 @@ data class BottomSheetViewType(
         // Items
         PRIORITY(NookApplication.context.getString(R.string.new_priority)),
         CHECKLIST_ITEM(NookApplication.context.getString(R.string.new_item)),
+        NOTE_ITEM(NookApplication.context.getString(R.string.new_note)),
     }
 }

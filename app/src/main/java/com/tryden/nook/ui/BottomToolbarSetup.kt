@@ -114,7 +114,7 @@ data class BottomToolbarSetup(
                 }
 
             /** AllNotes Fragment **************************************************************/
-            activity.getString(R.string.all_notes_fragment_key) -> {
+            activity.getString(R.string.all_notes_folders_fragment_key) -> {
                 // Show correct toolbar, hide others
                 activity.bottomToolbarHome.isVisible = true
                 activity.bottomToolbarItemsList.isInvisible = true

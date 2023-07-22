@@ -7,9 +7,9 @@
     <string name="checklist_type_key">Checklist</string>
     <string name="note_type_key">Note</string>
 
-<!--    <string name="folder_type_priority">Priority</string>-->
-<!--    <string name="folder_type_checklist">Checklist</string>-->
-<!--    <string name="folder_type_note">Note</string>-->
+    <!--    <string name="folder_type_priority">Priority</string>-->
+    <!--    <string name="folder_type_checklist">Checklist</string>-->
+    <!--    <string name="folder_type_note">Note</string>-->
 
     <!-- Fragment Keys -->
     <string name="home_fragment_key">home_fragment</string>
@@ -17,7 +17,10 @@
     <string name="priorities_fragment_key">priorities_fragment</string>
     <string name="checklists_fragment_key">checklists_fragment</string>
     <string name="checklist_fragment_key">checklist_fragment</string>
-    <string name="all_notes_fragment_key">all_notes_fragment</string>
+    <string name="all_notes_folders_fragment_key">all_notes_folders_fragment_key</string>
+    <string name="notes_list_fragment_key">notes_list_fragment_key</string>
+    <string name="note_fragment_key">note_fragment</string>
+
 
     <string name="add_item_bottom_sheet_fragment_key">add_item_bottom_sheet_fragment</string>
     <string name="add_priority_fragment_key">add_priority_fragment</string>
@@ -65,8 +68,8 @@
     <string name="how_to_add_checklist">Use the button in the bottom left-hand corner to add a checklist folder.</string>
     <string name="no_checklist_items">No Checklist Items!</string>
     <string name="how_to_add_checklist_item">Use the button in the bottom right-hand corner to add an item to this folder.</string>
-    <string name="no_notes">No Notes!</string>
     <string name="how_to_add_note_folder">Use the button in the bottom left-hand corner to add a note folder.</string>
+    <string name="no_notes">No Notes!</string>
     <string name="how_to_add_note">Use the button in the bottom right-hand corner to add a note to this folder.</string>
 
     <!-- Toasts -->
@@ -76,7 +79,6 @@
     <string name="priorities">Priorities</string>
     <string name="checklists">Checklists</string>
     <string name="notes">Notes</string>
-
 
 
     <!-- Folder Titles -->

@@ -2,7 +2,6 @@ package com.tryden.nook.ui.home.notes
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,11 @@ import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
-import com.tryden.nook.ui.home.checklists.AllChecklistsFragmentDirections
+import com.tryden.nook.ui.home.notes.noteslist.NotesListFragment
+import com.tryden.nook.ui.home.notes.noteslist.NotesListFragmentDirections
 
 
-class AllNotesFragment : BaseFragment(), OnFolderSelectedInterface {
+class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
 
     private var _binding: FragmentAllNotesBinding? = null
     private val binding get() = _binding!!
@@ -33,8 +33,8 @@ class AllNotesFragment : BaseFragment(), OnFolderSelectedInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tag = resources.getString(R.string.all_notes_fragment_key)
-        Log.d("AllNotesFragment()", "onViewCreated: $tag")
+        val tag = resources.getString(R.string.all_notes_folders_fragment_key)
+        Log.d(tag, "onViewCreated: $tag")
 
         // Support action bar title
         mainActivity.supportActionBar?.title = ""
@@ -45,7 +45,11 @@ class AllNotesFragment : BaseFragment(), OnFolderSelectedInterface {
             activity = mainActivity
         ).bottomToolbarSetup()
 
-        val controller = AllNotesEpoxyController(this)
+        // Bottom Sheet Type = Folder
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_NOTE)
+
+        // Setup Epoxy Controller
+        val controller = AllNotesFoldersEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
@@ -54,8 +58,6 @@ class AllNotesFragment : BaseFragment(), OnFolderSelectedInterface {
             }
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
         }
-
-        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_NOTE)
 
         // Setup swipe-to-delete
          swipeToDeleteSetup()
@@ -103,11 +105,11 @@ class AllNotesFragment : BaseFragment(), OnFolderSelectedInterface {
     }
 
     override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
-        // todo revisit once NoteFragment is created
-//        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-//        val navDirections =
-//            AllChecklistsFragmentDirections.(selectedFolder.title)
-//        navigateViewNavGraph(navDirections)
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+        val navDirections =
+            AllNotesFoldersFragmentDirections
+                .actionAllNotesFoldersFragmentToNotesListFragment(folderTitle = selectedFolder.title)
+        navigateViewNavGraph(navDirections)
     }
 
     override fun onDestroyView() {

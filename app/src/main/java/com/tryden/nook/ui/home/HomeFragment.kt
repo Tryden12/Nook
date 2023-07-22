@@ -5,12 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
@@ -93,7 +87,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         sharedViewModel.updateCurrentFolderSelected(selectedFolder)
         when (selectedFolder.title) {
             getString(R.string.all_notes) -> {
-                findNavController().navigate(R.id.action_homeFragment_to_allNotesFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_allNotesFoldersFragment)
             }
             else -> {
                 // todo when NoteFragment is created

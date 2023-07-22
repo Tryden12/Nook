@@ -50,19 +50,22 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.checklist_fragment_key)
-        Log.d("ChecklistsFragment()", "onViewCreated: $tag")
+        Log.d(tag, "onViewCreated: $tag")
 
         // Bottom Sheet Type = Checklist Item
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.CHECKLIST_ITEM)
 
+        // Setup Bottom Toolbar
         BottomToolbarSetup(
             fragmentKey = mainActivity.getString(R.string.checklist_fragment_key),
             activity = mainActivity
         ).bottomToolbarSetup()
 
+        // Setup Epoxy Controller
         val controller = ChecklistEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
+        // Set Action Bar Title
         mainActivity.supportActionBar?.title = safeArgs.folderTitle
 
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
