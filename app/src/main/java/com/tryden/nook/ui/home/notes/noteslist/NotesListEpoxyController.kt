@@ -52,7 +52,8 @@ class NotesListEpoxyController: EpoxyController() {
         epoxyItems.forEachIndexed { index, epoxyItem ->
             when (epoxyItem) {
                 is HeaderSectionTitle -> {
-                    // todo
+                    HeadingSectionTitleEpoxyModel(title = epoxyItem.title, showDropDown = false)
+                        .id(epoxyItem.title).addTo(this)
                 }
                 is SectionHeaderRounded -> {
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index")
@@ -76,7 +77,7 @@ class NotesListEpoxyController: EpoxyController() {
 
     private fun buildEpoxyItems(notes: ArrayList<NoteEntity>): List<EpoxyItemsInterface> {
         return buildList {
-            // Add rounded section topper
+            add(HeaderSectionTitle(title = context.getString(R.string.notes)))
             add(SectionHeaderRounded)
             notes.sortedBy {
                 it.title

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.databinding.FragmentNotesListBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
@@ -51,7 +52,7 @@ class NotesListFragment : BaseFragment() {
         val tag = resources.getString(R.string.notes_list_fragment_key)
         Log.d(tag, "onViewCreated: $tag")
 
-        // Bottom Sheet Type = Checklist Item
+        // Bottom Sheet Type = Note Item
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.NOTE_ITEM)
 
         // Setup Bottom Toolbar
@@ -81,7 +82,7 @@ class NotesListFragment : BaseFragment() {
                 }
             }
 
-            // todo: set controller itemEntityList as items
+            controller.itemEntityList = items as ArrayList<NoteEntity>
         }
 
     }

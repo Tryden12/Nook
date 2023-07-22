@@ -33,41 +33,53 @@ class AddItemSheetEpoxyController(
         Log.d("AddItemSheetEpoxyController", "currentBottomSheetType = ${currentBottomSheetType.name}")
 
         when (currentBottomSheetType) {
+
+            /** Folders: use currentBottomSheetType **/
             FOLDER -> {
                 BottomSheetAddFolderEpoxyModel(
                     folderType = FOLDER.key,
-                    onAddItemSheetButtonSelected
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-folder-epoxy-model").addTo(this)
             }
             FOLDER_PRIORITY -> {
                 BottomSheetAddFolderEpoxyModel(
                     folderType = FOLDER_PRIORITY.key,
-                    onAddItemSheetButtonSelected
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-folder-epoxy-model").addTo(this)
             }
             FOLDER_CHECKLIST -> {
                 BottomSheetAddFolderEpoxyModel(
                     folderType = FOLDER_CHECKLIST.key,
-                    onAddItemSheetButtonSelected
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-folder-epoxy-model").addTo(this)
             }
             FOLDER_NOTE -> {
                 BottomSheetAddFolderEpoxyModel(
                     folderType = FOLDER_NOTE.key,
-                    onAddItemSheetButtonSelected
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-folder-epoxy-model").addTo(this)
             }
+
+            /** Items: use  currentFolderSelected **/
             PRIORITY -> {
                 BottomSheetAddPriorityItemEpoxyModel(
-                    onAddItemSheetButtonSelected
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-priority-item-epoxy-model").addTo(this)
             }
             CHECKLIST_ITEM -> {
                 BottomSheetAddChecklistItemEpoxyModel(
-                    currentFolderSelected,
-                    onAddItemSheetButtonSelected
+                    currentFolderEntity = currentFolderSelected,
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-checklist-item-epoxy-model").addTo(this)
             }
+
+            NOTE_ITEM -> {
+                BottomSheetAddNoteItemEpoxyModel(
+                    currentFolderEntity = currentFolderSelected,
+                    onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
+                ).id("add-checklist-item-epoxy-model").addTo(this)
+            }
+
             else -> {
                 // do nothing
                 Log.e("AddItemSheetEpoxyController()", "currentBottomSheetType ELSE case" )

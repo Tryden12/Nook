@@ -11,6 +11,7 @@ import com.tryden.nook.R
 import com.tryden.nook.arch.NookViewModel
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddItemSheetBinding
 import com.tryden.nook.ui.MainActivity
@@ -72,7 +73,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         dismiss()
     }
 
-    override fun onSaveChecklistItem(item: ChecklistItemEntity) {
+    override fun onSaveChecklistItemEntity(item: ChecklistItemEntity) {
         // Increase folder size by 1
         val selectedFolderEntity: FolderEntity? = viewModel.currentSelectedFolderLiveData.value
         if (selectedFolderEntity != null) {
@@ -97,6 +98,29 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
 
     override fun onSavePriorityItem(item: PriorityItemEntity) {
         // todo: revisit when ready
+    }
+
+    override fun onSaveNoteItemEntity(item: NoteEntity) {
+        // Increase folder size by 1
+        val selectedFolderEntity: FolderEntity? = viewModel.currentSelectedFolderLiveData.value
+        if (selectedFolderEntity != null) {
+            val oldSize = selectedFolderEntity.size
+            val folderEntity = selectedFolderEntity.copy(
+                title = selectedFolderEntity.title,
+                type = selectedFolderEntity.type,
+                size = selectedFolderEntity.size + 1
+            )
+            viewModel.updateFolder(folderEntity)
+            viewModel.updateCurrentFolderSelected(folderEntity)
+            val newSize = folderEntity.size
+            Log.d(tag, "onSaveChecklistItem() ${selectedFolderEntity.title} from $oldSize to $newSize" )
+        } else {
+            Log.d(tag, "onSaveChecklistItem() null folder entity" )
+        }
+
+        viewModel.insertNoteEntity(item)
+        viewModel.getAllNotes()
+        dismiss()
     }
 
 

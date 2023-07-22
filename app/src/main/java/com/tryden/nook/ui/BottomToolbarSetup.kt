@@ -113,7 +113,7 @@ data class BottomToolbarSetup(
                     }
                 }
 
-            /** AllNotes Fragment **************************************************************/
+            /** AllNotesFolders Fragment **************************************************************/
             activity.getString(R.string.all_notes_folders_fragment_key) -> {
                 // Show correct toolbar, hide others
                 activity.bottomToolbarHome.isVisible = true
@@ -130,6 +130,20 @@ data class BottomToolbarSetup(
 //                    AddItemSheet().show(activity.supportFragmentManager, null)
 //                }
             }
+
+                /** NoteList Fragment **************************************************************/
+                activity.getString(R.string.notes_list_fragment_key) -> {
+                    // Show correct toolbar, hide others
+                    activity.bottomToolbarItemsList.isVisible = true
+                    activity.bottomToolbarHome.isInvisible = true
+                    activity.bottomToolbarEditItem.isInvisible = true
+
+                    activity.addItemImageViewItemsList.setOnClickListener {
+                        Log.d("BottomToolbarSetup()",
+                            "addItemImageViewItemsList clicked from NoteListFragment()", )
+                        AddItemSheet().show(activity.supportFragmentManager, null)
+                    }
+                }
 
             /** AddItemSheet Fragment *************************************************************/
             activity.getString(R.string.add_item_bottom_sheet_fragment_key) -> {
