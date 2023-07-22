@@ -60,8 +60,8 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
             val checklistsCount = folders.filter { it.type == getString(R.string.checklist) }.size
-            Log.e(tag, "onViewCreated: checklist folders count: $checklistsCount" )
             val noteFoldersCount = folders.filter { it.type == getString(R.string.note) }.size
+            Log.e(tag, "onViewCreated: checklist folders count: $checklistsCount" )
             Log.e(tag, "onViewCreated: note folders count: $noteFoldersCount" )
             controller.checklistsCount = checklistsCount
             controller.noteFoldersCount = noteFoldersCount

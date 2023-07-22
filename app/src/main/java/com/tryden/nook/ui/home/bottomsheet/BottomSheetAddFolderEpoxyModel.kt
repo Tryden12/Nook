@@ -1,7 +1,9 @@
 package com.tryden.nook.ui.home.bottomsheet
 
+import android.util.Log
 import android.widget.RadioButton
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.FolderEntity
@@ -34,8 +36,10 @@ class BottomSheetAddFolderEpoxyModel(
         titleEditText.setText("")
         titleEditText.requestFocus()
 
-        // Folder (specific) bottom sheet, radio group choice is not needed
-        if (folderType != NookApplication.context.getString(R.string.folder_type_general)) {
+        if (folderType == NookApplication.context.getString(R.string.folder_type_general)) { /** Folder type general, display radio group  **/
+            typeTextView.isVisible = true
+            radioGroup.isVisible = true
+        } else { /** Folder type specific, hide radio group  **/
             typeTextView.isGone = true
             radioGroup.isGone = true
         }
@@ -71,6 +75,7 @@ class BottomSheetAddFolderEpoxyModel(
                 type = folderType, // todo revisit?
                 size =  0
             )
+            Log.d("BottomSheetAddFolderEpoxyModel()", folderType )
             onAddItemSheetButtonSelected.onSaveFolder(item)
         }
     }

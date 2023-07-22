@@ -30,6 +30,7 @@ class AddItemSheetEpoxyController(
         }
 
     override fun buildModels() {
+        Log.d("AddItemSheetEpoxyController", "currentBottomSheetType = ${currentBottomSheetType.name}")
 
         when (currentBottomSheetType) {
             FOLDER -> {
