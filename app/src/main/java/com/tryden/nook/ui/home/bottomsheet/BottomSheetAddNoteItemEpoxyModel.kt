@@ -26,9 +26,10 @@ class BottomSheetAddNoteItemEpoxyModel(
         lastModifiedTextView.text = currentTime
 
         // Clear the title textview and request focus
+        titleEditText.setText("")
         titleEditText.requestFocus()
 
-        // Get title and description
+        descriptionEditText.setText("")
 
         // Set on click for cancel (dismiss) textview
         cancelTextView.setOnClickListener {
@@ -47,7 +48,7 @@ class BottomSheetAddNoteItemEpoxyModel(
             val noteDesc = if (descriptionEditText.text.toString().trim().isEmpty()) {
                 NookApplication.context.resources.getString(R.string.no_text)
             } else {
-                titleEditText.text.toString().trim()
+                descriptionEditText.text.toString().trim()
             }
 
 
