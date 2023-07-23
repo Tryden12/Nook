@@ -16,7 +16,6 @@ import com.tryden.nook.databinding.FragmentNotesListBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
-import com.tryden.nook.ui.home.checklists.checklist.ChecklistEpoxyController
 
 class NotesListFragment : BaseFragment() {
 
@@ -25,7 +24,7 @@ class NotesListFragment : BaseFragment() {
 
     /**
      * The safeArgs here holds the folder title string value needed to filter
-     * display only those checklist items.
+     * display only those note items.
      *
      * This is passed in from HomeFragment() or AllNotesFoldersFragment() via
      * NavDirections.
@@ -33,11 +32,6 @@ class NotesListFragment : BaseFragment() {
      * todo: setup HomeFragment() NavDirections
      */
     private val safeArgs: NotesListFragmentArgs by navArgs()
-    private val selectedFolderEntity: FolderEntity? by lazy {
-        sharedViewModel.foldersLiveData.value?.find {
-            it.title == safeArgs.folderTitle
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,23 +89,30 @@ class NotesListFragment : BaseFragment() {
             .right()
             .withTarget(NoteItemEpoxyModel::class.java)
             .andCallbacks(object : EpoxyTouchHelper.SwipeCallbacks<NoteItemEpoxyModel>() {
+
                 override fun onSwipeCompleted(
                     model: NoteItemEpoxyModel?,
                     itemView: View?,
                     position: Int,
-                    direction: Int
+                    direction: Int,
                 ) {
                     val noteEntity = model?.itemEntity?: return
+
+                    // Get folder associated with note entity
+                    val selectedFolderEntity: FolderEntity? =
+                        sharedViewModel.foldersLiveData.value?.find {
+                        it.title == safeArgs.folderTitle
+                    }
 
                     sharedViewModel.deleteNoteEntity(noteEntity)
 
                     if (selectedFolderEntity != null) {
                         // Decrease folder size by 1
-                        val folderEntity = selectedFolderEntity!!.copy(
-                            title = selectedFolderEntity!!.title,
-                            type = selectedFolderEntity!!.type,
-                            size = if (selectedFolderEntity!!.size > 0) {
-                                selectedFolderEntity!!.size - 1
+                        val folderEntity = selectedFolderEntity.copy(
+                            title = selectedFolderEntity.title,
+                            type = selectedFolderEntity.type,
+                            size = if (selectedFolderEntity.size > 0) {
+                                selectedFolderEntity.size - 1
                             } else {
                                 0
                             }

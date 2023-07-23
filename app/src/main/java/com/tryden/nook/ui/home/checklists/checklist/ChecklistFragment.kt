@@ -32,11 +32,6 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
      * NavDirections.
      */
     private val safeArgs: ChecklistFragmentArgs by navArgs()
-    private val selectedFolderEntity: FolderEntity? by lazy {
-        sharedViewModel.foldersLiveData.value?.find {
-            it.title == safeArgs.folderTitle
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,6 +100,12 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
                     direction: Int,
                 ) {
                     val checklistItem = model?.itemEntity?: return
+
+                    // Get folder associated with note entity
+                    val selectedFolderEntity: FolderEntity? =
+                        sharedViewModel.foldersLiveData.value?.find {
+                            it.title == safeArgs.folderTitle
+                        }
 
                     sharedViewModel.deleteChecklistItem(checklistItem)
 
