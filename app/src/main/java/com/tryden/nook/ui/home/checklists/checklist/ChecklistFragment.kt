@@ -126,7 +126,6 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
 
                     Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
                 }
-
             })
     }
 

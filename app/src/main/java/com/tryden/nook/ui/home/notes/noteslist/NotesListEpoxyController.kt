@@ -60,7 +60,8 @@ class NotesListEpoxyController: EpoxyController() {
                         .addTo(this)
                 }
                 is NoteItem -> {
-                    // todo
+                    NoteItemEpoxyModel(itemEntity = epoxyItem.item)
+                        .id("${epoxyItem.item.title}-$index").addTo(this)
                 }
                 DividerItem -> {
                     DividerEpoxyModel().id("divider-$index").addTo(this)

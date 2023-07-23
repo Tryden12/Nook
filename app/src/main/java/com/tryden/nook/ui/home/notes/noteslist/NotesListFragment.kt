@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.NoteEntity
@@ -85,6 +86,44 @@ class NotesListFragment : BaseFragment() {
             controller.itemEntityList = items as ArrayList<NoteEntity>
         }
 
+        swipeToDeleteSetup()
+
+    }
+
+    private fun swipeToDeleteSetup() {
+        EpoxyTouchHelper.initSwiping(binding.epoxyRecyclerView)
+            .right()
+            .withTarget(NoteItemEpoxyModel::class.java)
+            .andCallbacks(object : EpoxyTouchHelper.SwipeCallbacks<NoteItemEpoxyModel>() {
+                override fun onSwipeCompleted(
+                    model: NoteItemEpoxyModel?,
+                    itemView: View?,
+                    position: Int,
+                    direction: Int
+                ) {
+                    val noteEntity = model?.itemEntity?: return
+
+                    sharedViewModel.deleteNoteEntity(noteEntity)
+
+                    if (selectedFolderEntity != null) {
+                        // Decrease folder size by 1
+                        val folderEntity = selectedFolderEntity!!.copy(
+                            title = selectedFolderEntity!!.title,
+                            type = selectedFolderEntity!!.type,
+                            size = if (selectedFolderEntity!!.size > 0) {
+                                selectedFolderEntity!!.size - 1
+                            } else {
+                                0
+                            }
+                        )
+                        sharedViewModel.updateFolder(folderEntity)
+                    } else {
+                        Log.d(tag, "swipeToDeleteSetup() null folder entity" )
+                    }
+
+                    Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
+                }
+            })
     }
 
     override fun onDestroyView() {

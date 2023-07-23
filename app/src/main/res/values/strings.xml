@@ -53,6 +53,9 @@
     <string name="edit_item">Edit Item</string>
     <string name="type">Type</string>
 
+    <string name="no_text">No text..</string>
+    <string name="enter_description_here">Enter description here..</string>
+
 
     <string name="low">Low</string>
     <string name="medium">Medium</string>

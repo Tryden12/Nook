@@ -26,7 +26,9 @@ class BottomSheetAddNoteItemEpoxyModel(
         lastModifiedTextView.text = currentTime
 
         // Clear the title textview and request focus
-        editText.requestFocus()
+        titleEditText.requestFocus()
+
+        // Get title and description
 
         // Set on click for cancel (dismiss) textview
         cancelTextView.setOnClickListener {
@@ -36,10 +38,24 @@ class BottomSheetAddNoteItemEpoxyModel(
         // Set on click for done (save) textview
         doneTextView.setOnClickListener {
 
+            val noteTitle = if (titleEditText.text.toString().trim().isEmpty()) {
+                NookApplication.context.resources.getString(R.string.new_note)
+            } else {
+                titleEditText.text.toString().trim()
+            }
+
+            val noteDesc = if (descriptionEditText.text.toString().trim().isEmpty()) {
+                NookApplication.context.resources.getString(R.string.no_text)
+            } else {
+                titleEditText.text.toString().trim()
+            }
+
+
+
             val itemEntity = NoteEntity(
-                title = "",
-                description = "",
-                createdAt = System.currentTimeMillis(), // Todo: revisit these
+                title = noteTitle,
+                description = noteDesc,
+                createdAt = System.currentTimeMillis(), /** When updating note, leave this blank **/
                 lastModified = System.currentTimeMillis(),
                 categoryId = "",
                 folderName = currentFolderEntity.title
