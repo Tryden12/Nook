@@ -6,6 +6,8 @@ import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.NoteEntity
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.models.*
 import java.util.UUID
 
@@ -115,7 +117,7 @@ class HomeEpoxyController(
                     ),
                     ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
                     onFolderItemSelected
-                ).id("folder-${folder.title}-checklist").addTo(this)
+                ).id("folder-${folder.id}-checklist").addTo(this)
             }
         }
         SectionFooterRoundedEpoxyModel().id("section-checklists-footer-top").addTo(this)
@@ -146,6 +148,7 @@ class HomeEpoxyController(
             it.title
         }.forEachIndexed { index, folder ->
             Log.d("HomeEpoxyController", folder.title)
+//            DividerEpoxyModel().id("note-folder-divider-$index").addTo(this)
             SectionFolderItemEpoxyModel(
                 folderEntity = FolderEntity(
                     id = folder.id,
@@ -155,15 +158,13 @@ class HomeEpoxyController(
                 ),
                 ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
                 onFolderItemSelected
-            ).id("folder-${folder.title}-note").addTo(this)
+            ).id("folder-${folder.id}-note").addTo(this)
         }
         SectionFooterRoundedEpoxyModel().id("section-note-footer-top").addTo(this)
 
 
         // endregion Checklist Section
 
-
     }
-
 
 }
