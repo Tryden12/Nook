@@ -28,6 +28,9 @@
 
 
     <!-- Action Bar -->
+    <string name="folders_title">Folders</string>
+
+
     <string name="update_item">Update item</string>
 
     <!-- Widgets -->

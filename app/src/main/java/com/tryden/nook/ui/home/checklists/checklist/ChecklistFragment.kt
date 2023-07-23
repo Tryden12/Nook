@@ -61,7 +61,7 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
         binding.epoxyRecyclerView.setController(controller)
 
         // Set Action Bar Title
-        mainActivity.supportActionBar?.title = safeArgs.folderTitle
+        mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
             val items = list.filter { item ->

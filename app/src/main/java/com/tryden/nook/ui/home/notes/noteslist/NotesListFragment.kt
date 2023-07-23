@@ -61,7 +61,7 @@ class NotesListFragment : BaseFragment() {
         binding.epoxyRecyclerView.setController(controller)
 
         // Set Action Bar Title
-        mainActivity.supportActionBar?.title = safeArgs.folderTitle
+        mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         sharedViewModel.noteEntitiesLiveData.observe(viewLifecycleOwner) { list ->
             val items = list.filter {

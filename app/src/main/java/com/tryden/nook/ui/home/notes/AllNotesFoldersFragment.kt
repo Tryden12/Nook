@@ -37,7 +37,7 @@ class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
         Log.d(tag, "onViewCreated: $tag")
 
         // Support action bar title
-        mainActivity.supportActionBar?.title = ""
+        mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(

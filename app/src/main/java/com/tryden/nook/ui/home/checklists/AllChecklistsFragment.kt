@@ -35,7 +35,7 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         Log.d("AllChecklistsFragment()", "onViewCreated: $tag")
 
         // Support action bar title
-        mainActivity.supportActionBar?.title = ""
+        mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(
