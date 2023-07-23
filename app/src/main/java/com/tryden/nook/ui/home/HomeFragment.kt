@@ -77,7 +77,10 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
             }
             else -> {
                 val navDirections =
-                    HomeFragmentDirections.actionHomeFragmentToChecklistFragment(selectedFolder.title)
+                    HomeFragmentDirections
+                        .actionHomeFragmentToChecklistFragment(
+                            folderTitle = selectedFolder.title
+                        )
                 navigateViewNavGraph(navDirections)
             }
         }
@@ -90,10 +93,12 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
                 findNavController().navigate(R.id.action_homeFragment_to_allNotesFoldersFragment)
             }
             else -> {
-                // todo when NoteFragment is created
-//                val navDirections =
-//                    HomeFragmentDirections.(selectedFolder.title)
-//                navigateViewNavGraph(navDirections)
+                val navDirections =
+                    HomeFragmentDirections
+                        .actionHomeFragmentToNotesListFragment(
+                        folderTitle = selectedFolder.title
+                    )
+                navigateViewNavGraph(navDirections)
             }
         }
     }
