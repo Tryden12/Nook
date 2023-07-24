@@ -108,6 +108,11 @@ class HomeEpoxyController(
         }.forEachIndexed { index, folder ->
             if (folder.type == context.getString(R.string.checklist)) {
                 Log.d("HomeEpoxyController", folder.title)
+                // Divider
+                DividerFolderEpoxyModel()
+                    .id("divider-checklist-folder-$index")
+                    .addTo(this)
+                // Folder
                 SectionFolderItemEpoxyModel(
                     folderEntity = FolderEntity(
                         id = folder.id,
@@ -148,7 +153,11 @@ class HomeEpoxyController(
             it.title
         }.forEachIndexed { index, folder ->
             Log.d("HomeEpoxyController", folder.title)
-//            DividerEpoxyModel().id("note-folder-divider-$index").addTo(this)
+            // Divider
+            DividerFolderEpoxyModel()
+                .id("divider-note-folder-$index")
+                .addTo(this)
+            // Folder
             SectionFolderItemEpoxyModel(
                 folderEntity = FolderEntity(
                     id = folder.id,
