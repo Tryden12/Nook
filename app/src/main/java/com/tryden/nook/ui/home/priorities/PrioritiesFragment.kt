@@ -14,6 +14,7 @@ import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
+import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 
 class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
@@ -40,6 +41,9 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
             fragmentKey = tag,
             activity = mainActivity,
         ).bottomToolbarSetup()
+
+        // Bottom Sheet Type = Note Item
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.PRIORITY)
 
         val controller = PrioritiesEpoxyController(this)
         binding.prioritiesEpoxyRecyclerView.setController(controller)

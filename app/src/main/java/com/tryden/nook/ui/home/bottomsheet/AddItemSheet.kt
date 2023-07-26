@@ -97,7 +97,9 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     }
 
     override fun onSavePriorityItem(item: PriorityItemEntity) {
-        // todo: revisit when ready
+        viewModel.insertPriorityItem(item)
+        viewModel.getAllPriorityEntities()
+        dismiss()
     }
 
     override fun onSaveNoteItemEntity(item: NoteEntity) {

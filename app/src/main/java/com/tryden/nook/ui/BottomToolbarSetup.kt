@@ -69,7 +69,8 @@ data class BottomToolbarSetup(
                 // OnClick listeners
                 activity.addItemImageViewItemsList.setOnClickListener {
                     Log.d("BottomToolbarSetup()", "addItemImageViewItemsList clicked from PrioritiesFragment!", )
-                    activity.navController.navigate(R.id.action_prioritiesFragment_to_addPriorityFragment)
+//                    activity.navController.navigate(R.id.action_prioritiesFragment_to_addPriorityFragment)
+                    AddItemSheet().show(activity.supportFragmentManager, null)
                 }
             }
 

@@ -65,7 +65,6 @@ class BottomSheetAddPriorityItemEpoxyModel(
             val itemEntity = PriorityItemEntity(
                 title = itemTitle,
                 description = itemDesc,
-                folderName = "", // todo revisit
                 priority = priority
             )
             onAddItemSheetButtonSelected.onSavePriorityItem(itemEntity)

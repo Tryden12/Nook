@@ -103,6 +103,14 @@ class NookViewModel @Inject constructor(
     // region Priority Items
     val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()
 
+    fun getAllPriorityEntities() {
+        viewModelScope.launch {
+            repository.getAllPriorityItems().collect() { list ->
+                priorityItemEntitiesLiveData.postValue(list)
+            }
+        }
+    }
+
     fun insertPriorityItem(priorityItemEntity: PriorityItemEntity) {
         viewModelScope.launch {
             repository.insertPriorityItem(priorityItemEntity)
