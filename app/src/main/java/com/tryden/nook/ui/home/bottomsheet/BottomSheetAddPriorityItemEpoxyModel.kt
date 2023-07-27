@@ -1,11 +1,8 @@
 package com.tryden.nook.ui.home.bottomsheet
 
-import android.widget.RadioButton
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
-import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddPriorityItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 
@@ -15,14 +12,36 @@ import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
  */
 
 class BottomSheetAddPriorityItemEpoxyModel(
+    val editMode: Boolean,
+    val currentPrioritySelected: PriorityItemEntity,
     val onAddItemSheetButtonSelected: OnAddItemSheetButtonSelected
 ): ViewBindingKotlinModel<ModelBottomSheetAddPriorityItemBinding>(R.layout.model_bottom_sheet_add_priority_item) {
 
 
     override fun ModelBottomSheetAddPriorityItemBinding.bind() {
-        // Clear the title textview and request focus
-        titleEditText.setText("")
-        titleEditText.requestFocus()
+        // Check if user is editing an item, or adding a new item
+        when (editMode) {
+            true -> {
+                // Fill the title textview and request focus
+                titleEditText.setText(currentPrioritySelected.title)
+                titleEditText.requestFocus()
+
+                // Fill the description textview and check correct priority
+                descriptionEditText.setText(currentPrioritySelected.description)
+                when (currentPrioritySelected.priority) {
+                    1 -> radioGroup.check(R.id.radioButtonLow)
+                    2 -> radioGroup.check(R.id.radioButtonMedium)
+                    else -> radioGroup.check(R.id.radioButtonHigh)
+                }
+            }
+            else -> {
+                // Clear the TextViews and request focus to title TextView
+                titleEditText.setText("")
+                descriptionEditText.setText("")
+                radioGroup.check(R.id.radioButtonLow)
+                titleEditText.requestFocus()
+            }
+        }
 
         // Set on click for cancel (dismiss) textview
         cancelTextView.setOnClickListener {
@@ -49,25 +68,26 @@ class BottomSheetAddPriorityItemEpoxyModel(
                 else -> 0
             }
 
-            // Todo: Edit mode
-//            if (isEditMode) {
-//                val itemEntity = selectedItemEntity!!.copy(
-//                    title = itemTitle,
-//                    description = itemDesc,
-//                    priority = priority
-//                )
-//
-//                onAddItemSheetButtonSelected.updatePriorityItem(itemEntity)
-//                return
-//            }
-
-
-            val itemEntity = PriorityItemEntity(
+            // Form priority entity
+            val itemEntity = currentPrioritySelected.copy(
                 title = itemTitle,
                 description = itemDesc,
                 priority = priority
             )
-            onAddItemSheetButtonSelected.onSavePriorityItem(itemEntity)
+
+            when (editMode) {
+                true -> {
+                    val entity = currentPrioritySelected.copy(
+                        title = itemTitle,
+                        description = itemDesc,
+                        priority = priority
+                    )
+                    onAddItemSheetButtonSelected.onSavePriorityItem(entity, editMode)
+                }
+                else -> {
+                    onAddItemSheetButtonSelected.onSavePriorityItem(itemEntity, editMode)
+                }
+            }
         }
     }
 }

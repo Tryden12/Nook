@@ -49,10 +49,19 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         val epoxyController = AddItemSheetEpoxyController(this)
         binding.epoxyRecyclerView.setController(epoxyController)
 
+        viewModel.editMode.observe(mainActivity) {
+            epoxyController.editMode = it
+            Log.d(tag, "editMode: Priority item  -> $it" )
+        }
 
         viewModel.currentSelectedFolderLiveData.observe(mainActivity) {
             epoxyController.currentFolderSelected = it
             Log.d(tag, "currentFolderSelected: ${it.title}" )
+        }
+
+        viewModel.currentSelectedPriorityItemLiveData.observe(mainActivity) {
+            epoxyController.currentPrioritySelected = it
+            Log.d(tag, "currentPrioritySelected: ${it.title}" )
         }
 
         viewModel.bottomSheetAddItemTypeLiveData.observe(mainActivity) {
@@ -96,10 +105,26 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         dismiss()
     }
 
-    override fun onSavePriorityItem(item: PriorityItemEntity) {
-        viewModel.insertPriorityItem(item)
-        viewModel.getAllPriorityEntities()
-        dismiss()
+    override fun onUpdatePriorityItem(itemEntity: PriorityItemEntity) {
+
+        viewModel.updatePriorityItem(itemEntity)
+    }
+
+    override fun onSavePriorityItem(item: PriorityItemEntity, editMode: Boolean) {
+        when (editMode) {
+            true -> {
+                viewModel.updatePriorityItem(item)
+                // Turn off edit mode globally, update view model
+                viewModel.updateEditMode(isEditMode = false)
+                dismiss()
+            }
+            else -> {
+                viewModel.insertPriorityItem(item)
+                viewModel.getAllPriorityEntities()
+                dismiss()
+            }
+        }
+
     }
 
     override fun onSaveNoteItemEntity(item: NoteEntity) {

@@ -15,6 +15,7 @@ import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
+import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 
 class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
@@ -81,9 +82,14 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
     }
 
     override fun onItemSelected(priorityItemEntity: PriorityItemEntity) {
-        val navDirections = PrioritiesFragmentDirections
-            .actionPrioritiesFragmentToAddPriorityFragment(priorityItemEntity.id.toString())
-        navigateViewNavGraph(navDirections)
+//        val navDirections = PrioritiesFragmentDirections
+//            .actionPrioritiesFragmentToAddPriorityFragment(priorityItemEntity.id.toString())
+//        navigateViewNavGraph(navDirections)
+
+        sharedViewModel.updateCurrentPriorityItemSelected(priorityItemEntity)
+        sharedViewModel.updateEditMode(isEditMode = true)
+        AddItemSheet().show(mainActivity.supportFragmentManager, null)
+
     }
 
     private fun swipeToDeleteSetup() {

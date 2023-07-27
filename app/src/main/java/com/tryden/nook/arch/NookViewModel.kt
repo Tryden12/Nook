@@ -21,6 +21,12 @@ class NookViewModel @Inject constructor(
 ) : ViewModel() {
 
     val transactionCompleteLiveData = MutableLiveData<Boolean>()
+    val editMode = MutableLiveData<Boolean>()
+
+    fun updateEditMode(isEditMode: Boolean) {
+        editMode.value = isEditMode
+        editMode.postValue(isEditMode)
+    }
 
     // region Collect All Entities
     fun collectAllItems() {
@@ -102,6 +108,15 @@ class NookViewModel @Inject constructor(
 
     // region Priority Items
     val priorityItemEntitiesLiveData = MutableLiveData<List<PriorityItemEntity>>()
+
+    private val _currentSelectedPriorityItemLiveData = MutableLiveData<PriorityItemEntity>()
+    val currentSelectedPriorityItemLiveData: LiveData<PriorityItemEntity>
+        get() = _currentSelectedPriorityItemLiveData
+
+    fun updateCurrentPriorityItemSelected(currentPriority: PriorityItemEntity) {
+        _currentSelectedPriorityItemLiveData.value = currentPriority
+        _currentSelectedPriorityItemLiveData.postValue(currentPriority)
+    }
 
     fun getAllPriorityEntities() {
         viewModelScope.launch {

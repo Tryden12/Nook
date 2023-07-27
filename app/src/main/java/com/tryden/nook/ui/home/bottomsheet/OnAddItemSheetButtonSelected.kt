@@ -14,10 +14,14 @@ interface OnAddItemSheetButtonSelected {
 
     fun onCancel()
 
-    // Save item based on type
+    // Save or update item based on type
     fun onSaveFolder(item: FolderEntity)
+
     fun onSaveChecklistItemEntity(item: ChecklistItemEntity)
-    fun onSavePriorityItem(item: PriorityItemEntity)
+
+    fun onUpdatePriorityItem(item: PriorityItemEntity)
+    fun onSavePriorityItem(item: PriorityItemEntity, editMode: Boolean)
+
     fun onSaveNoteItemEntity(item: NoteEntity)
 
 

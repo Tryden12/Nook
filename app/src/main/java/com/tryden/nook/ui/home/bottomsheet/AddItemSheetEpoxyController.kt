@@ -3,6 +3,7 @@ package com.tryden.nook.ui.home.bottomsheet
 import android.util.Log
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType.Type.*
 
@@ -25,6 +26,16 @@ class AddItemSheetEpoxyController(
         }
 
     var currentFolderSelected: FolderEntity = FolderEntity()
+        set(value) {
+            field = value
+        }
+
+    var currentPrioritySelected: PriorityItemEntity = PriorityItemEntity()
+        set(value) {
+            field = value
+        }
+
+    var editMode: Boolean = false
         set(value) {
             field = value
         }
@@ -63,6 +74,8 @@ class AddItemSheetEpoxyController(
             /** Items: use  currentFolderSelected **/
             PRIORITY -> {
                 BottomSheetAddPriorityItemEpoxyModel(
+                    editMode = editMode,
+                    currentPrioritySelected = currentPrioritySelected,
                     onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-priority-item-epoxy-model").addTo(this)
             }
