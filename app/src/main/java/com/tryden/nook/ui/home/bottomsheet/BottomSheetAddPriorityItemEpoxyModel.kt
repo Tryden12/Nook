@@ -46,6 +46,7 @@ class BottomSheetAddPriorityItemEpoxyModel(
         // Set on click for cancel (dismiss) textview
         cancelTextView.setOnClickListener {
             onAddItemSheetButtonSelected.onCancel()
+
         }
 
         // Set on click for done (save) textview

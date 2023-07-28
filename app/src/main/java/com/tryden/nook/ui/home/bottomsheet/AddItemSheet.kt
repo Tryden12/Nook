@@ -76,6 +76,8 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     }
 
     override fun onCancel() {
+        // Turn off edit mode globally, update editMode in view model
+        viewModel.updateEditMode(isEditMode = false)
         mainActivity.hideKeyboard(requireView())
         dismiss()
     }
