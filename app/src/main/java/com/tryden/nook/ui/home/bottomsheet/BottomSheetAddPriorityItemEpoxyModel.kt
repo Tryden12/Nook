@@ -5,6 +5,7 @@ import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddPriorityItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 
 
 /**
@@ -78,12 +79,19 @@ class BottomSheetAddPriorityItemEpoxyModel(
 
             when (editMode) {
                 true -> {
-                    val entity = currentPrioritySelected.copy(
+                    /**
+                     * To update the entity, we choose to use copy() on the selected entity.
+                     * EpoxyItemsInterface.PriorityItem() gives the entity a type for the param in
+                     * onUpdateItem(entity), so onUpdateItem(entity) can decide to update the correct
+                     * entity in the correct database table.
+                     */
+                    val entity = EpoxyItemsInterface.PriorityItem(
+                        currentPrioritySelected.copy(
                         title = itemTitle,
                         description = itemDesc,
                         priority = priority
-                    )
-                    onAddItemSheetButtonSelected.onSavePriorityItem(entity, editMode)
+                    ))
+                    onAddItemSheetButtonSelected.onUpdateItem(entity)
                 }
                 else -> {
                     onAddItemSheetButtonSelected.onSavePriorityItem(itemEntity, editMode)

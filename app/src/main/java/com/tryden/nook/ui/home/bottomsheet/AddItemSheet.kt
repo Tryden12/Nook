@@ -15,6 +15,8 @@ import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentAddItemSheetBinding
 import com.tryden.nook.ui.MainActivity
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.*
 
 /**
  * This class is the primary bottom sheet used for the application.
@@ -82,6 +84,28 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         dismiss()
     }
 
+    /**
+     * @param[item]: Checklist, Note, or Priority entity
+     */
+    override fun onUpdateItem(itemType: EpoxyItemsInterface) {
+        when (itemType) {
+            is PriorityItem -> {
+                viewModel.updatePriorityItem(itemType.item)
+                Log.e(tag, "onUpdateItem, priority item: ${itemType.item.title}" )
+            }
+            is NoteItem -> {
+                viewModel.updateNoteEntity(itemType.item)
+                Log.e(tag, "onUpdateItem, note item: ${itemType.item.title}" )
+            }
+            is ChecklistItem -> { }   // todo
+            else -> Log.e(tag, "onUpdateItem, ELSE, itemType not found" )
+        }
+
+        // Turn off edit mode globally, update view model, and dismiss
+        viewModel.updateEditMode(isEditMode = false)
+        dismiss()
+    }
+
     override fun onSaveFolder(item: FolderEntity) {
         viewModel.insertFolder(item)
         viewModel.collectAllItems()
@@ -109,11 +133,6 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         viewModel.insertChecklistItem(item)
         viewModel.getAllChecklistItems()
         dismiss()
-    }
-
-    override fun onUpdatePriorityItem(itemEntity: PriorityItemEntity) {
-
-        viewModel.updatePriorityItem(itemEntity)
     }
 
     override fun onSavePriorityItem(item: PriorityItemEntity, editMode: Boolean) {
