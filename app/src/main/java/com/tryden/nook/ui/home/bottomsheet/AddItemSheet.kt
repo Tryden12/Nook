@@ -51,7 +51,11 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
 
         viewModel.editMode.observe(mainActivity) {
             epoxyController.editMode = it
-            Log.d(tag, "editMode: Priority item  -> $it" )
+            if (it) {
+                Log.d(tag, "editMode on" )
+            } else {
+                Log.d(tag, "editMode off" )
+            }
         }
 
         viewModel.currentSelectedFolderLiveData.observe(mainActivity) {
