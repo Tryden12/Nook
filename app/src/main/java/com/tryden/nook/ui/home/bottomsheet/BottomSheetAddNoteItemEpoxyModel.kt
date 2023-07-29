@@ -10,6 +10,7 @@ import com.tryden.nook.databinding.ModelBottomSheetAddChecklistItemBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddNoteItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import java.text.DateFormat
 
 /**
@@ -52,16 +53,23 @@ class BottomSheetAddNoteItemEpoxyModel(
             }
 
 
-
-            val itemEntity = NoteEntity(
-                title = noteTitle,
-                description = noteDesc,
-                createdAt = System.currentTimeMillis(), /** When updating note, leave this blank **/
-                lastModified = System.currentTimeMillis(),
-                categoryId = "",
-                folderName = currentFolderEntity.title
+            /**
+             * Wrap the NoteEntity in an EpoxyItemsInterface type.
+             * At Fragment level, onInsertItem() will determine the type of item
+             * using a when statement.
+             */
+            val entity = EpoxyItemsInterface.NoteItem(
+                NoteEntity(
+                    title = noteTitle,
+                    description = noteDesc,
+                    createdAt = System.currentTimeMillis(), /** When updating note, leave this blank **/
+                    lastModified = System.currentTimeMillis(),
+                    categoryId = "",
+                    folderName = currentFolderEntity.title
+                )
             )
-            onAddItemSheetButtonSelected.onSaveNoteItemEntity(itemEntity)
+            // Insert Note
+            onAddItemSheetButtonSelected.onInsertItem(entity)
         }
     }
 

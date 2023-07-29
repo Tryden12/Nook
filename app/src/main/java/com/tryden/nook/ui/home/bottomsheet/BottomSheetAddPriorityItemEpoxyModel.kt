@@ -94,7 +94,20 @@ class BottomSheetAddPriorityItemEpoxyModel(
                     onAddItemSheetButtonSelected.onUpdateItem(entity)
                 }
                 else -> {
-                    onAddItemSheetButtonSelected.onSavePriorityItem(itemEntity, editMode)
+                    /**
+                     * Wrap the PriorityItemEntity in an EpoxyItemsInterface type.
+                     * At Fragment level, onInsertItem() will determine the type of item
+                     * using a when statement.
+                     */
+                    val entity = EpoxyItemsInterface.PriorityItem(
+                        PriorityItemEntity(
+                            title = itemTitle,
+                            description = itemDesc,
+                            priority = priority
+                        )
+                    )
+                    // Insert priority
+                    onAddItemSheetButtonSelected.onInsertItem(entity)
                 }
             }
         }

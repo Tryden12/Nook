@@ -9,6 +9,7 @@ import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 
 /**
  * IMPORTANT: @param [folderType] provides the folder entity with the value for its folder type
@@ -61,6 +62,8 @@ class BottomSheetAddFolderEpoxyModel(
             } else {
                 folderType
             }
+            Log.d("BottomSheetAddFolderEpoxyModel()", folderType )
+
 
             // Empty title use case
             if (itemTitle.isEmpty()) {
@@ -70,13 +73,19 @@ class BottomSheetAddFolderEpoxyModel(
             titleTextField.error = null
 
 
-            val item = FolderEntity(
-                title = itemTitle,
-                type = folderType, // todo revisit?
-                size =  0
+            /**
+             * Wrap the FolderEntity in an EpoxyItemsInterface type.
+             * At Fragment level, these methods will determine the type of item using a when statement.
+             */
+            val entity = EpoxyItemsInterface.FolderItem(
+                FolderEntity(
+                    title = itemTitle,
+                    type = folderType,
+                    size =  0
+                )
             )
-            Log.d("BottomSheetAddFolderEpoxyModel()", folderType )
-            onAddItemSheetButtonSelected.onSaveFolder(item)
+            // Insert folder
+            onAddItemSheetButtonSelected.onInsertItem(entity)
         }
     }
 }

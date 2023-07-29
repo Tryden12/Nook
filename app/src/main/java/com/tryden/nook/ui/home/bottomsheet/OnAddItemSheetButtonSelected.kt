@@ -15,15 +15,14 @@ interface OnAddItemSheetButtonSelected {
 
     fun onCancel()
 
-    // Either a priority, checklist, or note item
+    /**
+     * @param [item] can be one of the following items:
+     * Folder, Priority, Checklist, or Note
+     *
+     * At Fragment level, these methods will determine the type of item using a when statement.
+     */
+    fun onInsertItem(item: EpoxyItemsInterface)
     fun onUpdateItem(item: EpoxyItemsInterface)
-
-    // Save or update item based on type
-    fun onSaveFolder(item: FolderEntity)
-
-    fun onSaveChecklistItemEntity(item: ChecklistItemEntity)
-    fun onSavePriorityItem(item: PriorityItemEntity, editMode: Boolean)
-    fun onSaveNoteItemEntity(item: NoteEntity)
 
 
 }

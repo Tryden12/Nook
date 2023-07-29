@@ -45,7 +45,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.add_item_bottom_sheet_fragment_key)
-        Log.e("AddItemSheet()", "onViewCreated: $tag")
+        Log.d("AddItemSheet()", "onViewCreated: $tag")
 
         mainActivity = (activity as MainActivity)
         val epoxyController = AddItemSheetEpoxyController(this)
@@ -85,95 +85,87 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     }
 
     /**
-     * @param[item]: Checklist, Note, or Priority entity
+     * @param [item] can be one of the following items:
+     * Folder, Priority, Checklist, or Note
+     */
+    override fun onInsertItem(itemType: EpoxyItemsInterface) {
+        // If item is folder, insert, refresh ViewModel items, and dismiss
+        // If not, then we'll need to increase the folder size of the item by 1 and then move on
+        // to when statement below this one.
+        when (itemType) {
+            is FolderItem -> {
+                viewModel.insertFolder(itemType.item)
+                Log.d(tag, "onInsertItem(), folder item: ${itemType.item.title}" )
+                viewModel.collectAllItems()
+                dismiss()
+                return
+            }
+
+            is PriorityItem -> {
+                // ignore, priority items don't have folders
+            }
+
+            else -> {
+                // Increase folder size by 1
+                val selectedFolderEntity: FolderEntity? = viewModel.currentSelectedFolderLiveData.value
+                if (selectedFolderEntity != null) {
+                    val oldSize = selectedFolderEntity.size
+                    val folderEntity = selectedFolderEntity.copy(
+                        title = selectedFolderEntity.title,
+                        type = selectedFolderEntity.type,
+                        size = selectedFolderEntity.size + 1
+                    )
+                    viewModel.updateFolder(folderEntity)
+                    viewModel.updateCurrentFolderSelected(folderEntity)
+                    val newSize = folderEntity.size
+                    Log.d(tag, "onInsertItem() ${selectedFolderEntity.title} from $oldSize to $newSize" )
+                } else {
+                    Log.d(tag, "onInsertItem() null folder entity" )
+                }
+            }
+        }
+
+        // Separate when case just for Priority, Checklist, and Note items
+        when (itemType) {
+            is PriorityItem -> {
+                viewModel.insertPriorityItem(itemType.item)
+                Log.d(tag, "onInsertItem(), priority item: ${itemType.item.title}" )
+            }
+            is NoteItem -> {
+                viewModel.insertNoteEntity(itemType.item)
+                Log.d(tag, "onInsertItem(), note item: ${itemType.item.title}" )
+            }
+            is ChecklistItem -> {
+                viewModel.insertChecklistItem(itemType.item)
+                Log.d(tag, "onInsertItem(), checklist item: ${itemType.item.title}" )
+            }
+            else -> Log.d(tag, "onInsertItem(), ELSE, itemType not found" )
+        }
+
+        dismiss()
+    }
+
+    /**
+     * @param [item] can be one of the following items:
+     * Folder, Priority, Checklist, or Note
      */
     override fun onUpdateItem(itemType: EpoxyItemsInterface) {
         when (itemType) {
             is PriorityItem -> {
                 viewModel.updatePriorityItem(itemType.item)
-                Log.e(tag, "onUpdateItem, priority item: ${itemType.item.title}" )
+                Log.d(tag, "onUpdateItem(), priority item: ${itemType.item.title}" )
             }
             is NoteItem -> {
                 viewModel.updateNoteEntity(itemType.item)
-                Log.e(tag, "onUpdateItem, note item: ${itemType.item.title}" )
+                Log.d(tag, "onUpdateItem(), note item: ${itemType.item.title}" )
             }
             is ChecklistItem -> { }   // todo
-            else -> Log.e(tag, "onUpdateItem, ELSE, itemType not found" )
+            else -> Log.d(tag, "onUpdateItem(), ELSE, itemType not found" )
         }
 
         // Turn off edit mode globally, update view model, and dismiss
         viewModel.updateEditMode(isEditMode = false)
         dismiss()
     }
-
-    override fun onSaveFolder(item: FolderEntity) {
-        viewModel.insertFolder(item)
-        viewModel.collectAllItems()
-        dismiss()
-    }
-
-    override fun onSaveChecklistItemEntity(item: ChecklistItemEntity) {
-        // Increase folder size by 1
-        val selectedFolderEntity: FolderEntity? = viewModel.currentSelectedFolderLiveData.value
-        if (selectedFolderEntity != null) {
-            val oldSize = selectedFolderEntity.size
-            val folderEntity = selectedFolderEntity.copy(
-                title = selectedFolderEntity.title,
-                type = selectedFolderEntity.type,
-                size = selectedFolderEntity.size + 1
-            )
-            viewModel.updateFolder(folderEntity)
-            viewModel.updateCurrentFolderSelected(folderEntity)
-            val newSize = folderEntity.size
-            Log.d(tag, "onSaveChecklistItem() ${selectedFolderEntity.title} from $oldSize to $newSize" )
-        } else {
-            Log.d(tag, "onSaveChecklistItem() null folder entity" )
-        }
-
-        viewModel.insertChecklistItem(item)
-        viewModel.getAllChecklistItems()
-        dismiss()
-    }
-
-    override fun onSavePriorityItem(item: PriorityItemEntity, editMode: Boolean) {
-        when (editMode) {
-            true -> {
-                viewModel.updatePriorityItem(item)
-                // Turn off edit mode globally, update view model
-                viewModel.updateEditMode(isEditMode = false)
-                dismiss()
-            }
-            else -> {
-                viewModel.insertPriorityItem(item)
-                viewModel.getAllPriorityEntities()
-                dismiss()
-            }
-        }
-
-    }
-
-    override fun onSaveNoteItemEntity(item: NoteEntity) {
-        // Increase folder size by 1
-        val selectedFolderEntity: FolderEntity? = viewModel.currentSelectedFolderLiveData.value
-        if (selectedFolderEntity != null) {
-            val oldSize = selectedFolderEntity.size
-            val folderEntity = selectedFolderEntity.copy(
-                title = selectedFolderEntity.title,
-                type = selectedFolderEntity.type,
-                size = selectedFolderEntity.size + 1
-            )
-            viewModel.updateFolder(folderEntity)
-            viewModel.updateCurrentFolderSelected(folderEntity)
-            val newSize = folderEntity.size
-            Log.d(tag, "onSaveChecklistItem() ${selectedFolderEntity.title} from $oldSize to $newSize" )
-        } else {
-            Log.d(tag, "onSaveChecklistItem() null folder entity" )
-        }
-
-        viewModel.insertNoteEntity(item)
-        viewModel.getAllNotes()
-        dismiss()
-    }
-
 
 }

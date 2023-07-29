@@ -8,6 +8,7 @@ import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddChecklistItemBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 
 /**
  * This epoxy model provides the layout file for AddItemSheet() bottom sheet.
@@ -40,12 +41,18 @@ class BottomSheetAddChecklistItemEpoxyModel(
             titleTextField.error = null
 
 
-            val itemEntity = ChecklistItemEntity(
+            /**
+             * Wrap the ChecklistItemEntity in an EpoxyItemsInterface type.
+             * At Fragment level, onInsertItem() will determine the type of item
+             * using a when statement.
+             */
+            val entity = EpoxyItemsInterface.ChecklistItem(
+                ChecklistItemEntity(
                 title = itemTitle,
                 folderName = currentFolderEntity.title,
                 completed = false
-            )
-            onAddItemSheetButtonSelected.onSaveChecklistItemEntity(itemEntity)
+            ))
+            onAddItemSheetButtonSelected.onInsertItem(entity)
         }
     }
 }
