@@ -156,7 +156,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     }
 
     /**
-     * @param [item] can be one of the following items:
+     * @param [itemType] can be one of the following items:
      * Folder, Priority, Checklist, or Note
      */
     override fun onUpdateItem(itemType: EpoxyItemsInterface) {

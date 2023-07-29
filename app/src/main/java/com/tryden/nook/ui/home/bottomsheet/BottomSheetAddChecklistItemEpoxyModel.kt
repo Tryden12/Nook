@@ -31,7 +31,7 @@ class BottomSheetAddChecklistItemEpoxyModel(
                 // Update the title textview and request focus
                 titleEditText.setText(currentChecklistItemSelected.title)
                 titleEditText.requestFocus()
-                Log.e("BottomSheetAddNote", "Editing checklist: ${currentChecklistItemSelected.title}" )
+                Log.d("BottomSheetAddNote", "Editing checklist: ${currentChecklistItemSelected.title}" )
             }
             else -> {
                 // Clear the title textview and request focus
