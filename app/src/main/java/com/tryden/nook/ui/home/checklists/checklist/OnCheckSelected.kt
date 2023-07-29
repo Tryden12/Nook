@@ -6,4 +6,6 @@ interface OnCheckSelected {
 
     fun onCheckboxChecked(itemEntity: ChecklistItemEntity, isChecked: Boolean)
 
+    fun onItemSelected(itemEntity: ChecklistItemEntity)
+
 }

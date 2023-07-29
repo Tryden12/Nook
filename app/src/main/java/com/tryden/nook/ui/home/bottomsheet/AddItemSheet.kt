@@ -70,6 +70,11 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
             Log.d(tag, "currentPrioritySelected: ${it.title}" )
         }
 
+        viewModel.currentSelectedChecklistItemLiveData.observe(mainActivity) {
+            epoxyController.currentChecklistItemSelected = it
+            Log.d(tag, "currentChecklistItemSelected: ${it.title}" )
+        }
+
         viewModel.currentNoteSelectedLiveData.observe(mainActivity) {
             epoxyController.currentNoteSelected = it
             Log.d(tag, "currentNoteSelected: ${it.title}" )
@@ -164,11 +169,14 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
                 viewModel.updateNoteEntity(itemType.item)
                 Log.d(tag, "onUpdateItem(), note item: ${itemType.item.title}" )
             }
-            is ChecklistItem -> { }   // todo
+            is ChecklistItem -> {
+                viewModel.updateChecklistItem(itemType.item)
+                Log.d(tag, "onUpdateItem(), checklist item: ${itemType.item.title}" )
+            }
             else -> Log.d(tag, "onUpdateItem(), ELSE, itemType not found" )
         }
 
-        // Turn off edit mode globally, update view model, and dismiss
+        // Turn off edit mode globally by updating view model and dismiss
         viewModel.updateEditMode(isEditMode = false)
         dismiss()
     }

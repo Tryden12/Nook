@@ -5,6 +5,8 @@ import com.tryden.nook.R
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.databinding.ModelChecklistItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
+import com.tryden.nook.ui.home.OnItemSelected
 
 
 /**
@@ -13,7 +15,7 @@ import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 
 class ChecklistItemEpoxyModel(
     val itemEntity: ChecklistItemEntity,
-    val onCheckSelected: OnCheckSelected,
+    val onCheckSelected: OnCheckSelected
 ): ViewBindingKotlinModel<ModelChecklistItemEntityBinding>(R.layout.model_checklist_item_entity) {
 
     override fun ModelChecklistItemEntityBinding.bind() {
@@ -32,8 +34,14 @@ class ChecklistItemEpoxyModel(
 //                }
 //            }
 
-            // Callback passing in the checklist entity & checked status
+            /** Update check / unchecked status **/
             onCheckSelected.onCheckboxChecked(itemEntity, isChecked)
+        }
+
+        root.setOnClickListener {
+
+            /** Update checklist item title **/
+            onCheckSelected.onItemSelected(itemEntity)
         }
     }
 

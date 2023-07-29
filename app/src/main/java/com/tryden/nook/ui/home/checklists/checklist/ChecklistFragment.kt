@@ -12,12 +12,16 @@ import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentChecklistBinding
 import com.tryden.nook.databinding.ModelChecklistItemEntityBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
+import com.tryden.nook.ui.home.OnItemSelected
+import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 
 class ChecklistFragment : BaseFragment(), OnCheckSelected {
 
@@ -45,16 +49,17 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tag = resources.getString(R.string.checklist_fragment_key)
-        Log.d(tag, "onViewCreated: $tag")
-
-        // Bottom Sheet Type = Checklist Item
-        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.CHECKLIST_ITEM)
+        Log.d("ChecklistFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
         BottomToolbarSetup(
             fragmentKey = mainActivity.getString(R.string.checklist_fragment_key),
             activity = mainActivity
         ).bottomToolbarSetup()
+
+        // Bottom Sheet Type = Checklist Item
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.CHECKLIST_ITEM)
+
 
         // Setup Epoxy Controller
         val controller = ChecklistEpoxyController(this)
@@ -130,6 +135,12 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
             })
     }
 
+    override fun onItemSelected(itemEntity: ChecklistItemEntity) {
+        sharedViewModel.updateCurrentChecklistItemSelected(itemEntity)
+        sharedViewModel.updateEditMode(isEditMode = true)
+        AddItemSheet().show(mainActivity.supportFragmentManager, null)
+    }
+
     override fun onCheckboxChecked(itemEntity: ChecklistItemEntity, isChecked: Boolean) {
         val checklistItemEntity = itemEntity.copy(
             id = itemEntity.id,
@@ -146,6 +157,5 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

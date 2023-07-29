@@ -2,6 +2,7 @@ package com.tryden.nook.ui.home.bottomsheet
 
 import android.util.Log
 import com.airbnb.epoxy.EpoxyController
+import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
@@ -32,6 +33,11 @@ class AddItemSheetEpoxyController(
         }
 
     var currentPrioritySelected: PriorityItemEntity = PriorityItemEntity()
+        set(value) {
+            field = value
+        }
+
+    var currentChecklistItemSelected: ChecklistItemEntity = ChecklistItemEntity()
         set(value) {
             field = value
         }
@@ -87,7 +93,9 @@ class AddItemSheetEpoxyController(
             }
             CHECKLIST_ITEM -> {
                 BottomSheetAddChecklistItemEpoxyModel(
+                    editMode = editMode,
                     currentFolderEntity = currentFolderSelected,
+                    currentChecklistItemSelected = currentChecklistItemSelected,
                     onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-checklist-item-epoxy-model").addTo(this)
             }

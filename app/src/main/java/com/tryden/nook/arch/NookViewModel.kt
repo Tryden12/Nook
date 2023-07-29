@@ -154,11 +154,20 @@ class NookViewModel @Inject constructor(
     // region Checklist Items
     val checklistItemEntitiesLiveData = MutableLiveData<List<ChecklistItemEntity>>()
 
+    private val _currentSelectedChecklistItemLiveData = MutableLiveData<ChecklistItemEntity>()
+    val currentSelectedChecklistItemLiveData: LiveData<ChecklistItemEntity>
+        get() = _currentSelectedChecklistItemLiveData
+
+    fun updateCurrentChecklistItemSelected(currentChecklistItem: ChecklistItemEntity) {
+        _currentSelectedChecklistItemLiveData.value = currentChecklistItem
+        _currentSelectedChecklistItemLiveData.postValue(currentChecklistItem)
+    }
+
     fun getAllChecklistItems() {
         // checklist items
         viewModelScope.launch {
-            repository.getAllChecklistItems().collect() { items ->
-                checklistItemEntitiesLiveData.postValue(items)
+            repository.getAllChecklistItems().collect() { allChecklistEntities ->
+                checklistItemEntitiesLiveData.postValue(allChecklistEntities)
             }
         }
     }
