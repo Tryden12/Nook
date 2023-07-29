@@ -12,12 +12,16 @@ import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.NoteEntity
+import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentNotesListBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
+import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
+import com.tryden.nook.ui.home.OnItemSelected
+import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 
-class NotesListFragment : BaseFragment() {
+class NotesListFragment : BaseFragment(), OnItemSelected {
 
     private var _binding: FragmentNotesListBinding? = null
     private val binding get() = _binding!!
@@ -57,7 +61,7 @@ class NotesListFragment : BaseFragment() {
         ).bottomToolbarSetup()
 
         // Setup Epoxy Controller
-        val controller = NotesListEpoxyController()
+        val controller = NotesListEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
         // Set Action Bar Title
@@ -83,6 +87,15 @@ class NotesListFragment : BaseFragment() {
         swipeToDeleteSetup()
 
     }
+
+    override fun onItemSelected(itemType: EpoxyItemsInterface) {
+        if (itemType is EpoxyItemsInterface.NoteItem) {
+            sharedViewModel.updateCurrentNoteSelected(itemType.item)
+            sharedViewModel.updateEditMode(isEditMode = true)
+            AddItemSheet().show(mainActivity.supportFragmentManager, null)
+        }
+    }
+
 
     private fun swipeToDeleteSetup() {
         EpoxyTouchHelper.initSwiping(binding.epoxyRecyclerView)
@@ -125,6 +138,10 @@ class NotesListFragment : BaseFragment() {
                     Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
                 }
             })
+    }
+
+    override fun onBumpPriority(priorityItemEntity: PriorityItemEntity) {
+        // ignore
     }
 
     override fun onDestroyView() {

@@ -70,6 +70,11 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
             Log.d(tag, "currentPrioritySelected: ${it.title}" )
         }
 
+        viewModel.currentNoteSelectedLiveData.observe(mainActivity) {
+            epoxyController.currentNoteSelected = it
+            Log.d(tag, "currentNoteSelected: ${it.title}" )
+        }
+
         viewModel.bottomSheetAddItemTypeLiveData.observe(mainActivity) {
             epoxyController.currentBottomSheetType = it
             Log.d(tag, "currentBottomSheetType: $it" )

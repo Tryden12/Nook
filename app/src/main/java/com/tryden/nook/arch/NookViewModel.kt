@@ -204,6 +204,10 @@ class NookViewModel @Inject constructor(
     val noteEntitiesLiveData = MutableLiveData<List<NoteEntity>>()
     val noteEntitiesByFolderNameLiveData = MutableLiveData<List<NoteEntity>>()
 
+    private val _currentNoteSelectedLiveData = MutableLiveData<NoteEntity>()
+    val currentNoteSelectedLiveData: LiveData<NoteEntity>
+        get() = _currentNoteSelectedLiveData
+
 
     fun getAllNotes() {
         viewModelScope.launch {
@@ -211,6 +215,11 @@ class NookViewModel @Inject constructor(
                 noteEntitiesByFolderNameLiveData.postValue(list)
             }
         }
+    }
+
+    fun updateCurrentNoteSelected(currentNote: NoteEntity) {
+        _currentNoteSelectedLiveData.value = currentNote
+        _currentNoteSelectedLiveData.postValue(currentNote)
     }
 
     fun getAllNotesByFolder(folderName: String) {

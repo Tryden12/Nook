@@ -8,7 +8,7 @@ import java.text.DateFormat
 
 @Entity(tableName = "note_entity")
 @Parcelize
-class NoteEntity(
+data class NoteEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String = "",
     val description: String = "",

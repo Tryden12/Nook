@@ -82,14 +82,9 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
     }
 
     override fun onItemSelected(priorityItemEntity: PriorityItemEntity) {
-//        val navDirections = PrioritiesFragmentDirections
-//            .actionPrioritiesFragmentToAddPriorityFragment(priorityItemEntity.id.toString())
-//        navigateViewNavGraph(navDirections)
-
         sharedViewModel.updateCurrentPriorityItemSelected(priorityItemEntity)
         sharedViewModel.updateEditMode(isEditMode = true)
         AddItemSheet().show(mainActivity.supportFragmentManager, null)
-
     }
 
     private fun swipeToDeleteSetup() {

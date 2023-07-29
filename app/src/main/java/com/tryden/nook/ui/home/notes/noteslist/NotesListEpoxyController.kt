@@ -7,6 +7,7 @@ import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.*
 import com.tryden.nook.ui.epoxy.models.*
+import com.tryden.nook.ui.home.OnItemSelected
 
 /**
  * This is the epoxy controller for the NotesListFragment.
@@ -15,7 +16,9 @@ import com.tryden.nook.ui.epoxy.models.*
  * This simplifies the readability of the buildModels() method.
  */
 
-class NotesListEpoxyController: EpoxyController() {
+class NotesListEpoxyController(
+    val onItemSelected: OnItemSelected
+): EpoxyController() {
 
     val context = NookApplication.context
 
@@ -60,7 +63,7 @@ class NotesListEpoxyController: EpoxyController() {
                         .addTo(this)
                 }
                 is NoteItem -> {
-                    NoteItemEpoxyModel(itemEntity = epoxyItem.item)
+                    NoteItemEpoxyModel(itemEntity = epoxyItem.item, onItemSelected = onItemSelected )
                         .id("${epoxyItem.item.title}-$index").addTo(this)
                 }
                 DividerItem -> {

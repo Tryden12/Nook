@@ -3,6 +3,7 @@ package com.tryden.nook.ui.home.bottomsheet
 import android.util.Log
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType.Type.*
@@ -31,6 +32,11 @@ class AddItemSheetEpoxyController(
         }
 
     var currentPrioritySelected: PriorityItemEntity = PriorityItemEntity()
+        set(value) {
+            field = value
+        }
+
+    var currentNoteSelected: NoteEntity = NoteEntity()
         set(value) {
             field = value
         }
@@ -88,7 +94,9 @@ class AddItemSheetEpoxyController(
 
             NOTE_ITEM -> {
                 BottomSheetAddNoteItemEpoxyModel(
+                    editMode = editMode,
                     currentFolderEntity = currentFolderSelected,
+                    currentNoteEntity = currentNoteSelected,
                     onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-checklist-item-epoxy-model").addTo(this)
             }
