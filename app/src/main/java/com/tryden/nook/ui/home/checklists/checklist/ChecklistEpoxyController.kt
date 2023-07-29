@@ -48,7 +48,8 @@ class ChecklistEpoxyController(
         epoxyItems.forEachIndexed { index, epoxyItem ->
             when (epoxyItem) {
                 is HeaderSectionTitle -> {
-                    // do nothing
+                    HeadingSectionTitleEpoxyModel(title = epoxyItem.title, showDropDown = false)
+                        .id(epoxyItem.title).addTo(this)
                 }
                 is SectionHeaderRounded -> {
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index")
@@ -73,7 +74,11 @@ class ChecklistEpoxyController(
 
     private fun buildEpoxyItems(checklistItems: ArrayList<ChecklistItemEntity>): List<EpoxyItemsInterface> {
         return buildList {
-            // Add rounded section topper
+            if (checklistItems.isNotEmpty()) {
+                // Add rounded section topper
+                val headerTitle = checklistItems[0].folderName + " " +  context.getString(R.string.checklist)
+                add(HeaderSectionTitle(title = headerTitle))
+            }
             add(SectionHeaderRounded)
             checklistItems.sortedBy {
                 it.title

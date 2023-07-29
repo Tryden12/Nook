@@ -81,7 +81,11 @@ class NotesListEpoxyController(
 
     private fun buildEpoxyItems(notes: ArrayList<NoteEntity>): List<EpoxyItemsInterface> {
         return buildList {
-            add(HeaderSectionTitle(title = context.getString(R.string.notes)))
+            if (notes.isNotEmpty()) {
+                // Add rounded section topper
+                val headerTitle = notes[0].folderName + " " + context.getString(R.string.notes)
+                add(HeaderSectionTitle(title = headerTitle))
+            }
             add(SectionHeaderRounded)
             notes.sortedBy {
                 it.title
