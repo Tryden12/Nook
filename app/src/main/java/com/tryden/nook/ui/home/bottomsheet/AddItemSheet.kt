@@ -149,7 +149,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
                 viewModel.insertChecklistItem(itemType.item)
                 Log.d(tag, "onInsertItem(), checklist item: ${itemType.item.title}" )
             }
-            else -> Log.d(tag, "onInsertItem(), ELSE, itemType not found" )
+            else -> Log.e(tag, "onInsertItem(), ELSE, itemType not found" )
         }
 
         dismiss()
@@ -173,7 +173,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
                 viewModel.updateChecklistItem(itemType.item)
                 Log.d(tag, "onUpdateItem(), checklist item: ${itemType.item.title}" )
             }
-            else -> Log.d(tag, "onUpdateItem(), ELSE, itemType not found" )
+            else -> Log.e(tag, "onUpdateItem(), ELSE, itemType not found" )
         }
 
         // Turn off edit mode globally by updating view model and dismiss

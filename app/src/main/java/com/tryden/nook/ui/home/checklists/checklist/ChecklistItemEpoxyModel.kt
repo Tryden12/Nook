@@ -27,15 +27,6 @@ class ChecklistItemEpoxyModel(
         checkbox.setOnCheckedChangeListener { checkBox, b ->
             val isChecked = checkBox.isChecked
 
-//            titleTextView.paint.isStrikeThruText = isChecked
-//
-//            titleTextView.apply {
-//                when (isChecked) {
-//                    true -> paintFlags and Paint.STRIKE_THRU_TEXT_FLAG
-//                    else -> paintFlags = paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-//                }
-//            }
-
             /** Update check / unchecked status **/
             onCheckSelected.onCheckboxChecked(itemEntity, isChecked)
         }

@@ -32,7 +32,7 @@ class ChecklistEpoxyController(
         }
 
     override fun buildModels() {
-        Log.e("controller", "buildModels() based on checklistItemEntitiesLiveData")
+        Log.d("controller", "buildModels() based on checklistItemEntitiesLiveData")
 
         if (isLoading) {
             LoadingEpoxyModel().id("loading_state").addTo(this)
@@ -44,6 +44,7 @@ class ChecklistEpoxyController(
                 title = context.getString(R.string.no_checklist_items),
                 subtitle = context.getString(R.string.how_to_add_checklist_item)
             ).id("empty-state-checklist-items").addTo(this)
+            Log.d("ChecklistEpoxyController()", "buildModels() based on checklistItemEntitiesLiveData")
         }
 
         val epoxyItems = buildEpoxyItems(itemEntityList)
@@ -59,11 +60,11 @@ class ChecklistEpoxyController(
                         .addTo(this)
                 }
                 is ChecklistItem -> {
-                    Log.e("controller", "buildModel: ${epoxyItem.item.title}" )
                     ChecklistItemEpoxyModel(
                         itemEntity = epoxyItem.item,
                         onCheckSelected = onCheckSelected
-                    ).id(epoxyItem.item.id).addTo(this)
+                    ).id(epoxyItem.item.title).addTo(this)
+                    Log.d("ChecklistEpoxyController()", "buildModel: ${epoxyItem.item.title}" )
                 }
                 DividerItem -> {
                     DividerEpoxyModel().id("divider-$index").addTo(this)
