@@ -47,7 +47,7 @@ class PrioritiesEpoxyController(
             return
         }
 
-        var epoxyItems = buildEpoxyList(itemEntityList)
+        val epoxyItems = buildEpoxyList(itemEntityList)
 
         epoxyItems.forEachIndexed { index, epoxyItem ->
             when (epoxyItem) {
@@ -59,8 +59,10 @@ class PrioritiesEpoxyController(
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index").addTo(this) // todo fix id?
                 }
                 is PriorityItem -> {
-                    PriorityItemEntityEpoxyModel(epoxyItem.item, priorityItemEntityInterface)
-                        .id(epoxyItem.item.id).addTo(this)
+                    PriorityItemEntityEpoxyModel(
+                        itemEntity = epoxyItem.item,
+                        priorityItemEntityInterface = priorityItemEntityInterface
+                    ).id(epoxyItem.item.id).addTo(this)
                 }
                 is DividerItem -> {
                     DividerEpoxyModel().id("divider-$index").addTo(this) // todo fix id?

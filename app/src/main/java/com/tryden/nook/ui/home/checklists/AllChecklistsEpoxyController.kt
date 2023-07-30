@@ -91,8 +91,11 @@ class AllChecklistsEpoxyController(
 
     private fun buildEpoxyList(checklists: ArrayList<FolderEntity>): List<EpoxyItemsInterface> {
         return buildList {
+            // Add Header title
             add(HeaderSectionTitle(title = context.getString(R.string.checklists)))
+            // Add section topper rounded
             add(SectionHeaderRounded)
+            // Add Checklist folders
             checklists.sortedBy {
                 it.title
             }.forEachIndexed { index, item ->
@@ -101,6 +104,7 @@ class AllChecklistsEpoxyController(
                 }
                 add(FolderItem(item = item))
             }
+            // Add section footer rounded
             add(SectionFooterRounded)
         }
     }

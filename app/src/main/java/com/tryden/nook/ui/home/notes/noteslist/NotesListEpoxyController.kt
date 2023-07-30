@@ -63,8 +63,10 @@ class NotesListEpoxyController(
                         .addTo(this)
                 }
                 is NoteItem -> {
-                    NoteItemEpoxyModel(itemEntity = epoxyItem.item, onItemSelected = onItemSelected )
-                        .id("${epoxyItem.item.title}-$index").addTo(this)
+                    NoteItemEpoxyModel(
+                        itemEntity = epoxyItem.item,
+                        onItemSelected = onItemSelected
+                    ).id("${epoxyItem.item.title}-$index").addTo(this)
                 }
                 DividerItem -> {
                     DividerEpoxyModel().id("divider-$index").addTo(this)
@@ -81,12 +83,14 @@ class NotesListEpoxyController(
 
     private fun buildEpoxyItems(notes: ArrayList<NoteEntity>): List<EpoxyItemsInterface> {
         return buildList {
+            // Add Header title if list is not empty
             if (notes.isNotEmpty()) {
-                // Add rounded section topper
                 val headerTitle = notes[0].folderName + " " + context.getString(R.string.notes)
                 add(HeaderSectionTitle(title = headerTitle))
             }
+            // Add rounded section topper
             add(SectionHeaderRounded)
+            // Add Note Items
             notes.sortedBy {
                 it.title
             }.forEachIndexed { index, item ->

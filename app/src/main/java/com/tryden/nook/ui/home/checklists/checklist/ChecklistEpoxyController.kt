@@ -1,5 +1,6 @@
 package com.tryden.nook.ui.home.checklists.checklist
 
+import android.util.Log
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
@@ -31,6 +32,8 @@ class ChecklistEpoxyController(
         }
 
     override fun buildModels() {
+        Log.e("controller", "buildModels() based on checklistItemEntitiesLiveData")
+
         if (isLoading) {
             LoadingEpoxyModel().id("loading_state").addTo(this)
             return
@@ -56,6 +59,7 @@ class ChecklistEpoxyController(
                         .addTo(this)
                 }
                 is ChecklistItem -> {
+                    Log.e("controller", "buildModel: ${epoxyItem.item.title}" )
                     ChecklistItemEpoxyModel(
                         itemEntity = epoxyItem.item,
                         onCheckSelected = onCheckSelected
@@ -74,12 +78,14 @@ class ChecklistEpoxyController(
 
     private fun buildEpoxyItems(checklistItems: ArrayList<ChecklistItemEntity>): List<EpoxyItemsInterface> {
         return buildList {
+            // Add Header title if list is not empty
             if (checklistItems.isNotEmpty()) {
-                // Add rounded section topper
                 val headerTitle = checklistItems[0].folderName + " " +  context.getString(R.string.checklist)
                 add(HeaderSectionTitle(title = headerTitle))
             }
+            // Add rounded section topper
             add(SectionHeaderRounded)
+            // Add Checklist Items
             checklistItems.sortedBy {
                 it.title
             }.forEachIndexed { index, item ->

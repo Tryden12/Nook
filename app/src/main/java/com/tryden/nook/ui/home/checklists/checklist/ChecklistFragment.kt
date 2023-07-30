@@ -69,6 +69,7 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
         mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
+            Log.e(tag, "checklistItemEntitiesLiveData changed")
             val items = list.filter { item ->
                 item.folderName == safeArgs.folderTitle
             }
@@ -116,11 +117,11 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
 
                     if (selectedFolderEntity != null) {
                         // Decrease folder size by 1
-                        val folderEntity = selectedFolderEntity!!.copy(
-                            title = selectedFolderEntity!!.title,
-                            type = selectedFolderEntity!!.type,
-                            size = if (selectedFolderEntity!!.size > 0) {
-                                selectedFolderEntity!!.size - 1
+                        val folderEntity = selectedFolderEntity.copy(
+                            title = selectedFolderEntity.title,
+                            type = selectedFolderEntity.type,
+                            size = if (selectedFolderEntity.size > 0) {
+                                selectedFolderEntity.size - 1
                             } else {
                                 0
                             }
@@ -130,7 +131,7 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
                         Log.d(tag, "swipeToDeleteSetup() null folder entity" )
                     }
 
-                    Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
+                    Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity.size}")
                 }
             })
     }

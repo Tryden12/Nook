@@ -1,6 +1,7 @@
 package com.tryden.nook.ui.home.checklists.checklist
 
 import android.graphics.Paint
+import android.util.Log
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.databinding.ModelChecklistItemEntityBinding
@@ -19,8 +20,9 @@ class ChecklistItemEpoxyModel(
 ): ViewBindingKotlinModel<ModelChecklistItemEntityBinding>(R.layout.model_checklist_item_entity) {
 
     override fun ModelChecklistItemEntityBinding.bind() {
-        checkbox.isChecked = itemEntity.completed
+        Log.e("ChecklistItemEpoxyModel", "buildmodel: ${itemEntity.title}" )
         titleTextView.text = itemEntity.title
+        checkbox.isChecked = itemEntity.completed
 
         checkbox.setOnCheckedChangeListener { checkBox, b ->
             val isChecked = checkBox.isChecked
