@@ -40,26 +40,26 @@ class HomeEpoxyController(
     var folders = ArrayList<FolderEntity>()
         set(value) {
             field = value
+            isLoading = false
+            requestModelBuild()
         }
 
     var prioritiesItemCount: Int = 0
         set(value) {
             field = value
-            isLoading = false
-            requestModelBuild()
-        }
-
-    var checklistsCount: Int = 0
-        set(value) {
-            field = value
-        }
-
-    var noteFoldersCount: Int = 0
-        set(value) {
-            field = value
         }
 
     override fun buildModels() {
+        val checklistsCount = folders.filter { it.type == context.getString(R.string.checklist) }.size
+        val noteFoldersCount = folders.filter { it.type == context.getString(R.string.note) }.size
+
+        Log.d("HomeEpoxyController()", "buildModels(): \n" +
+                "folders size -> ${folders.size} \n" +
+                "checklist folders size -> $checklistsCount \n" +
+                "note folders size -> $noteFoldersCount\n" +
+                "priorities size -> $prioritiesItemCount \n"
+        )
+
         if (isLoading) {
             LoadingEpoxyModel().id("loading_state").addTo(this)
             return

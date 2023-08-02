@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    // ViewModel fetches items from Room database
     val viewModel: NookViewModel by viewModels()
-
 
     // region Bottom Toolbar Variables
     // parent
@@ -58,13 +58,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Collect items
+        viewModel.collectAllFolders()
+        viewModel.collectAllPriorityEntities()
+        viewModel.collectAllChecklistItems()
+        viewModel.collectAllNotes()
+
+        // Setup bottom toolbar
         bottomToolbarSetup()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
-        viewModel.collectAllItems()
 
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -106,7 +106,6 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
             is FolderItem -> {
                 viewModel.insertFolder(itemType.item)
                 Log.d(tag, "onInsertItem(), folder item: ${itemType.item.title}" )
-                viewModel.collectAllItems()
                 dismiss()
                 return
             }
