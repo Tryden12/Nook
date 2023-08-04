@@ -105,7 +105,7 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
         // todo
     }
 
-    override fun onPriorityFolderSelected() {
+    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
         // ignore
     }
 

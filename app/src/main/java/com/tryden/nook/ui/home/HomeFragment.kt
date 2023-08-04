@@ -48,17 +48,27 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
 
         binding.homeEpoxyRecyclerView.setController(controller)
 
-        sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorityItemEntityList ->
-            controller.prioritiesItemCount = priorityItemEntityList.size
-        }
-
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
             controller.folders = folders as ArrayList<FolderEntity>
         }
     }
 
-    override fun onPriorityFolderSelected() {
-        findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
+    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
+//        findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+        when (selectedFolder.title) {
+            getString(R.string.all_priorities) -> {
+                findNavController().navigate(R.id.action_homeFragment_to_allPrioritiesFragment)
+            }
+            else -> {
+                val navDirections =
+                    HomeFragmentDirections
+                        .actionHomeFragmentToPrioritiesFragment(
+                            folderTitle = selectedFolder.title
+                        )
+                navigateViewNavGraph(navDirections)
+            }
+        }
     }
 
     override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {

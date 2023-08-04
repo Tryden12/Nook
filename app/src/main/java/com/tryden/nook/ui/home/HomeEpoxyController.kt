@@ -50,6 +50,7 @@ class HomeEpoxyController(
         }
 
     override fun buildModels() {
+        val prioritiesCount = folders.filter { it.type == context.getString(R.string.priority) }.size
         val checklistsCount = folders.filter { it.type == context.getString(R.string.checklist) }.size
         val noteFoldersCount = folders.filter { it.type == context.getString(R.string.note) }.size
 
@@ -57,7 +58,7 @@ class HomeEpoxyController(
                 "folders size -> ${folders.size} \n" +
                 "checklist folders size -> $checklistsCount \n" +
                 "note folders size -> $noteFoldersCount\n" +
-                "priorities size -> $prioritiesItemCount \n"
+                "priorities size -> $prioritiesCount \n"
         )
 
         if (isLoading) {
@@ -76,11 +77,36 @@ class HomeEpoxyController(
                 id = 0,
                 title = context.getString(R.string.all_priorities),
                 type = context.getString(R.string.priority),
-                size = prioritiesItemCount
+                size = prioritiesCount
             ),
             ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
             onFolderItemSelected
         ).id("folder-item-priorities").addTo(this)
+        // List all folders with type "Checklist"
+        folders.filter {
+            it.type == context.getString(R.string.priority)
+        }.sortedBy {
+            it.title
+        }.forEachIndexed { index, folder ->
+            if (folder.type == context.getString(R.string.priority)) {
+                Log.d("HomeEpoxyController", folder.title)
+                // Divider
+                DividerFolderEpoxyModel()
+                    .id("divider-priority-folder-$index")
+                    .addTo(this)
+                // Folder
+                SectionFolderItemEpoxyModel(
+                    folderEntity = FolderEntity(
+                        id = folder.id,
+                        title = folder.title,
+                        type = folder.type,
+                        size = folder.size
+                    ),
+                    ContextCompat.getDrawable(NookApplication.context, R.drawable.ic_folder),
+                    onFolderItemSelected
+                ).id("folder-${folder.id}-priority").addTo(this)
+            }
+        }
         SectionFooterRoundedEpoxyModel().id("section-priorities-footer-top").addTo(this)
         // endregion Priorities Section
 
@@ -172,8 +198,36 @@ class HomeEpoxyController(
         SectionFooterRoundedEpoxyModel().id("section-note-footer-top").addTo(this)
 
 
-        // endregion Checklist Section
+        // endregion Notes Section
 
+    }
+//
+//
+//    private fun buildEpoxyList(folders: ArrayList<FolderEntity>): List<EpoxyItemsInterface> {
+//        return buildList {
+//            // Page title
+//            add(HeaderPageTitle(context.getString(R.string.folders_title)))
+//            HomeSections.values().forEach {
+//                add(HeadingSectionTitleEpoxyModel(title = it.name, showDropDown = true))
+//                add(SectionHeaderRounded)
+//                add(FolderItem(
+//                    item = FolderEntity(
+//                        id = 0,
+//                        title = "All" + it.name,
+//                        type = context.getString(R.string.priority),
+//                        size = prioritiesItemCount
+//                    )
+//                ))
+//            }
+//
+//        }
+//    }
+
+    enum class HomeSections() {
+        // Items
+        Priorities,
+        Checklists,
+        Notes
     }
 
 }

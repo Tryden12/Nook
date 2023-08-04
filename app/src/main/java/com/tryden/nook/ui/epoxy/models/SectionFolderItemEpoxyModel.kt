@@ -28,7 +28,7 @@ data class SectionFolderItemEpoxyModel(
 
             when (folderEntity.type) {
                 NookApplication.context.getString(R.string.priority) -> {
-                    onFolderSelected.onPriorityFolderSelected()
+                    onFolderSelected.onPriorityFolderSelected(folderEntity)
                 }
                 NookApplication.context.getString(R.string.checklist) -> {
                     onFolderSelected.onChecklistFolderSelected(folderEntity)

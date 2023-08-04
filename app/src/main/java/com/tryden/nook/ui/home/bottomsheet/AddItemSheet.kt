@@ -110,10 +110,6 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
                 return
             }
 
-            is PriorityItem -> {
-                // ignore, priority items don't have folders
-            }
-
             else -> {
                 // Increase folder size by 1
                 val selectedFolderEntity: FolderEntity? = viewModel.currentSelectedFolderLiveData.value

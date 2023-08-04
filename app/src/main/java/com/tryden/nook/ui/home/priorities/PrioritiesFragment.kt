@@ -7,9 +7,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.SwipeCallbacks
 import com.tryden.nook.R
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
@@ -21,6 +23,16 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
 
     private var _binding: FragmentPrioritiesBinding? = null
     private val binding get() = _binding!!
+
+    /**
+     * The safeArgs here holds the folder title string value needed to filter
+     * display only those note items.
+     *
+     * This is passed in from HomeFragment() or AllNotesFoldersFragment() via
+     * NavDirections.
+     *
+     */
+    private val safeArgs: PrioritiesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -100,7 +112,32 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
                     direction: Int,
                 ) {
                     val itemRemoved = model?.itemEntity ?: return
+
+                    // Get folder associated with note entity
+                    val selectedFolderEntity: FolderEntity? =
+                        sharedViewModel.foldersLiveData.value?.find {
+                            it.title == safeArgs.folderTitle
+                        }
+
                     sharedViewModel.deleteItem(itemRemoved)
+
+                    if (selectedFolderEntity != null) {
+                        // Decrease folder size by 1
+                        val folderEntity = selectedFolderEntity.copy(
+                            title = selectedFolderEntity.title,
+                            type = selectedFolderEntity.type,
+                            size = if (selectedFolderEntity.size > 0) {
+                                selectedFolderEntity.size - 1
+                            } else {
+                                0
+                            }
+                        )
+                        sharedViewModel.updateFolder(folderEntity)
+                    } else {
+                        Log.d(tag, "swipeToDeleteSetup() null folder entity" )
+                    }
+                    Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
+
                 }
 
                 override fun onSwipeProgressChanged(

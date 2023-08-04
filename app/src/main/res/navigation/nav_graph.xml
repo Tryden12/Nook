@@ -52,13 +52,27 @@
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_homeFragment_to_allPrioritiesFragment"
+            app:destination="@id/allPrioritiesFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
 
     </fragment>
     <fragment
         android:id="@+id/prioritiesFragment"
         android:name="com.tryden.nook.ui.home.priorities.PrioritiesFragment"
         android:label="Priorities"
-        tools:layout="@layout/fragment_priorities" />
+        tools:layout="@layout/fragment_priorities" >
+
+        <argument android:name="folderTitle"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+
+    </fragment>
     <fragment
         android:id="@+id/checklistsFragment"
         android:name="com.tryden.nook.ui.home.checklists.AllChecklistsFragment"
@@ -123,5 +137,18 @@
             app:argType="string" />
     </fragment>
 
+    </fragment>
+    <fragment
+        android:id="@+id/allPrioritiesFragment"
+        android:name="com.tryden.nook.ui.home.priorities.AllPrioritiesFragment"
+        android:label="fragment_all_priorities"
+        tools:layout="@layout/fragment_all_priorities" >
+        <action
+            android:id="@+id/action_allPrioritiesFragment_to_prioritiesFragment"
+            app:destination="@id/prioritiesFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 </navigation>

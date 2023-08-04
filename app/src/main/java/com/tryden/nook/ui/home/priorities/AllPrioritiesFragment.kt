@@ -1,33 +1,36 @@
-package com.tryden.nook.ui.home.notes
+package com.tryden.nook.ui.home.priorities
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.databinding.FragmentAllNotesBinding
+import com.tryden.nook.databinding.FragmentAllPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
-import com.tryden.nook.ui.home.notes.noteslist.NotesListFragment
-import com.tryden.nook.ui.home.notes.noteslist.NotesListFragmentDirections
+import com.tryden.nook.ui.home.notes.AllNotesFoldersEpoxyController
+import com.tryden.nook.ui.home.notes.AllNotesFoldersFragmentDirections
 
 
-class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
+class AllPrioritiesFragment : BaseFragment(), OnFolderSelectedInterface {
 
-    private var _binding: FragmentAllNotesBinding? = null
+    private var _binding: FragmentAllPrioritiesBinding? = null
     private val binding get() = _binding!!
 
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAllNotesBinding.inflate(inflater,container,false)
+        _binding = FragmentAllPrioritiesBinding.inflate(inflater, container,false)
         return binding.root
     }
 
@@ -46,21 +49,22 @@ class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
         ).bottomToolbarSetup()
 
         // Bottom Sheet Type = Folder
-        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_NOTE)
+        sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_PRIORITY)
 
         // Setup Epoxy Controller
-        val controller = AllNotesFoldersEpoxyController(this)
+        val controller = AllPrioritiesEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
             val itemEntityList = folders.filter {
-                it.type == getString(R.string.note_type_key)
+                it.type == getString(R.string.priority_type_key)
             }
             controller.itemEntityList = itemEntityList as ArrayList<FolderEntity>
         }
 
         // Setup swipe-to-delete
-         swipeToDeleteSetup()
+        swipeToDeleteSetup()
+
     }
 
     private fun swipeToDeleteSetup() {
@@ -78,12 +82,12 @@ class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
                     val folder = model?.folderEntity ?: return
 
                     // Delete all items in folder
-                    sharedViewModel.noteEntitiesLiveData.observe(viewLifecycleOwner) { notes ->
-                        if (notes.isNotEmpty()) {
-                            notes.filter {
+                    sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { priorities ->
+                        if (priorities.isNotEmpty()) {
+                            priorities.filter {
                                 it.folderName == folder.title
-                            }.forEach { noteEntity ->
-                                sharedViewModel.deleteNoteEntity(noteEntity)
+                            }.forEach { priorityEntity ->
+                                sharedViewModel.deleteItem(priorityEntity)
                             }
                         }
                     }
@@ -95,9 +99,13 @@ class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             })
     }
 
-
     override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
-        // ignore
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+        val navDirections =
+            AllPrioritiesFragmentDirections.actionAllPrioritiesFragmentToPrioritiesFragment(
+                folderTitle = selectedFolder.title
+            )
+        navigateViewNavGraph(navDirections)
     }
 
     override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
@@ -105,16 +113,11 @@ class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
     }
 
     override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
-        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        val navDirections =
-            AllNotesFoldersFragmentDirections
-                .actionAllNotesFoldersFragmentToNotesListFragment(folderTitle = selectedFolder.title)
-        navigateViewNavGraph(navDirections)
+        // ignore
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
