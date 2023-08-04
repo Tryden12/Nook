@@ -1,5 +1,6 @@
 package com.tryden.nook.ui.home.notes.noteslist
 
+import android.util.Log
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
@@ -38,6 +39,7 @@ class NotesListEpoxyController(
         }
 
     override fun buildModels() {
+        Log.d("NotesListEpoxyController()", "buildModels itemEntityList size:${itemEntityList.size}" )
         if (isLoading) {
             LoadingEpoxyModel().id("loading_state").addTo(this)
             return

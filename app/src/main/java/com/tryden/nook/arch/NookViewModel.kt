@@ -194,7 +194,7 @@ class NookViewModel @Inject constructor(
     fun collectAllNotes() {
         viewModelScope.launch {
             repository.getAllNoteEntities().collect() { list ->
-                noteEntitiesByFolderNameLiveData.postValue(list)
+                noteEntitiesLiveData.postValue(list)
             }
         }
         Log.d("ViewModel", "collectAllItems: getAllNoteItems" )
