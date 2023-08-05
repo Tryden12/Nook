@@ -8,15 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
-import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
-import com.tryden.nook.ui.home.folders.FoldersFragmentDirections
 
 
 class HomeFragment : BaseFragment(), OnFolderSelectedInterface {

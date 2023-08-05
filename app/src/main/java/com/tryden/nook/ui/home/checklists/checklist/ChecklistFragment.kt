@@ -3,7 +3,6 @@ package com.tryden.nook.ui.home.checklists.checklist
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,9 @@ import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentChecklistBinding
-import com.tryden.nook.databinding.ModelChecklistItemEntityBinding
 import com.tryden.nook.ui.BaseFragment
-import com.tryden.nook.ui.BottomToolbarSetup
-import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
-import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
-import com.tryden.nook.ui.home.OnItemSelected
 import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 
 class ChecklistFragment : BaseFragment(), OnCheckSelected {

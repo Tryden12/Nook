@@ -15,12 +15,8 @@ import java.util.UUID
  * This is the HomeFragment EpoxyController.
  *
  * @param [onFolderItemSelected] is an interface containing callback methods for
- * when a folder is selected. Its purpose is to help decide whether to navigate to
- * the folder (general) or folder (specific).
- * Example:
- * "All Checklists" folder is folder general -> Navigate to the AllChecklistsFragment.
- * If a user created a checklist folder named "Grocery"...
- * "Grocery" folder is folder specific -> Navigate to the ChecklistFragment.
+ * when a folder is selected. Its purpose is to help decipher which folder type is slected:
+ * Priority, Checklist, Note
  */
 
 class HomeEpoxyController(

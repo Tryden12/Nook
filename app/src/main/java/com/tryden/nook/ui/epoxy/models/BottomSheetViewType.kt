@@ -9,10 +9,10 @@ data class BottomSheetViewType(
     enum class Type(val key: String) {
         NONE(NookApplication.context.getString(R.string.new_item)),
 
-        // Folder (general) from home screen
+        // Folder (general)
         FOLDER(NookApplication.context.getString(R.string.folder_type_general)),
 
-        // Folder (specific) from specific fragment (ex. add folder from AllChecklistsFragment)
+        // Folder (specific)
         FOLDER_PRIORITY(NookApplication.context.getString(R.string.priority_type_key)),
         FOLDER_CHECKLIST(NookApplication.context.getString(R.string.checklist_type_key)),
         FOLDER_NOTE(NookApplication.context.getString(R.string.note_type_key)),

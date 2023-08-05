@@ -3,7 +3,6 @@ package com.tryden.nook.ui.home.notes.noteslist
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import com.tryden.nook.database.entity.NoteEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentNotesListBinding
 import com.tryden.nook.ui.BaseFragment
-import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.home.OnItemSelected

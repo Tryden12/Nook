@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.tryden.nook.R
 import com.tryden.nook.databinding.FragmentNoteBinding
 import com.tryden.nook.ui.BaseFragment
-import com.tryden.nook.ui.BottomToolbarSetup
 
 class NoteFragment : BaseFragment() {
 
@@ -37,10 +36,7 @@ class NoteFragment : BaseFragment() {
         Log.d("NoteFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
-        BottomToolbarSetup(
-            fragmentKey = mainActivity.getString(R.string.note_fragment_key),
-            activity = mainActivity
-        ).bottomToolbarSetup()
+        setupBottomToolbar()
 
         // Setup Epoxy Controller
         val controller = NoteEpoxyController()
@@ -67,6 +63,10 @@ class NoteFragment : BaseFragment() {
         }
 
 
+    }
+
+    private fun setupBottomToolbar() {
+        // TODO
     }
 
     override fun onDestroyView() {
