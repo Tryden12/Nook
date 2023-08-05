@@ -80,7 +80,7 @@ class AllFoldersEpoxyController(
 
         val sectionTitle = when(folderType) {
             context.getString(R.string.priority) -> context.getString(R.string.all_priorities)
-            context.getString(R.string.checklist) -> context.getString(R.string.all_notes)
+            context.getString(R.string.checklist) -> context.getString(R.string.all_checklists)
             context.getString(R.string.note) -> context.getString(R.string.all_notes)
             else -> ""
         }
