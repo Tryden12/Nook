@@ -101,6 +101,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:enabled="false"
+            android:textColor="?attr/colorSurface"
+            android:text="@string/priority"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/radioButtonChecklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:enabled="true"
             android:textColor="?attr/colorSurface"
             android:text="@string/checklist" />
@@ -115,16 +124,6 @@
             android:enabled="true"
             android:textColor="?attr/colorSurface"
             android:text="@string/note" />
-
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/radioButtonChecklist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:textColor="?attr/colorSurface"
-            android:text="@string/priority"
-            android:visibility="invisible"/>
 
     </RadioGroup>
 
