@@ -12,6 +12,7 @@ import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
+import com.tryden.nook.ui.home.folders.FoldersFragmentDirections
 
 
 class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
@@ -53,54 +54,64 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         }
     }
 
-    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
-//        findNavController().navigate(R.id.action_homeFragment_to_prioritiesFragment)
-        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        when (selectedFolder.title) {
-            getString(R.string.all_priorities) -> {
-                findNavController().navigate(R.id.action_homeFragment_to_allPrioritiesFragment)
-            }
-            else -> {
-                val navDirections =
-                    HomeFragmentDirections
-                        .actionHomeFragmentToPrioritiesFragment(
-                            folderTitle = selectedFolder.title
-                        )
-                navigateViewNavGraph(navDirections)
-            }
-        }
-    }
+    override fun onFolderSelected(selectedFolder: FolderEntity) {
+        if (selectedFolder.title.contains("All")) {
 
-    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
-        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        when (selectedFolder.title) {
-            getString(R.string.all_checklists) -> {
-                findNavController().navigate(R.id.action_homeFragment_to_checklistsFragment)
+            /** Update bottom sheet type **/
+            when (selectedFolder.title) {
+                getString(R.string.all_priorities) -> {
+                    sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_PRIORITY)
+                }
+                getString(R.string.all_checklists) -> {
+                    sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
+                }
+                getString(R.string.all_notes) -> {
+                    sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_NOTE)
+                }
             }
-            else -> {
-                val navDirections =
-                    HomeFragmentDirections
-                        .actionHomeFragmentToChecklistFragment(
-                            folderTitle = selectedFolder.title
-                        )
-                navigateViewNavGraph(navDirections)
-            }
-        }
-    }
-
-    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
-        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        when (selectedFolder.title) {
-            getString(R.string.all_notes) -> {
-                findNavController().navigate(R.id.action_homeFragment_to_allNotesFoldersFragment)
-            }
-            else -> {
-                val navDirections =
-                    HomeFragmentDirections
-                        .actionHomeFragmentToNotesListFragment(
-                        folderTitle = selectedFolder.title
+            /** Navigate to FoldersFragment() **/
+            val navDirections =
+                HomeFragmentDirections
+                    .actionHomeFragmentToFoldersFragment(
+                        folderType = selectedFolder.type
                     )
-                navigateViewNavGraph(navDirections)
+            navigateViewNavGraph(navDirections)
+
+        } else {
+            // Figure out which folder type
+            // Update bottom sheet to match
+            // Navigate to correct Fragment
+            when (selectedFolder.type) {
+                /** Priority **/
+                getString(R.string.priority) -> {
+                    // Bottom Sheet Type = Folder
+                    sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_PRIORITY)
+                    val navDirections =
+                        HomeFragmentDirections.actionHomeFragmentToPrioritiesFragment(
+                            folderTitle = selectedFolder.title
+                        )
+                    navigateViewNavGraph(navDirections)
+                }
+                /** Checklist **/
+                getString(R.string.checklist) -> {
+                    // Bottom Sheet Type = Folder
+                    sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
+                    val navDirections =
+                        HomeFragmentDirections.actionHomeFragmentToChecklistFragment(
+                            folderTitle = selectedFolder.title
+                        )
+                    navigateViewNavGraph(navDirections)
+                }
+                /** Note **/
+                getString(R.string.note) -> {
+                    // Bottom Sheet Type = Folder
+                    sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_NOTE)
+                    val navDirections =
+                        HomeFragmentDirections.actionHomeFragmentToNotesListFragment(
+                            folderTitle = selectedFolder.title
+                        )
+                    navigateViewNavGraph(navDirections)
+                }
             }
         }
     }

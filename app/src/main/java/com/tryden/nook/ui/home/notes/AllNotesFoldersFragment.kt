@@ -14,8 +14,7 @@ import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
-import com.tryden.nook.ui.home.notes.noteslist.NotesListFragment
-import com.tryden.nook.ui.home.notes.noteslist.NotesListFragmentDirections
+
 
 
 class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
@@ -96,20 +95,28 @@ class AllNotesFoldersFragment : BaseFragment(), OnFolderSelectedInterface {
     }
 
 
-    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
-        // ignore
-    }
+//    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
+//        // ignore
+//    }
+//
+//    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
+//        // ignore
+//    }
+//
+//    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
+//        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+//        val navDirections =
+//            AllNotesFoldersFragmentDirections
+//                .actionAllNotesFoldersFragmentToNotesListFragment(folderTitle = selectedFolder.title)
+//        navigateViewNavGraph(navDirections)
+//    }
 
-    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
-        // ignore
-    }
-
-    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
+    override fun onFolderSelected(selectedFolder: FolderEntity) {
         sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        val navDirections =
-            AllNotesFoldersFragmentDirections
-                .actionAllNotesFoldersFragmentToNotesListFragment(folderTitle = selectedFolder.title)
-        navigateViewNavGraph(navDirections)
+//        val navDirections =
+//            AllNotesFoldersFragmentDirections
+//                .actionAllNotesFoldersFragmentToNotesListFragment(folderTitle = selectedFolder.title)
+//        navigateViewNavGraph(navDirections)
     }
 
     override fun onDestroyView() {

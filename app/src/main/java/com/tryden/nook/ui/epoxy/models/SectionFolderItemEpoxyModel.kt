@@ -25,18 +25,7 @@ data class SectionFolderItemEpoxyModel(
         }
 
         root.setOnClickListener {
-
-            when (folderEntity.type) {
-                NookApplication.context.getString(R.string.priority) -> {
-                    onFolderSelected.onPriorityFolderSelected(folderEntity)
-                }
-                NookApplication.context.getString(R.string.checklist) -> {
-                    onFolderSelected.onChecklistFolderSelected(folderEntity)
-                }
-                NookApplication.context.getString(R.string.note) -> {
-                    onFolderSelected.onNoteFolderSelected(folderEntity)
-                }
-            }
+            onFolderSelected.onFolderSelected(folderEntity)
         }
     }
 }

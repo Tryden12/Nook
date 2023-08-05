@@ -50,6 +50,24 @@ data class BottomToolbarSetup(
 
             }
 
+            /** AllPriorities Fragment **************************************************************/
+            activity.getString(R.string.all_folders_fragment_key) -> {
+                // Show correct toolbar, hide others
+                activity.bottomToolbarHome.isVisible = true
+                activity.bottomToolbarItemsList.isInvisible = true
+                activity.bottomToolbarEditItem.isInvisible = true
+
+                activity.addFolderImageView.setOnClickListener {
+                    AddItemSheet().show(activity.supportFragmentManager, null)
+                }
+                // OnClick listeners
+                activity.addItemImageViewHome.isGone = true // todo: revisit
+//                activity.addItemImageViewHome.setOnClickListener {
+//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+//                    AddItemSheet().show(activity.supportFragmentManager, null)
+//                }
+            }
+
             /** AddFolder Fragment *************************************************************/
             activity.getString(R.string.add_folder_fragment_key) -> {
                 // Hide all bottom toolbars

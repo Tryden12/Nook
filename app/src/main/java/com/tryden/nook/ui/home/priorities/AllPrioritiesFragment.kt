@@ -15,8 +15,7 @@ import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
-import com.tryden.nook.ui.home.notes.AllNotesFoldersEpoxyController
-import com.tryden.nook.ui.home.notes.AllNotesFoldersFragmentDirections
+
 
 
 class AllPrioritiesFragment : BaseFragment(), OnFolderSelectedInterface {
@@ -99,25 +98,34 @@ class AllPrioritiesFragment : BaseFragment(), OnFolderSelectedInterface {
             })
     }
 
-    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
-        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        val navDirections =
-            AllPrioritiesFragmentDirections.actionAllPrioritiesFragmentToPrioritiesFragment(
-                folderTitle = selectedFolder.title
-            )
-        navigateViewNavGraph(navDirections)
-    }
-
-    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
-        // ignore
-    }
-
-    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
-        // ignore
-    }
+//    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
+//        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+//        val navDirections =
+//            AllPrioritiesFragmentDirections.actionAllPrioritiesFragmentToPrioritiesFragment(
+//                folderTitle = selectedFolder.title
+//            )
+//        navigateViewNavGraph(navDirections)
+//    }
+//
+//    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
+//        // ignore
+//    }
+//
+//    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
+//        // ignore
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onFolderSelected(selectedFolder: FolderEntity) {
+        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+//        val navDirections =
+//            AllPrioritiesFragmentDirections.actionAllPrioritiesFragmentToPrioritiesFragment(
+//                folderTitle = selectedFolder.title
+//            )
+//        navigateViewNavGraph(navDirections)
     }
 }

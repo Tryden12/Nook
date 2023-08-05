@@ -94,24 +94,32 @@ class AllChecklistsFragment : BaseFragment(), OnFolderSelectedInterface {
             })
     }
 
-    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
+    override fun onFolderSelected(selectedFolder: FolderEntity) {
         sharedViewModel.updateCurrentFolderSelected(selectedFolder)
-        val navDirections =
-            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(selectedFolder.title)
-        navigateViewNavGraph(navDirections)
+//        val navDirections =
+//            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(selectedFolder.title)
+//        navigateViewNavGraph(navDirections)
     }
 
-    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
-        // todo
-    }
-
-    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
-        // ignore
-    }
+//    override fun onChecklistFolderSelected(selectedFolder: FolderEntity) {
+//        sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+//        val navDirections =
+//            AllChecklistsFragmentDirections.actionChecklistsFragmentToChecklistFragment(selectedFolder.title)
+//        navigateViewNavGraph(navDirections)
+//    }
+//
+//    override fun onNoteFolderSelected(selectedFolder: FolderEntity) {
+//        // todo
+//    }
+//
+//    override fun onPriorityFolderSelected(selectedFolder: FolderEntity) {
+//        // ignore
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 
 }
