@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.home.checklists.checklist
+package com.tryden.nook.ui.home.folders.checklist
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.home.notes.noteslist.note
+package com.tryden.nook.ui.home.folders.notes.note
 
 import com.airbnb.epoxy.EpoxyController
 

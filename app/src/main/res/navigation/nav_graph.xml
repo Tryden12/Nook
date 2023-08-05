@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/prioritiesFragment"
-        android:name="com.tryden.nook.ui.home.priorities.PrioritiesFragment"
+        android:name="com.tryden.nook.ui.home.folders.priorities.PrioritiesFragment"
         android:label="Priorities"
         tools:layout="@layout/fragment_priorities" >
 
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/checklistFragment"
-        android:name="com.tryden.nook.ui.home.checklists.checklist.ChecklistFragment"
+        android:name="com.tryden.nook.ui.home.folders.checklist.ChecklistFragment"
         android:label="Checklist"
         tools:layout="@layout/fragment_checklist" >
 
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/notesListFragment"
-        android:name="com.tryden.nook.ui.home.notes.noteslist.NotesListFragment"
+        android:name="com.tryden.nook.ui.home.folders.notes.NotesListFragment"
         android:label="fragment_notes_list"
         tools:layout="@layout/fragment_notes_list" >
 
@@ -84,7 +84,7 @@
             app:argType="string" />
     <fragment
         android:id="@+id/noteFragment"
-        android:name="com.tryden.nook.ui.home.notes.noteslist.note.NoteFragment"
+        android:name="com.tryden.nook.ui.home.folders.notes.note.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" >
 

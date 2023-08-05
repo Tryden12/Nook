@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.home.notes.noteslist
+package com.tryden.nook.ui.home.folders.notes
 
 import android.annotation.SuppressLint
 import android.os.Bundle

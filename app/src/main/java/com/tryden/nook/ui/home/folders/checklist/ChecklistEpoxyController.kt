@@ -1,25 +1,18 @@
-package com.tryden.nook.ui.home.notes.noteslist
+package com.tryden.nook.ui.home.folders.checklist
 
 import android.util.Log
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.database.entity.NoteEntity
+import com.tryden.nook.database.entity.ChecklistItemEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.*
 import com.tryden.nook.ui.epoxy.models.*
 import com.tryden.nook.ui.home.OnItemSelected
 
-/**
- * This is the epoxy controller for the NotesListFragment.
- *
- * At the bottom of the class, we build a list of epoxy items in the buildEpoxyItems() method.
- * This simplifies the readability of the buildModels() method.
- */
-
-class NotesListEpoxyController(
-    val onItemSelected: OnItemSelected
-): EpoxyController() {
+class ChecklistEpoxyController(
+    val onCheckSelected: OnCheckSelected
+) : EpoxyController() {
 
     val context = NookApplication.context
 
@@ -31,7 +24,7 @@ class NotesListEpoxyController(
             }
         }
 
-    var itemEntityList = ArrayList<NoteEntity>()
+    var itemEntityList = ArrayList<ChecklistItemEntity>()
         set(value) {
             field = value
             isLoading = false
@@ -39,7 +32,8 @@ class NotesListEpoxyController(
         }
 
     override fun buildModels() {
-        Log.d("NotesListEpoxyController()", "buildModels itemEntityList size:${itemEntityList.size}" )
+        Log.d("controller", "buildModels() based on checklistItemEntitiesLiveData")
+
         if (isLoading) {
             LoadingEpoxyModel().id("loading_state").addTo(this)
             return
@@ -47,9 +41,10 @@ class NotesListEpoxyController(
 
         if (itemEntityList.isEmpty()) {
             EmptyStateEpoxyModel(
-                title = context.getString(R.string.no_notes),
-                subtitle = context.getString(R.string.how_to_add_note)
+                title = context.getString(R.string.no_checklist_items),
+                subtitle = context.getString(R.string.how_to_add_checklist_item)
             ).id("empty-state-checklist-items").addTo(this)
+            Log.d("ChecklistEpoxyController()", "buildModels() based on checklistItemEntitiesLiveData")
         }
 
         val epoxyItems = buildEpoxyItems(itemEntityList)
@@ -64,11 +59,12 @@ class NotesListEpoxyController(
                     SectionHeaderTopRoundEpoxyModel().id("section-header-rounded-$index")
                         .addTo(this)
                 }
-                is NoteItem -> {
-                    NoteItemEpoxyModel(
+                is ChecklistItem -> {
+                    ChecklistItemEpoxyModel(
                         itemEntity = epoxyItem.item,
-                        onItemSelected = onItemSelected
-                    ).id("${epoxyItem.item.title}-$index").addTo(this)
+                        onCheckSelected = onCheckSelected
+                    ).id(epoxyItem.item.title).addTo(this)
+                    Log.d("ChecklistEpoxyController()", "buildModel: ${epoxyItem.item.title}" )
                 }
                 DividerItem -> {
                     DividerEpoxyModel().id("divider-$index").addTo(this)
@@ -79,25 +75,23 @@ class NotesListEpoxyController(
                 }
             }
         }
-
     }
 
-
-    private fun buildEpoxyItems(notes: ArrayList<NoteEntity>): List<EpoxyItemsInterface> {
+    private fun buildEpoxyItems(checklistItems: ArrayList<ChecklistItemEntity>): List<EpoxyItemsInterface> {
         return buildList {
             // Add Header title if list is not empty
-            if (notes.isNotEmpty()) {
-                val headerTitle = notes[0].folderName + " " + context.getString(R.string.notes)
+            if (checklistItems.isNotEmpty()) {
+                val headerTitle = checklistItems[0].folderName + " " +  context.getString(R.string.checklist)
                 add(HeaderSectionTitle(title = headerTitle))
             }
             // Add rounded section topper
             add(SectionHeaderRounded)
-            // Add Note Items
-            notes.sortedBy {
+            // Add Checklist Items
+            checklistItems.sortedBy {
                 it.title
             }.forEachIndexed { index, item ->
                 if (index != 0) add(DividerItem)
-                add(NoteItem(item = item))
+                add(ChecklistItem(item = item))
             }
             // Add rounded section footer
             add(SectionFooterRounded)

@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.home.priorities
+package com.tryden.nook.ui.home.folders.priorities
 
 import android.annotation.SuppressLint
 import android.graphics.Canvas

@@ -1,4 +1,4 @@
-package com.tryden.nook.ui.home.notes.noteslist.note
+package com.tryden.nook.ui.home.folders.notes.note
 
 import android.os.Bundle
 import android.util.Log
