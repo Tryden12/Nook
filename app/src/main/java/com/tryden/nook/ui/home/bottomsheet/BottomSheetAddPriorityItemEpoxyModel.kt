@@ -2,6 +2,7 @@ package com.tryden.nook.ui.home.bottomsheet
 
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
+import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddPriorityItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
@@ -15,6 +16,7 @@ import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 class BottomSheetAddPriorityItemEpoxyModel(
     val editMode: Boolean,
     val currentPrioritySelected: PriorityItemEntity,
+    val currentFolderEntity: FolderEntity,
     val onAddItemSheetButtonSelected: OnAddItemSheetButtonSelected
 ): ViewBindingKotlinModel<ModelBottomSheetAddPriorityItemBinding>(R.layout.model_bottom_sheet_add_priority_item) {
 
@@ -87,10 +89,11 @@ class BottomSheetAddPriorityItemEpoxyModel(
                      */
                     val entity = EpoxyItemsInterface.PriorityItem(
                         currentPrioritySelected.copy(
-                        title = itemTitle,
-                        description = itemDesc,
-                        priority = priority
-                    ))
+                            title = itemTitle,
+                            description = itemDesc,
+                            priority = priority,
+                            folderName = currentFolderEntity.title
+                        ))
                     onAddItemSheetButtonSelected.onUpdateItem(entity)
                 }
                 else -> {
@@ -103,7 +106,8 @@ class BottomSheetAddPriorityItemEpoxyModel(
                         PriorityItemEntity(
                             title = itemTitle,
                             description = itemDesc,
-                            priority = priority
+                            priority = priority,
+                            folderName = currentFolderEntity.title
                         )
                     )
                     // Insert priority

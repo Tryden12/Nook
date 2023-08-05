@@ -88,6 +88,7 @@ class AddItemSheetEpoxyController(
                 BottomSheetAddPriorityItemEpoxyModel(
                     editMode = editMode,
                     currentPrioritySelected = currentPrioritySelected,
+                    currentFolderEntity = currentFolderSelected,
                     onAddItemSheetButtonSelected = onAddItemSheetButtonSelected
                 ).id("add-priority-item-epoxy-model").addTo(this)
             }

@@ -66,7 +66,7 @@ class NotesListFragment : BaseFragment(), OnItemSelected {
 
         sharedViewModel.noteEntitiesLiveData.observe(viewLifecycleOwner) { list ->
             val items = list.filter {
-                it.folderName == safeArgs.folderTitle
+                it.folderName == safeArgs.folderName
             }
 
             when (items.size) {
@@ -112,7 +112,7 @@ class NotesListFragment : BaseFragment(), OnItemSelected {
                     // Get folder associated with note entity
                     val selectedFolderEntity: FolderEntity? =
                         sharedViewModel.foldersLiveData.value?.find {
-                        it.title == safeArgs.folderTitle
+                        it.title == safeArgs.folderName
                     }
 
                     sharedViewModel.deleteNoteEntity(noteEntity)

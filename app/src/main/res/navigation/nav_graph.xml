@@ -53,7 +53,7 @@
         android:label="Priorities"
         tools:layout="@layout/fragment_priorities" >
 
-        <argument android:name="folderTitle"
+        <argument android:name="folderName"
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="string" />
@@ -66,7 +66,7 @@
         android:label="Checklist"
         tools:layout="@layout/fragment_checklist" >
 
-        <argument android:name="folderTitle"
+        <argument android:name="folderName"
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="string" />
@@ -78,7 +78,7 @@
         android:label="fragment_notes_list"
         tools:layout="@layout/fragment_notes_list" >
 
-        <argument android:name="folderTitle"
+        <argument android:name="folderName"
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="string" />
@@ -88,7 +88,7 @@
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" >
 
-        <argument android:name="folderTitle"
+        <argument android:name="folderName"
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="string" />

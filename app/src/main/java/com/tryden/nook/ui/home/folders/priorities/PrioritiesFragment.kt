@@ -59,9 +59,13 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
         val controller = PrioritiesEpoxyController(this)
         binding.prioritiesEpoxyRecyclerView.setController(controller)
 
-        sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { itemEntityList ->
-            controller.itemEntityList = itemEntityList as ArrayList<PriorityItemEntity>
-            mainActivity.itemCountTextView.text = "${itemEntityList.size} Priorities"
+        sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
+            val items = list.filter {
+                it.folderName == safeArgs.folderName
+            }
+
+            controller.itemEntityList = items as ArrayList<PriorityItemEntity>
+            mainActivity.itemCountTextView.text = "${items.size} Priorities"
         }
 
         // Setup swipe-to-delete
@@ -115,7 +119,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
                     // Get folder associated with note entity
                     val selectedFolderEntity: FolderEntity? =
                         sharedViewModel.foldersLiveData.value?.find {
-                            it.title == safeArgs.folderTitle
+                            it.title == safeArgs.folderName
                         }
 
                     sharedViewModel.deleteItem(itemRemoved)

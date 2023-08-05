@@ -106,7 +106,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
                     sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_PRIORITY)
                     val navDirections =
                         HomeFragmentDirections.actionHomeFragmentToPrioritiesFragment(
-                            folderTitle = selectedFolder.title
+                            folderName = selectedFolder.title
                         )
                     navigateViewNavGraph(navDirections)
                 }
@@ -116,7 +116,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
                     sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_CHECKLIST)
                     val navDirections =
                         HomeFragmentDirections.actionHomeFragmentToChecklistFragment(
-                            folderTitle = selectedFolder.title
+                            folderName = selectedFolder.title
                         )
                     navigateViewNavGraph(navDirections)
                 }
@@ -126,7 +126,7 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
                     sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER_NOTE)
                     val navDirections =
                         HomeFragmentDirections.actionHomeFragmentToNotesListFragment(
-                            folderTitle = selectedFolder.title
+                            folderName = selectedFolder.title
                         )
                     navigateViewNavGraph(navDirections)
                 }

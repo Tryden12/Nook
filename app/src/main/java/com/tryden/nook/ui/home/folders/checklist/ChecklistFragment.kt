@@ -63,7 +63,7 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
             Log.e(tag, "checklistItemEntitiesLiveData changed")
             val items = list.filter { item ->
-                item.folderName == safeArgs.folderTitle
+                item.folderName == safeArgs.folderName
             }
 
             when (items.size) {
@@ -114,7 +114,7 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
                     // Get folder associated with note entity
                     val selectedFolderEntity: FolderEntity? =
                         sharedViewModel.foldersLiveData.value?.find {
-                            it.title == safeArgs.folderTitle
+                            it.title == safeArgs.folderName
                         }
 
                     sharedViewModel.deleteChecklistItem(checklistItem)

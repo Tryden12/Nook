@@ -88,7 +88,7 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             getString(R.string.priority) -> {
                 Log.d(tag, "onFolderSelected: [Priority], ${selectedFolder.title}")
                 val navDirections = FoldersFragmentDirections.actionFoldersFragmentToPrioritiesFragment(
-                    folderTitle = selectedFolder.title
+                    folderName = selectedFolder.title
                 )
                 navigateViewNavGraph(navDirections)
             }
@@ -96,7 +96,7 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             getString(R.string.checklist) -> {
                 Log.d(tag, "onFolderSelected: [Checklist], ${selectedFolder.title}")
                 val navDirections = FoldersFragmentDirections.actionFoldersFragmentToChecklistFragment(
-                    folderTitle = selectedFolder.title
+                    folderName = selectedFolder.title
                 )
                 navigateViewNavGraph(navDirections)
             }
@@ -104,7 +104,7 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             getString(R.string.note) -> {
                 Log.d(tag, "onFolderSelected: [Note], ${selectedFolder.title}")
                 val navDirections = FoldersFragmentDirections.actionFoldersFragmentToNotesListFragment(
-                    folderTitle = selectedFolder.title
+                    folderName = selectedFolder.title
                 )
                 navigateViewNavGraph(navDirections)
             }
