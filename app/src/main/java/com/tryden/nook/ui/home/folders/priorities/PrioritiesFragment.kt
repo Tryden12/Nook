@@ -53,7 +53,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
         // Setup Bottom Toolbar
         setupBottomToolbar()
 
-        // Bottom Sheet Type = Note Item
+        // Bottom Sheet Type
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.PRIORITY)
 
         val controller = PrioritiesEpoxyController(this)

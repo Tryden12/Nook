@@ -14,6 +14,7 @@ import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentFoldersBinding
 import com.tryden.nook.ui.BaseFragment
+import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
 import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
@@ -51,6 +52,9 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
         // Setup Bottom Toolbar
         setupBottomToolbar()
 
+        // Update bottom sheet type
+        updateBottomSheetType(folderType = safeArgs.folderType)
+
         // Setup Epoxy Controller, but don't build models just yet
         val controller = AllFoldersEpoxyController(safeArgs.folderType, this)
         binding.epoxyRecyclerView.setController(controller)
@@ -77,6 +81,28 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             AddItemSheet().show(mainActivity.supportFragmentManager, null)
         }
         mainActivity.addItemImageViewHome.isGone = true // todo: revisit
+    }
+
+    private fun updateBottomSheetType(folderType: String?) {
+        val bottomSheetType = when (folderType) {
+            getString(R.string.priority) -> {
+                BottomSheetViewType.Type.FOLDER_PRIORITY
+            }
+            getString(R.string.checklist) -> {
+                BottomSheetViewType.Type.FOLDER_CHECKLIST
+            }
+            getString(R.string.note) -> {
+                BottomSheetViewType.Type.FOLDER_NOTE
+            }
+            else -> {
+                BottomSheetViewType.Type.FOLDER
+            }
+        }
+
+        // Bottom Sheet Type = Note Item
+        sharedViewModel.updateBottomSheetItemType(bottomSheetType)
+        Log.e(tag, "updateBottomSheetType: BottomSheetViewType is ${bottomSheetType.name}" )
+
     }
 
     override fun onFolderSelected(selectedFolder: FolderEntity) {
