@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
@@ -12,6 +15,7 @@ import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
+import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 import com.tryden.nook.ui.home.folders.FoldersFragmentDirections
 
 
@@ -39,19 +43,36 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
         // Support action bar title
         mainActivity.supportActionBar?.title = ""
 
-        // Setup Bottom Toolbar
-        BottomToolbarSetup(
-            fragmentKey = tag,
-            activity = mainActivity,
-        ).bottomToolbarSetup()
+        setupBottomToolbar()
 
+        // Update bottom sheet type to folder (general)
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.FOLDER)
 
+        // Set controller, but don't build models yet
         binding.homeEpoxyRecyclerView.setController(controller)
 
         sharedViewModel.foldersLiveData.observe(viewLifecycleOwner) { folders ->
+            // Set folders in controller to requestModelBuild() in controller
             controller.folders = folders as ArrayList<FolderEntity>
         }
+    }
+
+    private fun setupBottomToolbar() {
+        // Show correct toolbar, hide others
+        mainActivity.bottomToolbarHome.isVisible = true
+        mainActivity.bottomToolbarEditItem.isInvisible = true
+        mainActivity.bottomToolbarItemsList.isInvisible = true
+
+        // OnClick listeners
+        mainActivity.addFolderImageView.setOnClickListener {
+            Log.d(tag, "addFolderImageView clicked", )
+            AddItemSheet().show(mainActivity.supportFragmentManager, null)
+
+        }
+        mainActivity.addItemImageViewHome.isGone = true
+//        mainActivity.addItemImageViewHome.setOnClickListener {
+//            Log.d(tag, "addItemImageViewHome clicked from HomeFragment", )
+//        }
     }
 
     override fun onFolderSelected(selectedFolder: FolderEntity) {

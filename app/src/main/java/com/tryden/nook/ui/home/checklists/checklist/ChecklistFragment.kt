@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
@@ -52,10 +54,7 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
         Log.d("ChecklistFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
-        BottomToolbarSetup(
-            fragmentKey = mainActivity.getString(R.string.checklist_fragment_key),
-            activity = mainActivity
-        ).bottomToolbarSetup()
+        setupBottomToolbar()
 
         // Bottom Sheet Type = Checklist Item
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.CHECKLIST_ITEM)
@@ -91,6 +90,18 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
 
         swipeToDeleteSetup()
 
+    }
+
+    private fun setupBottomToolbar() {
+        // Show correct toolbar, hide others
+        mainActivity.bottomToolbarItemsList.isVisible = true
+        mainActivity.bottomToolbarHome.isInvisible = true
+        mainActivity.bottomToolbarEditItem.isInvisible = true
+
+        mainActivity.addItemImageViewItemsList.setOnClickListener {
+            Log.d(tag, "addItemImageViewItemsList clicked from ChecklistFragment", )
+            AddItemSheet().show(mainActivity.supportFragmentManager, null)
+        }
     }
 
     private fun swipeToDeleteSetup() {

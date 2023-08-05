@@ -28,179 +28,179 @@ data class BottomToolbarSetup(
     fun bottomToolbarSetup() {
         Log.d("BottomToolbarSetup()", "bottomToolbarSetup: fragmentKey = $fragmentKey", )
 
-        when (fragmentKey) {
+//        when (fragmentKey) {
             /** Home Fragment *********************************************************************/
-            activity.getString(R.string.home_fragment_key) -> {
-
-                // Show correct toolbar, hide others
-                activity.bottomToolbarHome.isVisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-                activity.bottomToolbarItemsList.isInvisible = true
-
-                // OnClick listeners
-                activity.addFolderImageView.setOnClickListener {
-                    Log.d("BottomToolbarSetup()", "addFolderImageView clicked!", )
-                    AddItemSheet().show(activity.supportFragmentManager, null)
-
-                }
-                activity.addItemImageViewHome.setOnClickListener {
-                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from HomeFragment!", )
-//                    activity.navController.navigate(R.id.action_homeFragment_to_addPriorityFragment)
-                }
-
-            }
-
-            /** AllPriorities Fragment **************************************************************/
-            activity.getString(R.string.all_folders_fragment_key) -> {
-                // Show correct toolbar, hide others
-                activity.bottomToolbarHome.isVisible = true
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                activity.addFolderImageView.setOnClickListener {
-                    AddItemSheet().show(activity.supportFragmentManager, null)
-                }
-                // OnClick listeners
-                activity.addItemImageViewHome.isGone = true // todo: revisit
+//            activity.getString(R.string.home_fragment_key) -> {
+//
+//                // Show correct toolbar, hide others
+//                activity.bottomToolbarHome.isVisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//                activity.bottomToolbarItemsList.isInvisible = true
+//
+//                // OnClick listeners
+//                activity.addFolderImageView.setOnClickListener {
+//                    Log.d("BottomToolbarSetup()", "addFolderImageView clicked!", )
+//                    AddItemSheet().show(activity.supportFragmentManager, null)
+//
+//                }
 //                activity.addItemImageViewHome.setOnClickListener {
-//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from HomeFragment!", )
+////                    activity.navController.navigate(R.id.action_homeFragment_to_addPriorityFragment)
+//                }
+//
+//            }
+//
+//            /** FoldersFragment **************************************************************/
+//            activity.getString(R.string.all_folders_fragment_key) -> {
+//                // Show correct toolbar, hide others
+//                activity.bottomToolbarHome.isVisible = true
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                activity.addFolderImageView.setOnClickListener {
 //                    AddItemSheet().show(activity.supportFragmentManager, null)
 //                }
-            }
+//                // OnClick listeners
+//                activity.addItemImageViewHome.isGone = true // todo: revisit
+////                activity.addItemImageViewHome.setOnClickListener {
+////                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+////                    AddItemSheet().show(activity.supportFragmentManager, null)
+////                }
+//            }
 
-            /** AddFolder Fragment *************************************************************/
-            activity.getString(R.string.add_folder_fragment_key) -> {
-                // Hide all bottom toolbars
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarHome.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-            }
+//            /** AddFolder Fragment *************************************************************/
+//            activity.getString(R.string.add_folder_fragment_key) -> {
+//                // Hide all bottom toolbars
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarHome.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//            }
 
-            /** AllPriorities Fragment **************************************************************/
-            activity.getString(R.string.all_notes_folders_fragment_key) -> {
-                // Show correct toolbar, hide others
-                activity.bottomToolbarHome.isVisible = true
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                activity.addFolderImageView.setOnClickListener {
-                    AddItemSheet().show(activity.supportFragmentManager, null)
-                }
-                // OnClick listeners
-                activity.addItemImageViewHome.isGone = true // todo: revisit
-//                activity.addItemImageViewHome.setOnClickListener {
-//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+//            /** AllPriorities Fragment **************************************************************/
+//            activity.getString(R.string.all_notes_folders_fragment_key) -> {
+//                // Show correct toolbar, hide others
+//                activity.bottomToolbarHome.isVisible = true
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                activity.addFolderImageView.setOnClickListener {
 //                    AddItemSheet().show(activity.supportFragmentManager, null)
 //                }
-            }
+//                // OnClick listeners
+//                activity.addItemImageViewHome.isGone = true // todo: revisit
+////                activity.addItemImageViewHome.setOnClickListener {
+////                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+////                    AddItemSheet().show(activity.supportFragmentManager, null)
+////                }
+//            }
 
-
-            /** Priorities Fragment **************************************************************/
-            activity.getString(R.string.priorities_fragment_key) -> {
-                // Show correct toolbar, hide others
-                activity.bottomToolbarItemsList.isVisible = true
-                activity.bottomToolbarHome.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                // OnClick listeners
-                activity.addItemImageViewItemsList.setOnClickListener {
-                    Log.d("BottomToolbarSetup()", "addItemImageViewItemsList clicked from PrioritiesFragment!", )
-//                    activity.navController.navigate(R.id.action_prioritiesFragment_to_addPriorityFragment)
-                    AddItemSheet().show(activity.supportFragmentManager, null)
-                }
-            }
-
-            /** AddPriority Fragment *************************************************************/
-            activity.getString(R.string.add_priority_fragment_key) -> {
-                // Hide all bottom toolbars
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarHome.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-            }
-
-            /** AllChecklists Fragment **************************************************************/
-            activity.getString(R.string.checklists_fragment_key) -> {
-                // Show correct toolbar, hide others
-                activity.bottomToolbarHome.isVisible = true
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                activity.addFolderImageView.setOnClickListener {
-                    AddItemSheet().show(activity.supportFragmentManager, null)
-                }
-                // OnClick listeners
-                activity.addItemImageViewHome.isGone = true // todo: revisit
-//                activity.addItemImageViewHome.setOnClickListener {
-//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from ChecklistsFragment!", )
+//
+//            /** Priorities Fragment **************************************************************/
+//            activity.getString(R.string.priorities_fragment_key) -> {
+//                // Show correct toolbar, hide others
+//                activity.bottomToolbarItemsList.isVisible = true
+//                activity.bottomToolbarHome.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                // OnClick listeners
+//                activity.addItemImageViewItemsList.setOnClickListener {
+//                    Log.d("BottomToolbarSetup()", "addItemImageViewItemsList clicked from PrioritiesFragment!", )
+////                    activity.navController.navigate(R.id.action_prioritiesFragment_to_addPriorityFragment)
 //                    AddItemSheet().show(activity.supportFragmentManager, null)
 //                }
-            }
-
-                /** Checklist Fragment **************************************************************/
-                activity.getString(R.string.checklist_fragment_key) -> {
-                    // Show correct toolbar, hide others
-                    activity.bottomToolbarItemsList.isVisible = true
-                    activity.bottomToolbarHome.isInvisible = true
-                    activity.bottomToolbarEditItem.isInvisible = true
-
-                    activity.addItemImageViewItemsList.setOnClickListener {
-                        Log.d("BottomToolbarSetup()",
-                            "addItemImageViewItemsList clicked from ChecklistFragment!", )
-                        AddItemSheet().show(activity.supportFragmentManager, null)
-                    }
-                }
-
-            /** AllNotesFolders Fragment **************************************************************/
-            activity.getString(R.string.all_notes_folders_fragment_key) -> {
-                // Show correct toolbar, hide others
-                activity.bottomToolbarHome.isVisible = true
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                activity.addFolderImageView.setOnClickListener {
-                    AddItemSheet().show(activity.supportFragmentManager, null)
-                }
-                // OnClick listeners
-                activity.addItemImageViewHome.isGone = true // todo: revisit
-//                activity.addItemImageViewHome.setOnClickListener {
-//                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+//            }
+//
+//            /** AddPriority Fragment *************************************************************/
+//            activity.getString(R.string.add_priority_fragment_key) -> {
+//                // Hide all bottom toolbars
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarHome.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//            }
+//
+//            /** AllChecklists Fragment **************************************************************/
+//            activity.getString(R.string.checklists_fragment_key) -> {
+//                // Show correct toolbar, hide others
+//                activity.bottomToolbarHome.isVisible = true
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                activity.addFolderImageView.setOnClickListener {
 //                    AddItemSheet().show(activity.supportFragmentManager, null)
 //                }
-            }
+//                // OnClick listeners
+//                activity.addItemImageViewHome.isGone = true // todo: revisit
+////                activity.addItemImageViewHome.setOnClickListener {
+////                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from ChecklistsFragment!", )
+////                    AddItemSheet().show(activity.supportFragmentManager, null)
+////                }
+//            }
+//
+//                /** Checklist Fragment **************************************************************/
+//                activity.getString(R.string.checklist_fragment_key) -> {
+//                    // Show correct toolbar, hide others
+//                    activity.bottomToolbarItemsList.isVisible = true
+//                    activity.bottomToolbarHome.isInvisible = true
+//                    activity.bottomToolbarEditItem.isInvisible = true
+//
+//                    activity.addItemImageViewItemsList.setOnClickListener {
+//                        Log.d("BottomToolbarSetup()",
+//                            "addItemImageViewItemsList clicked from ChecklistFragment!", )
+//                        AddItemSheet().show(activity.supportFragmentManager, null)
+//                    }
+//                }
 
-                /** NoteList Fragment **************************************************************/
-                activity.getString(R.string.notes_list_fragment_key) -> {
-                    // Show correct toolbar, hide others
-                    activity.bottomToolbarItemsList.isVisible = true
-                    activity.bottomToolbarHome.isInvisible = true
-                    activity.bottomToolbarEditItem.isInvisible = true
+//            /** AllNotesFolders Fragment **************************************************************/
+//            activity.getString(R.string.all_notes_folders_fragment_key) -> {
+//                // Show correct toolbar, hide others
+//                activity.bottomToolbarHome.isVisible = true
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                activity.addFolderImageView.setOnClickListener {
+//                    AddItemSheet().show(activity.supportFragmentManager, null)
+//                }
+//                // OnClick listeners
+//                activity.addItemImageViewHome.isGone = true // todo: revisit
+////                activity.addItemImageViewHome.setOnClickListener {
+////                    Log.d("BottomToolbarSetup()", "addItemImageViewHome clicked from AllNotesFragment!", )
+////                    AddItemSheet().show(activity.supportFragmentManager, null)
+////                }
+//            }
 
-                    activity.addItemImageViewItemsList.setOnClickListener {
-                        Log.d("BottomToolbarSetup()",
-                            "addItemImageViewItemsList clicked from NoteListFragment()", )
-                        AddItemSheet().show(activity.supportFragmentManager, null)
-                    }
-                }
+//                /** NoteList Fragment **************************************************************/
+//                activity.getString(R.string.notes_list_fragment_key) -> {
+//                    // Show correct toolbar, hide others
+//                    activity.bottomToolbarItemsList.isVisible = true
+//                    activity.bottomToolbarHome.isInvisible = true
+//                    activity.bottomToolbarEditItem.isInvisible = true
+//
+//                    activity.addItemImageViewItemsList.setOnClickListener {
+//                        Log.d("BottomToolbarSetup()",
+//                            "addItemImageViewItemsList clicked from NoteListFragment()", )
+//                        AddItemSheet().show(activity.supportFragmentManager, null)
+//                    }
+//                }
+//
+//            /** AddItemSheet Fragment *************************************************************/
+//            activity.getString(R.string.add_item_bottom_sheet_fragment_key) -> {
+//                // Hide all bottom toolbars
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarHome.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                // todo revisit
+//            }
 
-            /** AddItemSheet Fragment *************************************************************/
-            activity.getString(R.string.add_item_bottom_sheet_fragment_key) -> {
-                // Hide all bottom toolbars
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarHome.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                // todo revisit
-            }
-
-            /** ELSE *************************************************************/
-            else -> {
-                // Hide all bottom toolbars
-                activity.bottomToolbarItemsList.isInvisible = true
-                activity.bottomToolbarHome.isInvisible = true
-                activity.bottomToolbarEditItem.isInvisible = true
-
-                Log.d("BottomToolbarSetup()", "ELSE thrown. All bottom toolbars made invisible." )
-            }
-        }
+//            /** ELSE *************************************************************/
+//            else -> {
+//                // Hide all bottom toolbars
+//                activity.bottomToolbarItemsList.isInvisible = true
+//                activity.bottomToolbarHome.isInvisible = true
+//                activity.bottomToolbarEditItem.isInvisible = true
+//
+//                Log.d("BottomToolbarSetup()", "ELSE thrown. All bottom toolbars made invisible." )
+//            }
+//        }
     }
 }

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tryden.nook.R
@@ -15,6 +18,7 @@ import com.tryden.nook.databinding.FragmentFoldersBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.BottomToolbarSetup
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
+import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 import com.tryden.nook.ui.home.checklists.checklist.ChecklistFragmentArgs
 
 
@@ -48,12 +52,9 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
         mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         // Setup Bottom Toolbar
-        BottomToolbarSetup(
-            fragmentKey = tag,
-            activity = mainActivity
-        ).bottomToolbarSetup()
+        setupBottomToolbar()
 
-        // Setup Epoxy Controller
+        // Setup Epoxy Controller, but don't build models just yet
         val controller = AllFoldersEpoxyController(safeArgs.folderType, this)
         binding.epoxyRecyclerView.setController(controller)
 
@@ -61,13 +62,22 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             val itemEntityList = folders.filter {
                 it.type == safeArgs.folderType
             }
+            // Set folderEntitiesList to requestModelBuild()
             controller.folderEntitiesList = itemEntityList as ArrayList<FolderEntity>
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupBottomToolbar() {
+        // Show correct toolbar, hide others
+        mainActivity.bottomToolbarHome.isVisible = true
+        mainActivity.bottomToolbarItemsList.isInvisible = true
+        mainActivity.bottomToolbarEditItem.isInvisible = true
+
+        // OnClick listeners
+        mainActivity.addFolderImageView.setOnClickListener {
+            AddItemSheet().show(mainActivity.supportFragmentManager, null)
+        }
+        mainActivity.addItemImageViewHome.isGone = true // todo: revisit
     }
 
     override fun onFolderSelected(selectedFolder: FolderEntity) {
@@ -104,7 +114,11 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
                 Log.e(tag, "onFolderSelected: ELSE case, no selectedFolder type not found")
             }
         }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

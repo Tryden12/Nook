@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
@@ -55,12 +57,9 @@ class NotesListFragment : BaseFragment(), OnItemSelected {
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.NOTE_ITEM)
 
         // Setup Bottom Toolbar
-        BottomToolbarSetup(
-            fragmentKey = mainActivity.getString(R.string.notes_list_fragment_key),
-            activity = mainActivity
-        ).bottomToolbarSetup()
+        setupBottomToolbar()
 
-        // Setup Epoxy Controller
+        // Setup Epoxy Controller, but don't build models just yet
         val controller = NotesListEpoxyController(this)
         binding.epoxyRecyclerView.setController(controller)
 
@@ -81,6 +80,7 @@ class NotesListFragment : BaseFragment(), OnItemSelected {
                 }
             }
 
+            // Set itemEntityList to requestModelBuild() in controller
             controller.itemEntityList = items as ArrayList<NoteEntity>
         }
 
@@ -138,6 +138,18 @@ class NotesListFragment : BaseFragment(), OnItemSelected {
                     Log.d(tag, "Folder ${selectedFolderEntity!!.title} size: ${selectedFolderEntity!!.size}")
                 }
             })
+    }
+
+    private fun setupBottomToolbar() {
+        // Show correct toolbar, hide others
+        mainActivity.bottomToolbarItemsList.isVisible = true
+        mainActivity.bottomToolbarHome.isInvisible = true
+        mainActivity.bottomToolbarEditItem.isInvisible = true
+
+        mainActivity.addItemImageViewItemsList.setOnClickListener {
+            Log.d(tag, "addItemImageViewItemsList clicked from NoteListFragment()", )
+            AddItemSheet().show(mainActivity.supportFragmentManager, null)
+        }
     }
 
     override fun onBumpPriority(priorityItemEntity: PriorityItemEntity) {

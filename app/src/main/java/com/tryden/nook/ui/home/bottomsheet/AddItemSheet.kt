@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tryden.nook.R
@@ -48,9 +49,12 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         Log.d("AddItemSheet()", "onViewCreated: $tag")
 
         mainActivity = (activity as MainActivity)
+
+        // Setup epoxy controller, but don't build models just yet
         val epoxyController = AddItemSheetEpoxyController(this)
         binding.epoxyRecyclerView.setController(epoxyController)
 
+        // Toggle between editMode on/off
         viewModel.editMode.observe(mainActivity) {
             epoxyController.editMode = it
             if (it) {
@@ -59,6 +63,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
                 Log.d(tag, "editMode off" )
             }
         }
+
 
         viewModel.currentSelectedFolderLiveData.observe(mainActivity) {
             epoxyController.currentFolderSelected = it
@@ -95,7 +100,7 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
     }
 
     /**
-     * @param [item] can be one of the following items:
+     * @param [itemType] can be one of the following items:
      * Folder, Priority, Checklist, or Note
      */
     override fun onInsertItem(itemType: EpoxyItemsInterface) {

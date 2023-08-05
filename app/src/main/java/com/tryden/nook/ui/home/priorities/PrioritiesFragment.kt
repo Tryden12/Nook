@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.SwipeCallbacks
@@ -50,10 +52,7 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
         Log.d("PrioritiesFragment()", "onViewCreated: $tag")
 
         // Setup Bottom Toolbar
-        BottomToolbarSetup(
-            fragmentKey = tag,
-            activity = mainActivity,
-        ).bottomToolbarSetup()
+        setupBottomToolbar()
 
         // Bottom Sheet Type = Note Item
         sharedViewModel.updateBottomSheetItemType(BottomSheetViewType.Type.PRIORITY)
@@ -70,16 +69,17 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
         swipeToDeleteSetup()
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun setupBottomToolbar() {
+        // Show correct toolbar, hide others
+        mainActivity.bottomToolbarItemsList.isVisible = true
+        mainActivity.bottomToolbarHome.isInvisible = true
+        mainActivity.bottomToolbarEditItem.isInvisible = true
 
-        mainActivity.hideKeyboard(requireView())
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        // OnClick listeners
+        mainActivity.addItemImageViewItemsList.setOnClickListener {
+            Log.d(tag, "addItemImageViewItemsList clicked from PrioritiesFragment", )
+            AddItemSheet().show(mainActivity.supportFragmentManager, null)
+        }
     }
 
     override fun onBumpPriority(priorityItemEntity: PriorityItemEntity) {
@@ -154,6 +154,17 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
                 }
 
             })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.hideKeyboard(requireView())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
