@@ -9,10 +9,12 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
+import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
 import com.tryden.nook.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentFoldersBinding
 import com.tryden.nook.ui.BaseFragment
+import com.tryden.nook.ui.epoxy.models.SectionFolderItemEpoxyModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface
 import com.tryden.nook.ui.home.bottomsheet.AddItemSheet
 
@@ -60,6 +62,8 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             // Set folderEntitiesList to requestModelBuild()
             controller.folderEntitiesList = itemEntityList as ArrayList<FolderEntity>
         }
+
+        swipeToDeleteSetup()
     }
 
     private fun setupBottomToolbar() {
@@ -107,6 +111,70 @@ class FoldersFragment : BaseFragment(), OnFolderSelectedInterface {
             else -> {
                 // Do nothing
                 Log.e(tag, "onFolderSelected: ELSE case, no selectedFolder type not found")
+            }
+        }
+    }
+
+    private fun swipeToDeleteSetup() {
+        EpoxyTouchHelper.initSwiping(binding.epoxyRecyclerView)
+            .right()
+            .withTarget(SectionFolderItemEpoxyModel::class.java)
+            .andCallbacks(object : EpoxyTouchHelper.SwipeCallbacks<SectionFolderItemEpoxyModel>() {
+
+                override fun onSwipeCompleted(
+                    model: SectionFolderItemEpoxyModel?,
+                    itemView: View?,
+                    position: Int,
+                    direction: Int,
+                ) {
+                    val folder = model?.folderEntity ?: return
+
+                    // Delete all items in folder first
+                    deleteAllItemsInFolder(folder)
+
+                    // Then, delete folder from database
+                    sharedViewModel.deleteFolder(folder)
+                }
+
+            })
+    }
+
+    private fun deleteAllItemsInFolder(folder: FolderEntity) {
+        when (folder.type) {
+            getString(R.string.priority) -> {
+                sharedViewModel.priorityItemEntitiesLiveData.observe(viewLifecycleOwner) { items ->
+                    if (items.isNotEmpty()) {
+                        items.filter {
+                            it.folderName == folder.title
+                        }.forEach { item ->
+                            sharedViewModel.deleteItem(item)
+                        }
+                    }
+                }
+            }
+
+            getString(R.string.checklist) -> {
+                sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { items ->
+                    if (items.isNotEmpty()) {
+                        items.filter {
+                            it.folderName == folder.title
+                        }.forEach { item ->
+                            sharedViewModel.deleteChecklistItem(item)
+                        }
+                    }
+                }
+            }
+
+            getString(R.string.note) -> {
+                sharedViewModel.noteEntitiesLiveData.observe(viewLifecycleOwner) { items ->
+                    if (items.isNotEmpty()) {
+                        items.filter {
+                            it.folderName == folder.title
+                        }.forEach { item ->
+                            sharedViewModel.deleteNoteEntity(item)
+                        }
+                    }
+                }
             }
         }
     }
