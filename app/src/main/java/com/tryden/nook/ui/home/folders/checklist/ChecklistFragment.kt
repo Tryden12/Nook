@@ -61,10 +61,11 @@ class ChecklistFragment : BaseFragment(), OnCheckSelected {
         mainActivity.supportActionBar?.title = getString(R.string.folders_title)
 
         sharedViewModel.checklistItemEntitiesLiveData.observe(viewLifecycleOwner) { list ->
-            Log.e(tag, "checklistItemEntitiesLiveData changed")
+            Log.d(tag, "checklistItemEntitiesLiveData changed")
             val items = list.filter { item ->
                 item.folderName == safeArgs.folderName
             }
+            safeArgs.folderName?.let { Log.d(tag, "Folder name: $it") }
 
             when (items.size) {
                 0 -> {

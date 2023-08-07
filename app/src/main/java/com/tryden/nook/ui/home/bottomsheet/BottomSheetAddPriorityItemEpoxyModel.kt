@@ -1,5 +1,6 @@
 package com.tryden.nook.ui.home.bottomsheet
 
+import android.util.Log
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
 import com.tryden.nook.database.entity.FolderEntity
@@ -22,6 +23,8 @@ class BottomSheetAddPriorityItemEpoxyModel(
 
 
     override fun ModelBottomSheetAddPriorityItemBinding.bind() {
+        Log.d("BottomSheetAddPriorityItemEpoxyModel()", "Folder name: ${currentFolderEntity.title}")
+
         // Check if user is editing an item, or adding a new item
         when (editMode) {
             true -> {

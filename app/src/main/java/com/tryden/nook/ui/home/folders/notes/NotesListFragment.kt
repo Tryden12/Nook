@@ -68,6 +68,7 @@ class NotesListFragment : BaseFragment(), OnItemSelected {
             val items = list.filter {
                 it.folderName == safeArgs.folderName
             }
+            safeArgs.folderName?.let { Log.d(tag, "Folder name: $it") }
 
             when (items.size) {
                 1 -> {

@@ -47,6 +47,7 @@ class NookViewModel @Inject constructor(
     }
 
     fun updateCurrentFolderSelected(currentFolder: FolderEntity) {
+        Log.d("NookViewModel", "currentFolderSelected: ${currentFolder.title}", )
         _currentSelectedFolderLiveData.value = currentFolder
         _currentSelectedFolderLiveData.postValue(currentFolder)
     }

@@ -18,6 +18,7 @@ import com.tryden.nook.databinding.FragmentAddItemSheetBinding
 import com.tryden.nook.ui.MainActivity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.*
+import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 
 /**
  * This class is the primary bottom sheet used for the application.
@@ -88,6 +89,11 @@ class AddItemSheet : BottomSheetDialogFragment(), OnAddItemSheetButtonSelected {
         viewModel.bottomSheetAddItemTypeLiveData.observe(mainActivity) {
             epoxyController.currentBottomSheetType = it
             Log.d(tag, "currentBottomSheetType: $it" )
+            // Logs current folder selected unless user tries to add folder from the HomeFragment()
+            // In that case, we currentFolderSelected is not used/irrelevant
+            if (it != BottomSheetViewType.Type.FOLDER) {
+                Log.d(tag, "currentFolderSelected: ${viewModel.currentSelectedFolderLiveData.value?.title}", )
+            }
         }
 
     }

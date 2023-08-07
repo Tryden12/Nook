@@ -23,6 +23,9 @@ class BottomSheetAddChecklistItemEpoxyModel(
 ): ViewBindingKotlinModel<ModelBottomSheetAddChecklistItemBinding>(R.layout.model_bottom_sheet_add_checklist_item) {
 
     override fun ModelBottomSheetAddChecklistItemBinding.bind() {
+        Log.d("BottomSheetAddChecklistItemEpoxyModel()", "Folder name: ${currentFolderEntity.title}")
+
+
         // Check if user is editing an item, or adding a new item
         when (editMode) {
             true -> {

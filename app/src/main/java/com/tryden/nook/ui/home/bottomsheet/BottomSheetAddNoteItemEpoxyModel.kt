@@ -26,6 +26,7 @@ class BottomSheetAddNoteItemEpoxyModel(
 ): ViewBindingKotlinModel<ModelBottomSheetAddNoteItemBinding>(R.layout.model_bottom_sheet_add_note_item) {
 
     override fun ModelBottomSheetAddNoteItemBinding.bind() {
+        Log.d("BottomSheetAddNoteItemEpoxyModel()", "Folder name: ${currentFolderEntity.title}")
         val currentTime = DateFormat.getDateInstance(3).format(System.currentTimeMillis())
 
         // Check if user is editing an item, or adding a new item

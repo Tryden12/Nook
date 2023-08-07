@@ -63,6 +63,8 @@ class PrioritiesFragment : BaseFragment(), PriorityItemEntityInterface {
             val items = list.filter {
                 it.folderName == safeArgs.folderName
             }
+            safeArgs.folderName?.let { Log.d(tag, "Folder name: $it") }
+
 
             controller.itemEntityList = items as ArrayList<PriorityItemEntity>
             mainActivity.itemCountTextView.text = "${items.size} Priorities"

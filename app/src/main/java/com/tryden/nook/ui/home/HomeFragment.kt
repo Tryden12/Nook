@@ -96,9 +96,12 @@ class HomeFragment : BaseFragment(), OnFolderSelectedInterface {
             navigateViewNavGraph(navDirections)
 
         } else {
-            // Figure out which folder type
-            // Update bottom sheet to match
+            // Update current folder selected,
+            // Figure out which folder type,
+            // Update bottom sheet to match,
             // Navigate to correct Fragment
+            sharedViewModel.updateCurrentFolderSelected(selectedFolder)
+            Log.d(tag, "currentFolderSelected: ${selectedFolder.title}", )
             when (selectedFolder.type) {
                 /** Priority **/
                 getString(R.string.priority) -> {
