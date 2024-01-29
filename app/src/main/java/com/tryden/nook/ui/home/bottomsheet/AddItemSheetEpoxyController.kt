@@ -2,10 +2,10 @@ package com.tryden.nook.ui.home.bottomsheet
 
 import android.util.Log
 import com.airbnb.epoxy.EpoxyController
-import com.tryden.nook.database.entity.ChecklistItemEntity
-import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.NoteEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.data.database.entity.ChecklistItemEntity
+import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.NoteEntity
+import com.tryden.nook.data.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType.Type.*
 

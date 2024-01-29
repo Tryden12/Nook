@@ -9,7 +9,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.tryden.nook.R
-import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentHomeBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType

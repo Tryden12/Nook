@@ -1,18 +1,17 @@
-package com.tryden.nook.arch
+package com.tryden.nook.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tryden.nook.database.entity.ChecklistItemEntity
-import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.NoteEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.data.NookRepository
+import com.tryden.nook.data.database.entity.ChecklistItemEntity
+import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.NoteEntity
+import com.tryden.nook.data.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

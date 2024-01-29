@@ -3,7 +3,6 @@ package com.tryden.nook.ui
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
@@ -16,14 +15,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.tryden.nook.R
-import com.tryden.nook.arch.NookViewModel
-import com.tryden.nook.database.AppDatabase
 import com.tryden.nook.databinding.ActivityMainBinding
 import com.tryden.nook.databinding.BottomAppBarBinding
-import com.tryden.nook.databinding.ModelBottomAppBarHomeBinding
-import com.tryden.nook.databinding.ModelBottomAppBarItemEditBinding
-import com.tryden.nook.databinding.ModelBottomAppBarItemsListBinding
-import com.tryden.nook.ui.home.folders.priorities.PrioritiesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -3,8 +3,8 @@ package com.tryden.nook.ui.home.bottomsheet
 import android.util.Log
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddPriorityItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface

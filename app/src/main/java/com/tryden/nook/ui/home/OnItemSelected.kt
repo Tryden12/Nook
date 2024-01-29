@@ -1,7 +1,7 @@
 package com.tryden.nook.ui.home
 
-import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 
 interface OnItemSelected {

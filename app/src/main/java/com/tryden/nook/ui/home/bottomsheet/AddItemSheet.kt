@@ -5,15 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tryden.nook.R
-import com.tryden.nook.arch.NookViewModel
-import com.tryden.nook.database.entity.ChecklistItemEntity
-import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.NoteEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.ui.NookViewModel
+import com.tryden.nook.data.database.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentAddItemSheetBinding
 import com.tryden.nook.ui.MainActivity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface

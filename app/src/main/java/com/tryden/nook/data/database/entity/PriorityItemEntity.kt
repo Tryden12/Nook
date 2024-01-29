@@ -1,4 +1,4 @@
-package com.tryden.nook.database.entity
+package com.tryden.nook.data.database.entity
 
 import android.os.Parcelable
 import androidx.room.Entity

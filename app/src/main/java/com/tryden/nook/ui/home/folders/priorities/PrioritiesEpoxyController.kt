@@ -3,7 +3,7 @@ package com.tryden.nook.ui.home.folders.priorities
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.data.database.entity.PriorityItemEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.HeaderSectionTitle
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.SectionHeaderRounded

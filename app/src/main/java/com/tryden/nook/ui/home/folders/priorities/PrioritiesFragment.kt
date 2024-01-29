@@ -13,8 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.airbnb.epoxy.EpoxyTouchHelper.SwipeCallbacks
 import com.tryden.nook.R
-import com.tryden.nook.database.entity.FolderEntity
-import com.tryden.nook.database.entity.PriorityItemEntity
+import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentPrioritiesBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.epoxy.models.BottomSheetViewType

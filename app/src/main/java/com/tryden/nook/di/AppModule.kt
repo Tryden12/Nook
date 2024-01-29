@@ -2,7 +2,7 @@ package com.tryden.nook.di
 
 import android.app.Application
 import androidx.room.Room
-import com.tryden.nook.database.AppDatabase
+import com.tryden.nook.data.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

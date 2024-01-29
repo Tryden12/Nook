@@ -1,6 +1,6 @@
 package com.tryden.nook.ui.home.folders.checklist
 
-import com.tryden.nook.database.entity.ChecklistItemEntity
+import com.tryden.nook.data.database.entity.ChecklistItemEntity
 
 interface OnCheckSelected {
 

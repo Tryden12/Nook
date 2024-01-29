@@ -1,7 +1,7 @@
-package com.tryden.nook.database.dao
+package com.tryden.nook.data.database.dao
 
 import androidx.room.*
-import com.tryden.nook.database.entity.FolderEntity
+import com.tryden.nook.data.database.entity.FolderEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
