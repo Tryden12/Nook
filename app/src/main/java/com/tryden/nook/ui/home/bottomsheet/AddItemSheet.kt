@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tryden.nook.R
 import com.tryden.nook.ui.NookViewModel
-import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
 import com.tryden.nook.databinding.FragmentAddItemSheetBinding
 import com.tryden.nook.ui.MainActivity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface

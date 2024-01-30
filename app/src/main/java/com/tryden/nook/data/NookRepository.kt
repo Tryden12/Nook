@@ -1,14 +1,14 @@
 package com.tryden.nook.data
 
 import android.provider.ContactsContract.CommonDataKinds.Note
-import com.tryden.nook.data.database.dao.ChecklistItemEntityDao
-import com.tryden.nook.data.database.dao.FolderEntityDao
-import com.tryden.nook.data.database.dao.NoteEntityDao
-import com.tryden.nook.data.database.dao.PriorityItemEntityDao
-import com.tryden.nook.data.database.entity.ChecklistItemEntity
-import com.tryden.nook.data.database.entity.FolderEntity
-import com.tryden.nook.data.database.entity.NoteEntity
-import com.tryden.nook.data.database.entity.PriorityItemEntity
+import com.tryden.nook.data.source.local.dao.ChecklistItemEntityDao
+import com.tryden.nook.data.source.local.dao.FolderEntityDao
+import com.tryden.nook.data.source.local.dao.NoteEntityDao
+import com.tryden.nook.data.source.local.dao.PriorityItemEntityDao
+import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.NoteEntity
+import com.tryden.nook.data.source.local.entity.PriorityItemEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

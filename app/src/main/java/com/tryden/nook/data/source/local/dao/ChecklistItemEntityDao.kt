@@ -1,9 +1,12 @@
-package com.tryden.nook.data.database.dao
+package com.tryden.nook.data.source.local.dao
 
 import androidx.room.*
-import com.tryden.nook.data.database.entity.ChecklistItemEntity
+import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Data Access Object for the Checklist table.
+ */
 @Dao
 interface ChecklistItemEntityDao {
 

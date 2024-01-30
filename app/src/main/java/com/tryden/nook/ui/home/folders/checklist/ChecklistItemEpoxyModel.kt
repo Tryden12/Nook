@@ -3,7 +3,7 @@ package com.tryden.nook.ui.home.folders.checklist
 import android.graphics.Paint
 import android.util.Log
 import com.tryden.nook.R
-import com.tryden.nook.data.database.entity.ChecklistItemEntity
+import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
 import com.tryden.nook.databinding.ModelChecklistItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface

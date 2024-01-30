@@ -1,4 +1,4 @@
-package com.tryden.nook.data.database.entity
+package com.tryden.nook.data.source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

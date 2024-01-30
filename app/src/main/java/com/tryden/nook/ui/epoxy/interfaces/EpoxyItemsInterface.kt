@@ -1,9 +1,9 @@
 package com.tryden.nook.ui.epoxy.interfaces
 
-import com.tryden.nook.data.database.entity.ChecklistItemEntity
-import com.tryden.nook.data.database.entity.FolderEntity
-import com.tryden.nook.data.database.entity.NoteEntity
-import com.tryden.nook.data.database.entity.PriorityItemEntity
+import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.NoteEntity
+import com.tryden.nook.data.source.local.entity.PriorityItemEntity
 
 interface EpoxyItemsInterface {
 

@@ -4,8 +4,8 @@ import android.util.Log
 import android.widget.RadioButton
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.data.database.entity.ChecklistItemEntity
-import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
 import com.tryden.nook.databinding.ModelBottomSheetAddChecklistItemBinding
 import com.tryden.nook.databinding.ModelBottomSheetAddFolderBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel

@@ -11,9 +11,9 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyTouchHelper
 import com.tryden.nook.R
-import com.tryden.nook.data.database.entity.FolderEntity
-import com.tryden.nook.data.database.entity.NoteEntity
-import com.tryden.nook.data.database.entity.PriorityItemEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.NoteEntity
+import com.tryden.nook.data.source.local.entity.PriorityItemEntity
 import com.tryden.nook.databinding.FragmentNotesListBinding
 import com.tryden.nook.ui.BaseFragment
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface

@@ -4,7 +4,7 @@ import android.util.Log
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.data.database.entity.ChecklistItemEntity
+import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface.*
 import com.tryden.nook.ui.epoxy.models.*

@@ -1,9 +1,12 @@
-package com.tryden.nook.data.database.dao
+package com.tryden.nook.data.source.local.dao
 
 import androidx.room.*
-import com.tryden.nook.data.database.entity.NoteEntity
+import com.tryden.nook.data.source.local.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Data Access Object for the Note table.
+ */
 @Dao
 interface NoteEntityDao {
 

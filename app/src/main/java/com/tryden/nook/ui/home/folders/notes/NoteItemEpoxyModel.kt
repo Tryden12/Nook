@@ -1,7 +1,7 @@
 package com.tryden.nook.ui.home.folders.notes
 
 import com.tryden.nook.R
-import com.tryden.nook.data.database.entity.NoteEntity
+import com.tryden.nook.data.source.local.entity.NoteEntity
 import com.tryden.nook.databinding.ModelNoteItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface

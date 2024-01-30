@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable
 import androidx.core.view.isVisible
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
 import com.tryden.nook.databinding.ModelSectionFolderItemBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 import com.tryden.nook.ui.home.OnFolderSelectedInterface

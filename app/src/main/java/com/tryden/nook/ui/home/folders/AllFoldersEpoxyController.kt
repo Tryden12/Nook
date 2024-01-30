@@ -4,7 +4,7 @@ import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.EpoxyController
 import com.tryden.nook.R
 import com.tryden.nook.application.NookApplication
-import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
 import com.tryden.nook.ui.epoxy.interfaces.EpoxyItemsInterface
 import com.tryden.nook.ui.epoxy.models.*
 import com.tryden.nook.ui.home.OnFolderSelectedInterface

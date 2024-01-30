@@ -1,6 +1,6 @@
 package com.tryden.nook.ui.home
 
-import com.tryden.nook.data.database.entity.FolderEntity
+import com.tryden.nook.data.source.local.entity.FolderEntity
 
 interface OnFolderSelectedInterface {
 

@@ -4,7 +4,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.tryden.nook.R
-import com.tryden.nook.data.database.entity.PriorityItemEntity
+import com.tryden.nook.data.source.local.entity.PriorityItemEntity
 import com.tryden.nook.databinding.ModelItemEntityBinding
 import com.tryden.nook.ui.epoxy.ViewBindingKotlinModel
 

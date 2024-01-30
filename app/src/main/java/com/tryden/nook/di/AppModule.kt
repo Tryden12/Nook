@@ -2,14 +2,12 @@ package com.tryden.nook.di
 
 import android.app.Application
 import androidx.room.Room
-import com.tryden.nook.data.database.AppDatabase
+import com.tryden.nook.data.source.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module /** Turns this into a Dagger module. **/
