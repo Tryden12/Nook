@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:background="?attr/colorOnBackground">
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/deleteButtonImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:src="@drawable/ic_delete_24"
+            app:tint="?attr/colorSurface"
+            android:background="@color/error_red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.2"
+            android:visibility="invisible"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="?attr/colorSurface"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title here" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lastModifiedTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="?attr/colorOnSurface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/titleTextView"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            android:visibility="visible"
+            tools:text="06/15/23" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:textColor="?attr/colorOnSurface"
+            app:layout_constraintStart_toEndOf="@id/lastModifiedTextView"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            app:layout_constraintEnd_toStartOf="@id/priorityTextView"
+            tools:text="Description will go here if we have it" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/priorityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            android:gravity="center"
+            android:text="@string/priority_image_text"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:background="?attr/colorOnBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

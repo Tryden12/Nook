@@ -1,3 +1,105 @@
 <resources>
     <string name="app_name">Nook</string>
+
+    <!-- Database Keys -->
+    <string name="folder_type_general">Folder</string>
+    <string name="priority_type_key">Priority</string>
+    <string name="checklist_type_key">Checklist</string>
+    <string name="note_type_key">Note</string>
+
+    <!--    <string name="folder_type_priority">Priority</string>-->
+    <!--    <string name="folder_type_checklist">Checklist</string>-->
+    <!--    <string name="folder_type_note">Note</string>-->
+
+    <!-- Fragment Keys -->
+    <string name="home_fragment_key">home_fragment</string>
+    <string name="all_folders_fragment_key">all_folders_fragment</string>
+    <string name="add_folder_fragment_key">add_folder_fragment</string>
+    <string name="all_priorities_folders_fragment_key">all_priorities_folders_fragment</string>
+    <string name="priorities_fragment_key">priorities_fragment</string>
+    <string name="checklists_fragment_key">checklists_fragment</string>
+    <string name="checklist_fragment_key">checklist_fragment</string>
+    <string name="all_notes_folders_fragment_key">all_notes_folders_fragment</string>
+    <string name="notes_list_fragment_key">notes_list_fragment</string>
+    <string name="add_note_fragment_key">add_note_fragment</string>
+    <string name="note_fragment_key">note_fragment</string>
+
+
+    <string name="add_item_bottom_sheet_fragment_key">add_item_bottom_sheet_fragment</string>
+    <string name="add_priority_fragment_key">add_priority_fragment</string>
+
+
+    <!-- Action Bar -->
+    <string name="folders_title">Folders</string>
+
+
+    <string name="update_item">Update item</string>
+
+    <!-- Widgets -->
+    <string name="hint_title">Title</string>
+    <string name="hint_folder">Folder</string>
+    <string name="hint_description">Description (Optional)</string>
+    <string name="required_field">* Required field</string>
+    <string name="priority">Priority</string>
+    <string name="checklist">Checklist</string>
+    <string name="note">Note</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+
+    <string name="new_folder">New Folder</string>
+    <string name="new_priority_folder">Priority</string>
+    <string name="new_checklist_folder">Checklist</string>
+    <string name="new_note_folder">Note</string>
+    <string name="new_priority">New Priority</string>
+    <string name="new_item">New Item</string>
+    <string name="new_note">New Note</string>
+
+    <string name="edit_item">Edit Item</string>
+    <string name="type">Type</string>
+
+    <string name="no_text">No text..</string>
+    <string name="enter_description_here">Enter description here..</string>
+
+
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="save">Save</string>
+    <string name="update">Update</string>
+    <string name="priority_image_text">!</string>
+
+    <string name="no_items">No Items!</string>
+    <string name="how_to_add_items">Use the button in the bottom right-hand corner to add an item to this folder.</string>
+    <string name="no_folders">No Folders?</string>
+    <string name="how_to_add_folder">Use the button in the bottom left-hand corner to add a folder.</string>
+
+    <string name="no_priorities">No Priorities!</string>
+    <string name="how_to_add_priorities">Use the button in the bottom right-hand corner to add a priority to this folder.</string>
+    <string name="no_checklists">No Checklists!</string>
+    <string name="how_to_add_checklist">Use the button in the bottom left-hand corner to add a checklist folder.</string>
+    <string name="no_checklist_items">No Checklist Items!</string>
+    <string name="how_to_add_checklist_item">Use the button in the bottom right-hand corner to add an item to this folder.</string>
+    <string name="how_to_add_note_folder">Use the button in the bottom left-hand corner to add a note folder.</string>
+    <string name="no_notes">No Notes!</string>
+    <string name="how_to_add_note">Use the button in the bottom right-hand corner to add a note to this folder.</string>
+
+    <!-- Toasts -->
+    <string name="item_saved">Item saved!</string>
+    <string name="folder_not_found">Destination not found!</string>
+
+
+    <!-- Section Titles -->
+    <string name="priorities">Priorities</string>
+    <string name="checklists">Checklists</string>
+    <string name="notes">Notes</string>
+
+
+    <!-- Folder Titles -->
+    <string name="all_priorities">All Priorities</string>
+    <string name="all_checklists">All Checklists</string>
+    <string name="all_notes">All Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
