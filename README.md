@@ -43,8 +43,8 @@ I am using [Hilt](https://developer.android.com/training/dependency-injection/hi
 
 ## Screenshots:
 <p align="center" width="100%">
-    <img width="25%" src="https://tylerryden.com/images/nook-home2.png" alt="Nook home screen"/>
-    <img width="25%" src="https://tylerryden.com/images/nook-add-priority.png" alt="Nook add priority screen"/>
-    <img width="25%" src="https://tylerryden.com/images/nook-notes.png" alt="Nook notes screen"/>
-    <img width="25%" src="https://tylerryden.com/images/nook-priorities.png" alt="Nook priorities screen"/>
+    <img width="40%" src="https://tylerryden.com/images/nook-home2.png" alt="Nook home screen"/>
+    <img width="40%" src="https://tylerryden.com/images/nook-add-priority.png" alt="Nook add priority screen"/>
+    <img width="40%" src="https://tylerryden.com/images/nook-notes.png" alt="Nook notes screen"/>
+    <img width="40%" src="https://tylerryden.com/images/nook-priorities.png" alt="Nook priorities screen"/>
 </p>
