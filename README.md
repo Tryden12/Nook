@@ -42,7 +42,7 @@ I am using [Hilt](https://developer.android.com/training/dependency-injection/hi
 * [Flows](https://developer.android.com/kotlin/flow) - A flow is conceptually a stream of data that can be computed asynchronously. The emitted values must be of the same type.
 
 ## Screenshots:
-<p align="center" width="100%" style="padding:10px">
+<p align="center" width="100%">
     <img width="30%" src="https://tylerryden.com/images/nook-home2.png" alt="Nook home screen"/>
     <img width="30%" src="https://tylerryden.com/images/nook-add-priority.png" alt="Nook add priority screen"/>
 </p>
