@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  * Data Access Object for the Note table.
  */
 @Dao
-interface NoteEntityDao {
+interface NoteItemDao {
 
     @Query("SELECT * FROM note_entity")
     fun getAllNoteEntities(): Flow<List<NoteEntity>>

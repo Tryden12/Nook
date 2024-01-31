@@ -1,10 +1,9 @@
 package com.tryden.nook.data
 
-import android.provider.ContactsContract.CommonDataKinds.Note
-import com.tryden.nook.data.source.local.dao.ChecklistItemEntityDao
-import com.tryden.nook.data.source.local.dao.FolderEntityDao
-import com.tryden.nook.data.source.local.dao.NoteEntityDao
-import com.tryden.nook.data.source.local.dao.PriorityItemEntityDao
+import com.tryden.nook.data.source.local.dao.ChecklistItemDao
+import com.tryden.nook.data.source.local.dao.FolderItemDao
+import com.tryden.nook.data.source.local.dao.NoteItemDao
+import com.tryden.nook.data.source.local.dao.PriorityItemDao
 import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
 import com.tryden.nook.data.source.local.entity.FolderEntity
 import com.tryden.nook.data.source.local.entity.NoteEntity
@@ -13,10 +12,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class NookRepository @Inject constructor(
-    private val priorityDao: PriorityItemEntityDao,
-    private val checklistDao: ChecklistItemEntityDao,
-    private val folderDao: FolderEntityDao,
-    private val noteDao: NoteEntityDao
+    private val priorityDao: PriorityItemDao,
+    private val checklistDao: ChecklistItemDao,
+    private val folderDao: FolderItemDao,
+    private val noteDao: NoteItemDao
 ){
 
     // region Folder Items

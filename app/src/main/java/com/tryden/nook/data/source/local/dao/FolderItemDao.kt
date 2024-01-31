@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  * Data Access Object for the Folder table.
  */
 @Dao
-interface FolderEntityDao {
+interface FolderItemDao {
 
     @Query("SELECT * FROM folder_entity")
     fun getAllFolderEntities(): Flow<List<FolderEntity>>

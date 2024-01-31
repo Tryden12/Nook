@@ -2,10 +2,10 @@ package com.tryden.nook.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.tryden.nook.data.source.local.dao.ChecklistItemEntityDao
-import com.tryden.nook.data.source.local.dao.FolderEntityDao
-import com.tryden.nook.data.source.local.dao.NoteEntityDao
-import com.tryden.nook.data.source.local.dao.PriorityItemEntityDao
+import com.tryden.nook.data.source.local.dao.ChecklistItemDao
+import com.tryden.nook.data.source.local.dao.FolderItemDao
+import com.tryden.nook.data.source.local.dao.NoteItemDao
+import com.tryden.nook.data.source.local.dao.PriorityItemDao
 import com.tryden.nook.data.source.local.entity.ChecklistItemEntity
 import com.tryden.nook.data.source.local.entity.FolderEntity
 import com.tryden.nook.data.source.local.entity.NoteEntity
@@ -29,9 +29,9 @@ import com.tryden.nook.data.source.local.entity.PriorityItemEntity
 )
 abstract class AppDatabase: RoomDatabase() {
 
-    abstract fun folderItemEntityDao(): FolderEntityDao
-    abstract fun priorityItemEntityDao(): PriorityItemEntityDao
-    abstract fun checklistItemEntityDao(): ChecklistItemEntityDao
-    abstract fun noteItemEntityDao(): NoteEntityDao
+    abstract fun folderItemEntityDao(): FolderItemDao
+    abstract fun priorityItemEntityDao(): PriorityItemDao
+    abstract fun checklistItemEntityDao(): ChecklistItemDao
+    abstract fun noteItemEntityDao(): NoteItemDao
 
 }

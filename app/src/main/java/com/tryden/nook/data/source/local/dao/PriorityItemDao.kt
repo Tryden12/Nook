@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  * Data Access Object for the Priority table.
  */
 @Dao
-interface PriorityItemEntityDao {
+interface PriorityItemDao {
 
     @Query("SELECT * FROM priority_item_entity")
     fun getAllPriorityItemEntities(): Flow<List<PriorityItemEntity>>

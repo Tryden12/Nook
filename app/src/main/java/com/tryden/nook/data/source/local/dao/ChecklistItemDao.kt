@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  * Data Access Object for the Checklist table.
  */
 @Dao
-interface ChecklistItemEntityDao {
+interface ChecklistItemDao {
 
     @Query("SELECT * FROM checklist_item_entity")
     fun getAllChecklistItemEntities(): Flow<List<ChecklistItemEntity>>
